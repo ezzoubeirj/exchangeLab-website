@@ -1,0 +1,57 @@
+{
+  "ourCourses": {
+    "title": "Nos cours live",
+    "description": " Classes interactives 100 % en ligne, avec test de niveau, petits groupes et suivi personnalisé.",
+    "details": "détails du cours",
+    "button": "S'inscrire maintenant",
+    "whatsapp": "Contactez-nous",
+    "steps": {
+      "step1": {
+        "part1": "Cours d’anglais pour enfantss",
+        "part2" : "600 Dh / session (3 mois)",
+        "part3" : "Environ 29 heures de cours (deux séances de 1h15 par semaine)",
+        "part4" : "Cours de communication axés sur l'oral",
+        "part5" : "Profs hautement qualifiés",
+        "part6" : "9 à 12 élèves par classe",
+        "part7" : "Apprenez partout sans vous déplacer à un centre",
+        "part8" : "Exercices, devoirs et tests",
+        "part9" : "Compétitions & challenges",
+        "part10": "Certificats"
+      },
+      "step2": {
+        "part1": "Cours d’anglais pour adultes",
+        "part2" : "600 Dh / session (2 mois et demi)",
+        "part3" : "30 heures de cours (deux séances de 1h30 par semaine)",
+        "part4" : "Cours de communication axés sur l'oral",
+        "part5" : "Profs hautement qualifiés",
+        "part6" : "9 à 12 apprenants par classe",
+        "part7" : "Apprenez partout sans vous déplacer à un centre",
+        "part8" : "Exercices, devoirs et tests",
+        "part9" : "Compétitions & challenges",
+        "part10": "Certificats"
+      },
+      "step3": {
+        "part1": "Cours d’espagnol pour enfants",
+        "part2" : "350 Dh / session (3 mois et demi)",
+        "part3" : "15 heures de cours (une séance de 1h15 par semaine)",
+        "part4" : "Cours de communication axés sur l'oral",
+        "part5" : "Profs hautement qualifiés",
+        "part6" : "9 à 12 élèves par classe",
+        "part7" : "Apprenez partout sans vous déplacer à un centre",
+        "part8" : "Exercices, devoirs et tests",
+        "part9" : "Compétitions & challenges",
+        "part10": "Certificats"
+      },
+      "step4": {
+        "part1": "Petits groupes, entreprises et particuliers",
+        "part2" : "Programmes sur mesure",
+        "part3" : "General English : Pour améliorer vos compétences globales en anglais.",
+        "part4" : "Business English : Pour communiquer efficacement dans un environnement professionnel.",
+        "part5" : "Anglais de spécialité : Marketing, Hôtellerie et Tourisme, Commerce , Ingénierie, Santé, etc.",
+        "part6" : " Préparation IELTS",
+        "part7" : "Création de cours en ligne enregistrés : Contenus sur mesure dans divers domaines.",
+        "part8" : "Flexibilité des horaires : planifiez vos séances selon vos disponibilités."
+      }
+    }
+  }
+}

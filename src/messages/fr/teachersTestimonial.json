@@ -1,0 +1,21 @@
+{
+    "Teachers": {
+      "heading": {
+        "part1": "Rencontrez nos",
+        "part2": "professeurs"
+      },
+      "subheading": "Découvrez nos enseignants passionnés qui vous accompagneront dans votre apprentissage des langues avec des méthodes personnalisées et efficaces.",
+      "spanish": "Espagnol",
+      "arabic": "Arabe",
+      "french": "Français",
+      "english": "Anglais",
+      "quote1": "J'adore enseigner l'espagnol et voir mes étudiants progresser. Chaque leçon est une nouvelle aventure culturelle que nous explorons ensemble.",
+      "quote2": "L'arabe est une langue magnifique et riche. Je m'efforce de rendre son apprentissage accessible et passionnant pour tous mes étudiants.",
+      "quote3": "Le français est ma passion. J'aide mes étudiants à découvrir non seulement la langue, mais aussi la culture française dans toute sa diversité.",
+      "student": "Étudiants"
+    },
+    "Home": {
+      "title": "Accueil"
+    }
+  }
+  

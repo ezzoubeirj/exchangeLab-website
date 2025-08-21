@@ -1,0 +1,36 @@
+{
+  "faq": {
+    "title": "Questions fréquemment posées",
+    "viewAll": "Voir tout",
+    "questions": {
+      "howItWorks": {
+        "question": "À partir de quel âge mon enfant peut-il commencer ?",
+        "answer": "Nos cours sont adaptés aux enfants à partir de 6 ans. Nous adaptons notre pédagogie selon l'âge et le niveau de chaque enfant pour garantir un apprentissage optimal."
+      },
+      "lessonsPerWeek": {
+        "question": "Comment se déroule un cours typique ?",
+        "answer": "Chaque cours dure 1h15 et se compose de 3 parties : échauffement ludique (15 min), cours suivant un manuel axé sur l'expression orale (40 min), et activités orales."
+      },
+      "worthIt": {
+        "question": "Mon enfant est timide, est-ce adapté ?",
+        "answer": "Absolument ! Notre méthode est spécialement conçue pour les enfants timides. Nous créons un environnement bienveillant où chaque enfant progresse à son rythme, sans pression."
+      },
+      "becomeTeacher": {
+        "question": "Que se passe-t-il si mon enfant rate un cours ?",
+        "answer": "Si votre enfant est absent, il peut consulter le contenu du tableau blanc (résumé écrit du cours). Nous ne proposons des séances de rattrapage que si l'enseignant est absent pour une raison quelconque."
+      },
+      "howToPay": {
+        "question": "Les cours sont-ils vraiment axés sur l'oral ?",
+        "answer": "Oui, la majeure partie du cours est consacrée à l'expression orale. Nous utilisons des jeux, des défis et des conversations pour que votre enfant parle anglais naturellement dès le premier cours."
+      },
+      "manual": {
+        "question": "Est-ce que je dois acheter un manuel pour mon enfant ?",
+        "answer": "Non, vous n'avez pas besoin d'acheter de manuel. Chez Exchange Lab, nous fournissons tout le matériel nécessaire pendant le cours. L'enseignant partage le contenu à l'écran et le met également à disposition dans un document appelé (whiteboard), que votre enfant peut consulter à tout moment. Ainsi, il peut se concentrer pleinement sur la participation et la pratique sans avoir à acheter de support supplémentaire."
+      },
+      "howToJoin": {
+        "question": "Puis-je assister aux cours de mon enfant ?",
+        "answer": "Les cours se déroulent en petit groupe pour favoriser la participation. Cependant, vous recevez un résumé détaillé après chaque séance."
+      }
+    }
+  }
+}

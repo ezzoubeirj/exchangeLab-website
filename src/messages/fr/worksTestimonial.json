@@ -1,0 +1,14 @@
+{
+    "WorksTestimonial": {
+      "title": "comment ça marche",
+      "subtitle": "Comment commencer à apprendre",
+      "processStepsTitle1": "Test de niveau ou formulaire",
+      "processStepsTitle2": "Confirmation de l'emploi du temps",
+      "processStepsTitle3": "Détails de paiement",
+      "processStepsTitle4": "Accès au groupe et identifiants",
+      "processStepsDes1": "Passez le test de niveau ou remplissez le formulaire si l'élève commence de zéro.",
+      "processStepsDes2": "Nous vous contacterons et vous communiquerons l'emploi du temps.",
+      "processStepsDes3": "Une fois approuvé, nous vous enverrons les détails de paiement via WhatsApp.",
+      "processStepsDes4": "Dès réception de votre paiement, nous vous ajoutons à votre groupe et vous envoyons vos identifiants de connexion."
+    }
+  }

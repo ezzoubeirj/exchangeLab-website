@@ -1,0 +1,17 @@
+{
+  "LanguageBar": {
+    "title": "Choisissez votre parcours linguistique",
+    "subtitle": "Rejoignez des milliers d'étudiants qui apprennent une nouvelle langue avec nos enseignants experts",
+    "justLaunched": "Nouveau lancement",
+    "learners": "Apprenants",
+    "viewAll": "Voir toutes les langues",
+    "new": "NOUVEAU",
+    "languages": {
+      "coran": "Coran",
+      "english": "Anglais pour adultes",
+      "kidsEnglish": "Anglais pour enfant",
+      "french": "Français",
+      "spanish": "Espagnol pour enfants"
+    }
+  }
+}

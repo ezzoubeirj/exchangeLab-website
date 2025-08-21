@@ -1,0 +1,85 @@
+{
+    "howItWorks": {
+      "discount": "Jusqu'à -20%",
+      "title": "Comment fonctionne Exchange Lab",
+      "subtitle": "Découvrez comment se déroule un cours, comment vous lancer et comment Exchange Lab vous aidera à parler avec aisance.",
+      "languageSelect": "Sélectionnez une langue à apprendre",
+      "startButton": "Commencer",
+      "trustpilot": "avis sur",
+      "languages": {
+        "french": "Français",
+        "english": "Anglais pour adultes",
+        "arabic": "Quran",
+        "spanish": "Espagnol pour enfants",
+        "englishKids" : "Anglais pour enfants"
+      },  
+      "videoTitle": "Découvrez à quoi ressemble un cours XchangeLab",
+      "videoDescription": "Découvrez notre environnement de classe interactif et engageant où les étudiants collaborent sur des problèmes du monde réel et développent des solutions pratiques.",
+      "learnLanguage": "Apprenez une langue que vous pouvez utiliser",
+      "learnLanguageDescription": "Chaque niveau est divisé en chapitres de grammaire, de vocabulaire et de communication, conçus pour se compléter. Ainsi, à chaque cours, vous pratiquez ce que vous avez appris.",
+      "grammar": "Lecture",
+      "vocabulaire": "Vocabulaire",
+      "communication": "Communication",
+      "grammerDescription": "Améliorez votre compréhension écrite avec des textes adaptés à votre niveau",
+      "vocabulaireDescription": "Enrichissez votre vocabulaire avec des mots et des phrases utiles",
+      "communicationDescription": "Pratiquez la communication dans des situations réelles",
+      "step1": {
+        "number": "ÉTAPE 1",
+        "title": "Inscrivez-vous à Exchange Lab",
+        "description": "Choisissez une intensité de cours qui correspond à vos objectifs d'apprentissage linguistique."
+      },
+      "step2": {
+        "number": "ÉTAPE 2",
+        "title": "Réservez votre première leçon",
+        "description": "Découvrez comment réserver une leçon et quelles opportunités s'offrent à vous."
+      },
+      "step3": {
+        "number": "ÉTAPE 3",
+        "title": "Rejoignez votre classe",
+        "description": "Voyez à quoi ressemble une classe Exchange Lab et commencez votre parcours d'apprentissage."
+      },
+      "packages": {
+        "title": "Choisissez votre formule",
+        "sPackage": "Formule S",
+        "mPackage": "Formule M",
+        "lPackage": "Formule L",
+        "xlPackage": "Formule XL",
+        "groupClasses": "Cours en groupe",
+        "oneToOneClasses": "Cours particuliers"
+      },
+      "classPreview": {
+        "title": "Découvrez à quoi ressemble une classe Exchange Lab",
+        "videoTitle": "Une classe avec Exchange Lab",
+        "copyLink": "Copier le lien"
+      },
+      "cource": {
+        "courseExamples": "Exemples de cours",
+        "courseExamplesDescription": "Découvrez notre méthodologie d'enseignement à travers ces leçons d'exemple de cours de Anglais",
+        "viewAllCourses": "Voir tous les cours",
+        "grammer": "Essentiels de la grammaire",
+        "grammerDescription": "Maîtrisez les règles de grammaire fondamentales avec des exemples pratiques",
+        "challange": "Défi de conversation",
+        "challangeDescription": "Développez vos compétences en conversation à travers des défis interactifs",
+        "descution": "Discussion de sujets",
+        "descutionDescription": "Engagez-vous dans des discussions sur des sujets variés pour améliorer votre aisance à l'oral",
+        "livels": "tous les niveaux"
+      },
+      "homeVideo": {
+        "title": "Moments de leçon : Adultes et Enfants",
+        "description": "Extraits de vraies sessions Zoom d'anglais (partagés avec autorisation).",
+        "adults": "Adultes",
+        "kids": "Enfants",
+        "readinganddiscussion": "Lecture et discussion",
+        "communication": "Communication",
+        "readingchallenge": "Défi de lecture",
+        "examplecources": "Exemples de cours",
+        "grammer": "Grammaire",
+        "kidsDescription": "Enfants · Pratique de la communication et du vocabulaire.",
+        "adultsDescription": "Adultes · Stratégies de conversation et aisance.",
+        "kidsReadingDescription": "Enfants · Pratique de la lecture amusante avec des incitations.",
+        "adultsReadingDescription": "Adultes · Extrait de leçon d'anglais pour adultes.",
+        "adultsGrammarDescription": "Adultes · Grammaire expliquée simplement."
+      }
+    }
+  }
+  

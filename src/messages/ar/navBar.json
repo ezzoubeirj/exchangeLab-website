@@ -1,0 +1,39 @@
+{
+  "NavBar": {
+    "home": "الرئيسية",
+    "courses": "الدورات",
+    "students": "الطلاب",
+    "about": "حول",
+    "login": "تسجيل الدخول",
+    "signup": "التسجيل",
+    "profile": "الملف الشخصي",
+    "Exchange Lab": "معمل التبادل",
+    "liveClasses": "دروس مباشرة",
+    "liveClassesSubItems": {
+      "english": "الإنجليزية (للكبار)",
+      "englishKids": "الإنجليزية (للأطفال)",
+      "quranKids": "القرآن (للأطفال)",
+      "spanish": "الإسبانية (للأطفال)",
+      "spanishKids": "الإسبانية (للأطفال)"
+    },
+    "recordedClasses": "دروس مسجلة (قريبًا)",
+    "recordedClassesNew": "🆕",
+    "recordedClassesDesc": "إعادة العرض أبروس عند الطلب",
+    "blog": "المدونة",
+    "blogDesc": "مقالات ونصائح وأخبار تعليمية",
+    "videosandleastening": "فيديوهات واستماع",
+    "kidsfun": "مرح للأطفال",
+    "lifestyle": "أسلوب حياة",
+    "contact": "اتصل بنا",
+    "contactDesc": "نموذج ومعلومات الاتصال",
+    "goToClass": "الذهاب إلى الفصل",
+    "goToClassDesc": "رابط إلى المنصة للطلاب",
+    "becomeTeacher": "درّس معنا",
+    "becomeTeacherDesc": "انضم إلى فريق التدريس لدينا",
+    "adminArea": "منطقة الإدارة",
+    "adminAreaDesc": "بوابة محجوزة للمعلمين والمسؤولين",
+    "portals": "فضائي الخاص",
+    "viewAllCourses": "عرض جميع الدورات",
+    "howItWorks": "كيف تجري الأمور "
+  }
+}

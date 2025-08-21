@@ -1,0 +1,96 @@
+{
+  "newHeroTeacher": {
+    "description": "Chez Exchange Lab, nous croyons que chaque étudiant mérite un enseignant exceptionnel. Si vous êtes prêt à faire la différence, postulez dès aujourd'hui !",
+    "note1": "Des petites classes pour un grand impact",
+    "note2": "Flexibilité totale pour travailler de n'importe où",
+    "note3": "Soutien et ressources pour les enseignants",
+    "applyNow": "Rejoignez-nous maintenant",
+    "title": "Rejoignez notre équipe d'enseignants passionnés"
+    },
+    "heroTeacher": {
+      "badge": "Nous recrutons des professeurs",
+      "title": "Rejoignez Exchange Lab",
+      "description1": "Chez Exchange Lab, nous recherchons toujours des professeurs passionnés, fiables et engageants pour rejoindre notre équipe en ligne en pleine croissance.",
+      "description2": "Si vous êtes dévoué à aider les étudiants à parler avec confiance, que vous aimez la planification créative des cours et que vous êtes à l'aise avec le travail en ligne, nous aimerions avoir de vos nouvelles.",
+      "description3": "Veuillez remplir le formulaire ci-dessous. Nous examinons toutes les candidatures avec attention et contacterons les candidats présélectionnés pour un entretien.",
+      "featuresTeacher": {
+        "online": {
+          "title": "Enseignement en ligne",
+          "description": "Travaillez de n'importe où avec des horaires flexibles"
+        },
+        "team": {
+          "title": "Équipe en croissance",
+          "description": "Rejoignez notre communauté passionnée"
+        },
+        "creative": {
+          "title": "Liberté créative",
+          "description": "Concevez des plans de cours engageants"
+        },
+        "impact": {
+          "title": "Impact sur les étudiants",
+          "description": "Aidez les étudiants à parler avec confiance"
+        }
+      }
+    },
+    "whyUs": {
+      "title1": "Des étudiants motivés et passionnés",
+      "title2": "Des petites classes pour un grand impact",
+      "title3": "Un accompagnement pour nos enseignants",
+      "title4": "Évoluez avec une plateforme qui vous soutient",
+      "description1": "Nos étudiants ne viennent pas par hasard - ils aiment vraiment apprendre. Que ce soit pour le plaisir, les voyages ou le développement professionnel, vous enseignerez à des personnes sérieuses et intéressées.",
+      "description2": "Fini les classes surpeuplées. Nous nous concentrons sur de petits groupes ou des cours particuliers, pour donner à chaque étudiant l'attention qu'il mérite et voir sa progression réelle.",
+      "description3": "Vous n'êtes pas seul dans cette aventure. Nous vous offrons un soutien immédiat, des ressources utiles et une équipe qui se soucie de votre succès, afin que vous puissiez vous concentrer sur ce que vous faites de mieux : enseigner.",
+      "description4": "Nous fournissons des outils pour vous aider à gérer vos cours et communiquer facilement avec vos étudiants. Construisez votre réputation en tant que professeur professionnel et regardez votre carrière s'épanouir."
+    },
+    "teacherWork": {
+      "title": "Comment ça marche",
+      "step1": {
+        "title": "Choisissez un cours",
+        "description": "Inscrivez-vous au cours que vous souhaitez enseigner"
+      },
+      "step2": {
+        "title": "Préparez le cours",
+        "description": "Utilisez nos ressources d'apprentissage complètes pour vous préparer"
+      },
+      "step3": {
+        "title": "Enseignez le cours",
+        "description": "Connectez-vous à l'heure prévue et commencez à enseigner"
+      }
+    },
+    "formTeacher": {
+      "title": "Postulez maintenant",
+      "subtitle": "Remplissez le formulaire ci-dessous pour rejoindre notre équipe",
+      "firstName": "Prénom",
+      "lastName": "Nom de famille",
+      "phone": "Numéro de téléphone (WhatsApp)",
+      "email": "Adresse e-mail",
+      "motivationTeacher": {
+        "label": "Pourquoi devrions-nous vous embaucher ?",
+        "description": "Rédigez un court message de motivation (5-10 lignes maximum).",
+        "placeholder": "Dites-nous pourquoi vous seriez un excellent ajout à notre équipe..."
+      },
+      "cvTeacher": {
+        "label": "Téléchargez votre CV",
+        "description": "Formats acceptés : PDF, DOC, DOCX (Max 5MB)"
+      },
+      "submit": "Postuler maintenant",
+      "submitting": "Envoi de la candidature...",
+      "emailNote": "La candidature sera envoyée à",
+      "placeholdersTeacher": {
+        "firstName": "entrez votre prénom",
+        "lastName": "entrez votre nom",
+        "phone": "entrez votre numéro de téléphone",
+        "email": "entrez votre adresse e-mail"
+      }
+    },
+    "successTeacher": {
+      "title": "Candidature envoyée !",
+      "message": "Merci de votre intérêt pour rejoindre Exchange Lab. Nous avons reçu votre candidature et vous contacterons bientôt.",
+      "button": "Soumettre une autre candidature"
+    },
+    "languageTeacher": {
+      "french": "Français",
+      "arabic": "العربية"
+    }
+  }
+  

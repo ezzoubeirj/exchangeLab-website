@@ -1,0 +1,42 @@
+{
+  "testimonialStudents": {
+    "title": "Témoignages de Réussite des Étudiants",
+    "description": "Écoutez nos diplômés qui ont transformé leur carrière grâce à nos programmes en ligne",
+    "verifiedGraduate": "Diplômé vérifié",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "goToTestimonial": "Aller au témoignage {number}",
+    "student1": {
+      "name": "Sarah Johnson",
+      "role": "Étudiante en Développement Web",
+      "course": "JavaScript Full-Stack",
+      "courseColor": "bg-amber-100 text-amber-800",
+      "rating": 5,
+      "content": "Cette école en ligne a complètement transformé mon parcours professionnel. Les instructeurs sont des professionnels de l'industrie qui ont fourni des perspectives réelles que vous ne pouvez pas obtenir des manuels seuls. Le soutien communautaire était incroyable, et j'ai décroché un emploi de développeur avant même de terminer le cours!"
+    },
+    "student2": {
+      "name": "Michael Chen",
+      "role": "Diplômé en Science des Données",
+      "course": "Analyse de Données Avancée",
+      "courseColor": "bg-blue-100 text-blue-800",
+      "rating": 5,
+      "content": "Le programme de science des données a dépassé toutes mes attentes. Le programme était complet mais accessible, et les projets pratiques m'ont donné des éléments de portfolio qui ont impressionné les recruteurs. L'équipe des services de carrière a joué un rôle déterminant pour m'aider à accéder à mon poste de rêve."
+    },
+    "student3": {
+      "name": "Priya Patel",
+      "role": "Designer UX/UI",
+      "course": "Conception d'Expérience Utilisateur",
+      "courseColor": "bg-purple-100 text-purple-800",
+      "rating": 4,
+      "content": "En tant que personne qui changeait de carrière, j'étais inquiète d'apprendre le design à partir de zéro. L'approche étape par étape et les mentors solidaires ont rendu le parcours agréable plutôt qu'écrasant. Les retours sur mes projets étaient détaillés et m'ont aidée à m'améliorer rapidement."
+    },
+    "student4": {
+      "name": "James Wilson",
+      "role": "Spécialiste en Cybersécurité",
+      "course": "Sécurité des Réseaux",
+      "courseColor": "bg-green-100 text-green-800",
+      "rating": 5,
+      "content": "Le programme de cybersécurité est rigoureux et à jour avec les menaces actuelles. Les laboratoires virtuels ont fourni des environnements sûrs pour pratiquer des techniques de piratage éthique, et la préparation à la certification était parfaite. Chaque centime dépensé en valait la peine pour les compétences et la confiance que j'ai acquises."
+    }
+  }
+}

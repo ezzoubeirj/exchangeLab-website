@@ -1,0 +1,40 @@
+{
+  "ParentReviews":
+  {
+  "title": "Ce que les parents et les étudiants disent de nous",
+  "subtitle": "Découvrez les témoignages audio de parents dont les enfants ont amélioré leurs compétences linguistiques grâce à nos cours",
+  "parent1": {
+    "name": "Madame Amal",
+    "date": "14 avril 2023",
+    "childName": "Lucas",
+    "childAge": "9 ans",
+    "language": "Anglais",
+    "type": "adultes"
+  },
+  "parent2": {
+    "name": "Madame Ikram",
+    "date": "3 mars 2023",
+    "childName": "Emma",
+    "childAge": "12 ans",
+    "language": "Espagnol",
+    "type": "enfants"
+  },
+  "parent3": {
+    "name": "Maman de Mariem",
+    "date": "27 mai 2023",
+    "childName": "Thomas",
+    "childAge": "7 ans",
+    "language": "Allemand"
+  },
+  "parent4": {
+    "name": "Papa de Ghali",
+    "date": "10 juin 2023",
+    "childName": "Chloé",
+    "childAge": "8 ans",
+    "language": "Français"
+  },
+  "childLabel": "Enfant:",
+  "ageLabel": "Âge:",
+  "languageLabel": "Langue:"
+}
+}

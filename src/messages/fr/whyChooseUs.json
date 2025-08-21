@@ -1,0 +1,27 @@
+{
+  "verbling": {
+    "part1": "Exchange Lab fait partie des 5 % des meilleures écoles en ligne",
+    "part2": "dans le monde",
+    "title": "Pourquoi apprendre avec Exchage Lab ?",
+    "subtitle": "Apprentissage sûr, efficace et abordable. Pour les apprenants de langues comme vous.",
+    "google": "4.8/5 sur Google",
+    "features": {
+      "verified_tutors": {
+        "title": "Méthode qui encourage la prise de parole",
+        "description": "Notre approche bienveillante aide votre enfant à surmonter sa timidité naturellement."
+      },
+      "affordable": {
+        "title": "Activités ludiques adaptées à l'âge",
+        "description": "Des jeux, des chansons et des activités amusantes qui rendent l'apprentissage naturel."
+      },
+      "flexible_schedule": {
+        "title": "Enseignants expérimentés et bienveillants",
+        "description": "Professeurs formés spécialement pour enseigner aux enfants avec patience et expertise."
+      },
+      "all_in_one": {
+        "title": "Cours en ligne avec matériel fourni",
+        "description": "Votre enfant apprend dans son environnement familier avec tous les supports pédagogiques inclus."
+      }
+    }
+  }
+}

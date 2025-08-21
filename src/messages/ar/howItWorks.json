@@ -1,0 +1,85 @@
+{
+    "howItWorks": {
+      "discount": "خصم يصل إلى 20%",
+      "title": "كيف تعمل Exchange Lab",
+      "subtitle": "اكتشف كيف تسير الدروس، وكيف تبدأ، وكيف ستساعدك Exchange Lab على التحدث بطلاقة.",
+      "languageSelect": "اختر لغة للتعلم",
+      "startButton": "ابدأ",
+      "trustpilot": "تقييم على",
+      "languages": {
+        "french": "الفرنسية",
+        "english": "الإنجليزية للبالغين",
+        "spanish": "الإسبانية للأطفال",
+        "arabic": "القرآن الكريم",
+        "englishKids": "الإنجليزية للأطفال"
+      },
+      "videoTitle": "شاهد كيف يبدو صف Exchange Lab",
+      "videoDescription": "اكتشف بيئة صفنا التفاعلية والجذابة حيث يتعاون الطلاب على حل مشكلات العالم الحقيقي وتطوير حلول عملية.",
+      "learnLanguage": "تعلم لغة يمكنك استخدامها",
+      "learnLanguageDescription": "كل مستوى مقسم إلى فصول من القواعد والمفردات والتواصل، مصممة لتكمل بعضها البعض. لذا، في كل درس، تمارس ما تعلمته.",
+      "grammar": "القراءة",
+      "vocabulaire": "المفردات",
+      "communication": "التواصل",
+      "grammerDescription":"تعزيز فهمك للقراءة من خلال نصوص تناسب مستواك",
+      "vocabulaireDescription": "تعزيز مفرداتك بكلمات وعبارات مفيدة",
+      "communicationDescription": "ممارسة التواصل في مواقف حقيقية",
+      "step1": {
+        "number": "الخطوة 1",
+        "title": "سجل في Exchange Lab",
+        "description": "اختر كثافة الدروس التي تناسب أهدافك في تعلم اللغة."
+      },
+      "step2": {
+        "number": "الخطوة 2",
+        "title": "احجز درسك الأول",
+        "description": "اكتشف كيفية حجز درس والفرص المتاحة لك."
+      },
+      "step3": {
+        "number": "الخطوة 3",
+        "title": "انضم إلى صفك",
+        "description": "شاهد كيف يبدو صف Exchange Lab وابدأ رحلة التعلم الخاصة بك."
+      },
+      "packages": {
+        "title": "اختر باقتك",
+        "sPackage": "باقة S",
+        "mPackage": "باقة M",
+        "lPackage": "باقة L",
+        "xlPackage": "باقة XL",
+        "groupClasses": "دروس جماعية",
+        "oneToOneClasses": "دروس فردية"
+      },
+      "classPreview": {
+        "title": "شاهد كيف يبدو صف Exchange Lab",
+        "videoTitle": "صف مع Exchange Lab",
+        "copyLink": "نسخ الرابط"
+      },
+      "cource": {
+        "courseExamples": "أمثلة على الدورات",
+        "courseExamplesDescription": "اكتشف منهجيتنا التعليمية من خلال هذه الدروس النموذجية من دورات اللغة الإنجليزية",
+        "viewAllCourses": "عرض جميع الدورات",
+        "grammer": "أساسيات القواعد ",
+        "grammerDescription": "إتقان قواعد اللغة الأساسية مع أمثلة عملية",
+        "challange": "تحدي المحادثة",
+        "challangeDescription": "تطوير مهارات المحادثة من خلال تحديات تفاعلية",
+        "descution": "مناقشة الموضوعات",
+        "descutionDescription": "ممارسة المناقشة حول مواضيع متنوعة لتعزيز الطلاقة",
+        "livels": "جميع المستويات"
+      },
+      "homeVideo": {
+        "title": "من داخل حصص البالغين والأطفال ",
+        "description": "لمحات من حصصنا كما تجري فعلاً.",
+        "adults": "البالغين",
+        "kids": "الأطفال",
+        "readinganddiscussion": "القراءة والنقاش",
+        "communication": "التواصل",
+        "readingchallenge": "تحدي القراءة",
+        "examplecources": "أمثلة على الدورات",
+        "grammer": "القواعد",
+        "kidsDescription": "الأطفال · ممارسة التواصل والمفردات.",
+        "adultsDescription": "البالغين · استراتيجيات المحادثة والطلاقة.",
+        "kidsReadingDescription": "الأطفال · ممارسة القراءة الممتعة مع الحوافز.",
+        "adultsReadingDescription": "البالغين · مقتطف درس اللغة الإنجليزية للبالغين.",
+        "adultsGrammarDescription": "البالغين · القواعد موضحة ببساطة."
+      }
+    }
+  }
+  

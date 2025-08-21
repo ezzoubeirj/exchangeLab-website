@@ -1,0 +1,39 @@
+{
+  "ParentReviews": {
+    "title": "آراء الآباء والطلاب عنا",
+    "subtitle": "استمع إلى تجارب الآباء الذين تحسنت مهارات أطفالهم اللغوية من خلال دروسنا",
+    "parent1": {
+      "name": "أمل العلي",
+      "date": "١٤ أبريل ٢٠٢٣",
+      "childName": "ياسين",
+      "childAge": "٩ سنوات",
+      "language": "الإنجليزية",
+      "type": "البالغين"
+    },
+    "parent2": {
+      "name": "إكرام السعيدي",
+      "date": "٣ مارس ٢٠٢٣",
+      "childName": "ليلى",
+      "childAge": "١٢ سنة",
+      "language": "الإسبانية",
+      "type": "الأطفال"
+    },
+    "parent3": {
+      "name": "أم مريم",
+      "date": "٢٧ مايو ٢٠٢٣",
+      "childName": "عمر",
+      "childAge": "٧ سنوات",
+      "language": "الألمانية"
+    },
+    "parent4": {
+      "name": "أب غالي",
+      "date": "١٠ يونيو ٢٠٢٣",
+      "childName": "سارة",
+      "childAge": "٨ سنوات",
+      "language": "الفرنسية"
+    },
+    "childLabel": "طفل:",
+    "ageLabel": "العمر:",
+    "languageLabel": "اللغة:"
+  }
+}

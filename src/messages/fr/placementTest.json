@@ -1,0 +1,52 @@
+{
+    "welcome": {
+      "part1": "Bienvenue ",
+      "part2": "Prêt pour le test de niveau ",
+      "part3": "Test de placement ?",
+      "title": "Découvrez votre niveau actuel !",
+      "description1": "Ce test nous aidera à déterminer votre niveau de langue.",
+      "description2": "Répondez à toutes les questions sur chaque page avant de continuer.",
+      "startButton": "Commencer le test",
+      "pressEnter": "appuyez sur Entrée ↵",
+      "selectLanguage": "Choisissez la langue du test :",
+      "quation": "Question",
+      "please": "Veuillez répondre à toutes les questions sur cette page pour continuer",
+      "complet": "Test terminé !",
+      "results": "Vos résultats",
+      "level": "Niveau recommandé : ",
+      "again": "Refaire le test",
+      "processing": "Traitement en cours...",
+      "nextpage": "Page suivante",
+      "finishtest": "Terminer le test",
+      "skip": "Sautez la question si vous ne connaissez pas la réponse.",
+      "firstWelcome": "Bienvenue à Exchange Lab !",
+      "welcomeHome": "Nous vous contacterons bientôt afin de vous attribuer le niveau de classe qui vous correspond et de vous souhaiter la bienvenue dans notre communauté d’apprentissage.",
+      "HomePageButton": "Retour à l'accueil"
+    },
+    "question": {
+      "okButton": "OK"
+    },
+    "email": {
+      "title": "Bien joué !",
+      "subtitle": "Entrez votre adresse email pour recevoir vos résultats.",
+      "placeholder": "nom@exemple.com",
+      "submitButton": "Envoyer",
+      "pressCtrlEnter": "appuyez sur Ctrl + Entrée ↵"
+    },
+    "thankYou": {
+      "title": "Merci !",
+      "completed": "Votre test de niveau a été complété avec succès.",
+      "results": "Vos Résultats",
+      "score": "Score",
+      "sentTo": "Nous vous contacterons bientôt par téléphone au ",
+      "checkInbox": " pour vous aider à choisir le niveau de classe et l’horaire qui vous conviennent le mieux.",
+      "takeAgain": "Refaire le Test",
+      "improve": "Vous voulez améliorer votre score ?"
+    },
+    "languages": {
+      "french": "Français",
+      "english": "Anglais",
+      "spanish": "Espagnol"
+    }
+  }
+  
