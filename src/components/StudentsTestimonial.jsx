@@ -5,7 +5,6 @@ import { useTranslations, useLocale } from 'next-intl'
 import Image from 'next/image'
 import { debounce } from 'lodash'
 import { motion } from 'framer-motion'
-import FlowerSvgGroup from './SvgShape'
 import FlowerBackground from './SvgShape'
 const videos = [
   '/videos/student20.mp4',
