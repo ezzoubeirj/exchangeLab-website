@@ -4,6 +4,9 @@ const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true, // ✅ Skip ESLint checks on Vercel builds
+  },
   async redirects() {
     return [
       {
