@@ -20,8 +20,12 @@ export default function Footer() {
   const pathname = usePathname();
 
   // List of routes where footer should be hidden
-  const hideFooterRoutes = ["/fr/placement-test", '/ar/placement-test'];
-
+  const hideFooterRoutes = [
+    "/fr/placement-test",
+    "/ar/placement-test",
+    "/fr/registration",
+    "/ar/registration"
+  ];
   const shouldHideFooter = hideFooterRoutes.includes(pathname);
 
   // State for collapsible sections on mobile

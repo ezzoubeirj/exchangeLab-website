@@ -1,19 +1,11 @@
 // JavaScript
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
 import dynamic from "next/dynamic"
 
 // Skeletons
-function ProgressBarSkeleton() {
-  return (
-    <div className="w-full h-2 bg-gray-200 rounded overflow-hidden mt-10">
-      <div className="h-full bg-gray-300 animate-pulse w-1/3" />
-    </div>
-  )
-}
-
 function StepSkeleton() {
   return (
     <div className="container mx-auto px-4 py-8">
@@ -26,10 +18,7 @@ function StepSkeleton() {
   )
 }
 
-// Lazy components with fallbacks
-const ProgressBar = dynamic(() => import("@/components/progress-bar"), {
-  loading: () => <ProgressBarSkeleton />,
-})
+// Lazy components with fallbacks (only for language & reason)
 const LanguageSelection = dynamic(
   () => import("@/components/language-selection"),
   { loading: () => <StepSkeleton /> }
@@ -38,23 +27,23 @@ const ReasonSelection = dynamic(
   () => import("@/components/reason-selection"),
   { loading: () => <StepSkeleton /> }
 )
-const UserTypeSelection = dynamic(
-  () => import("@/components/user-type-selection"),
-  { loading: () => <StepSkeleton /> }
-)
-const ParentForm = dynamic(() => import("@/components/parent-form"), {
-  loading: () => <StepSkeleton />,
-})
-const StudentForm = dynamic(() => import("@/components/student-form"), {
-  loading: () => <StepSkeleton />,
-})
-const FinalOptions = dynamic(() => import("@/components/final-options"), {
-  loading: () => <StepSkeleton />,
-})
+
+// Normal imports for other components
+import ProgressBar from "@/components/progress-bar"
+import UserTypeSelection from "@/components/user-type-selection"
+import ParentForm from "@/components/parent-form"
+import StudentForm from "@/components/student-form"
+import FinalOptions from "@/components/final-options"
 
 export default function RegistrationPage() {
   const searchParams = useSearchParams()
   const languageFromUrl = searchParams.get("language") || ""
+
+  const [isLoading, setIsLoading] = useState(true)
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500)
+    return () => clearTimeout(timer)
+  }, [])
 
   const [currentStep, setCurrentStep] = useState(languageFromUrl ? 2 : 1)
   const [formData, setFormData] = useState({
@@ -135,6 +124,10 @@ export default function RegistrationPage() {
       default:
         return null
     }
+  }
+
+  if (isLoading) {
+    return <StepSkeleton />
   }
 
   return (
