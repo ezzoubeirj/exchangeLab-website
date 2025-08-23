@@ -1,35 +1,68 @@
+// JavaScript
 "use client"
 
 import { useState } from "react"
 import { useSearchParams } from "next/navigation"
-import ProgressBar from "@/components/progress-bar"
-import LanguageSelection from "@/components/language-selection"
-import ReasonSelection from "@/components/reason-selection"
-import UserTypeSelection from "@/components/user-type-selection"
-import ParentForm from "@/components/parent-form"
-import StudentForm from "@/components/student-form"
-import FinalOptions from "@/components/final-options"
+import dynamic from "next/dynamic"
+
+// Skeletons
+function ProgressBarSkeleton() {
+  return (
+    <div className="w-full h-2 bg-gray-200 rounded overflow-hidden mt-10">
+      <div className="h-full bg-gray-300 animate-pulse w-1/3" />
+    </div>
+  )
+}
+
+function StepSkeleton() {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="animate-pulse space-y-6">
+        <div className="h-6 bg-gray-200 rounded w-1/3" />
+        <div className="h-10 bg-gray-200 rounded w-2/3" />
+        <div className="h-48 bg-gray-200 rounded" />
+      </div>
+    </div>
+  )
+}
+
+// Lazy components with fallbacks
+const ProgressBar = dynamic(() => import("@/components/progress-bar"), {
+  loading: () => <ProgressBarSkeleton />,
+})
+const LanguageSelection = dynamic(
+  () => import("@/components/language-selection"),
+  { loading: () => <StepSkeleton /> }
+)
+const ReasonSelection = dynamic(
+  () => import("@/components/reason-selection"),
+  { loading: () => <StepSkeleton /> }
+)
+const UserTypeSelection = dynamic(
+  () => import("@/components/user-type-selection"),
+  { loading: () => <StepSkeleton /> }
+)
+const ParentForm = dynamic(() => import("@/components/parent-form"), {
+  loading: () => <StepSkeleton />,
+})
+const StudentForm = dynamic(() => import("@/components/student-form"), {
+  loading: () => <StepSkeleton />,
+})
+const FinalOptions = dynamic(() => import("@/components/final-options"), {
+  loading: () => <StepSkeleton />,
+})
 
 export default function RegistrationPage() {
   const searchParams = useSearchParams()
-  const languageFromUrl = searchParams.get("language")
+  const languageFromUrl = searchParams.get("language") || ""
 
   const [currentStep, setCurrentStep] = useState(languageFromUrl ? 2 : 1)
   const [formData, setFormData] = useState({
-    language: languageFromUrl || "",
+    language: languageFromUrl,
     reason: "",
-    userType: "", // 'parent' or 'student'
-    parentInfo: {
-      parentName: "",
-      whatsappNumber: "",
-      email: "",
-      country: "",
-    },
-    childInfo: {
-      firstName: "",
-      lastName: "",
-      age: "",
-    },
+    userType: "",
+    parentInfo: { parentName: "", whatsappNumber: "", email: "", country: "" },
+    childInfo: { firstName: "", lastName: "", age: "" },
     studentInfo: {
       firstName: "",
       lastName: "",
@@ -42,15 +75,11 @@ export default function RegistrationPage() {
   const totalSteps = 6
 
   const updateFormData = (field, value) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }))
+    setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
-  const nextStep = () => {
+  const nextStep = () =>
     setCurrentStep((prev) => Math.min(prev + 1, totalSteps))
-  }
 
   const renderCurrentStep = () => {
     switch (currentStep) {
@@ -102,12 +131,7 @@ export default function RegistrationPage() {
           />
         )
       case 5:
-        return (
-          <FinalOptions
-            formData={formData}
-            onOptionSelect={() => {}}
-          />
-        )
+        return <FinalOptions formData={formData} onOptionSelect={() => {}} />
       default:
         return null
     }

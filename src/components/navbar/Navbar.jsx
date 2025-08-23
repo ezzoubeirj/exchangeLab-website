@@ -323,6 +323,8 @@ const Navbar = () => {
               <div className="hidden sm:block">
                 <Link
                   href="https://www.xlabplatform.com/login/index.php"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={cn(
                     "relative inline-flex items-center px-4 py-2 rounded-lg font-medium text-sm",
                     "text-white bg-[#ff7f6e] hover:bg-[#ff6b5a] transition-all duration-300 ease-out",

@@ -122,19 +122,19 @@ export default function HowItWorks() {
                         <div className="flex items-center">
                           {selectedLanguage === 'english' && (
                             <>
-                              <img src="/us.jpg" alt="English" className="w-5 h-4 mr-2" />
+                              <Image src="/us.jpg" alt="English" width={20} height={16} className="w-5 h-4 mr-2" />
                               {t("languages.english")}
                             </>
                           )}
                           {selectedLanguage === 'englishkids' && (
                             <>
-                              <img src="/us.jpg" alt="English Kids" className="w-5 h-4 mr-2" />
+                              <Image src="/us.jpg" alt="English Kids" width={20} height={16} className="w-5 h-4 mr-2" />
                               {t("languages.englishKids")}
                             </>
                           )}
                           {selectedLanguage === 'spanish' && (
                             <>
-                              <img src="/es.jpg" alt="Spanish" className="w-5 h-4 mr-2" />
+                              <Image src="/es.jpg" alt="Spanish" width={20} height={16} className="w-5 h-4 mr-2" />
                               {t("languages.spanish")}
                             </>
                           )}
@@ -155,7 +155,7 @@ export default function HowItWorks() {
                               setIsDropdownOpen(false);
                             }}
                           >
-                            <img src="/us.jpg" alt="English" className="w-5 h-4 mr-2" />
+                            <Image src="/us.jpg" alt="English" width={20} height={16} className="w-5 h-4 mr-2" />
                             {t("languages.english")}
                           </div>
                           <div
@@ -165,7 +165,7 @@ export default function HowItWorks() {
                               setIsDropdownOpen(false);
                             }}
                           >
-                            <img src="/us.jpg" alt="English Kids" className="w-5 h-4 mr-2" />
+                            <Image src="/us.jpg" alt="English Kids" width={20} height={16} className="w-5 h-4 mr-2" />
                             {t("languages.englishKids")}
                           </div>
                           <div
@@ -175,7 +175,7 @@ export default function HowItWorks() {
                               setIsDropdownOpen(false);
                             }}
                           >
-                            <img src="/es.jpg" alt="Spanish" className="w-5 h-4 mr-2" />
+                            <Image src="/es.jpg" alt="Spanish" width={20} height={16} className="w-5 h-4 mr-2" />
                             {t("languages.spanish")}
                           </div>
                         </div>
@@ -302,19 +302,19 @@ export default function HowItWorks() {
                             <div className="flex items-center">
                               {selectedLanguage === 'english' && (
                                 <>
-                                  <img src="/us.jpg" alt="English" className="w-5 h-4 mr-2" />
+                                  <Image src="/us.jpg" alt="English" width={20} height={16} className="w-5 h-4 mr-2" />
                                   {t("languages.english")}
                                 </>
                               )}
                               {selectedLanguage === 'englishkids' && (
                                 <>
-                                  <img src="/us.jpg" alt="English Kids" className="w-5 h-4 mr-2" />
+                                  <Image src="/us.jpg" alt="English Kids" width={20} height={16} className="w-5 h-4 mr-2" />
                                   {t("languages.englishKids")}
                                 </>
                               )}
                               {selectedLanguage === 'spanish' && (
                                 <>
-                                  <img src="/es.jpg" alt="Spanish" className="w-5 h-4 mr-2" />
+                                  <Image src="/es.jpg" alt="Spanish" width={20} height={16} className="w-5 h-4 mr-2" />
                                   {t("languages.spanish")}
                                 </>
                               )}
@@ -335,7 +335,7 @@ export default function HowItWorks() {
                                   setIsDropdownOpen(false);
                                 }}
                               >
-                                <img src="/us.jpg" alt="English" className="w-5 h-4 mr-2" />
+                                <Image src="/us.jpg" alt="English" width={20} height={16} className="w-5 h-4 mr-2" />
                                 {t("languages.english")}
                               </div>
                               <div
@@ -345,7 +345,7 @@ export default function HowItWorks() {
                                   setIsDropdownOpen(false);
                                 }}
                               >
-                                <img src="/us.jpg" alt="English Kids" className="w-5 h-4 mr-2" />
+                                <Image src="/us.jpg" alt="English Kids" width={20} height={16} className="w-5 h-4 mr-2" />
                                 {t("languages.englishKids")}
                               </div>
                               <div
@@ -355,7 +355,7 @@ export default function HowItWorks() {
                                   setIsDropdownOpen(false);
                                 }}
                               >
-                                <img src="/es.jpg" alt="Spanish" className="w-5 h-4 mr-2" />
+                                <Image src="/es.jpg" alt="Spanish" width={20} height={16} className="w-5 h-4 mr-2" />
                                 {t("languages.spanish")}
                               </div>
                             </div>
