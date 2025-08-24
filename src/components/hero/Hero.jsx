@@ -58,6 +58,8 @@ export default function HeroSection() {
                 </div>
                 <Link
                   href="https://wa.me/212663244841"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-50 text-green-700 font-medium hover:bg-green-100 transition-colors text-sm border border-green-200  relative z-60 "
                 >
                   <Whatsapp className="h-5 w-5" color="#34D399" />

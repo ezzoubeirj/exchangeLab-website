@@ -45,7 +45,7 @@ export default function Footer() {
   
   return (
     !shouldHideFooter &&
-    <footer className="relative bg-[#F2F7FD] overflow-hidden">
+    <footer className="relative bg-[#F2F7FD] overflow-hidden mt-16">
       <div className="relative z-10 container mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-6 sm:pb-8">
         <div className="max-w-[1340px] mx-auto">
           {/* Top Section with Logo and CTA */}
@@ -161,6 +161,8 @@ export default function Footer() {
                   <li key={item}>
                     <Link
                       href={'https://www.xlabplatform.com/login/index.php'}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-sm text-[var(--color-desc)] transition-colors duration-200 flex items-center group"
                     >
                       <span className="w-0 opacity-0 group-hover:w-2 group-hover:opacity-100 transition-all duration-300 h-px bg-[#777777] mr-0 group-hover:mr-2"></span>
@@ -184,13 +186,14 @@ export default function Footer() {
               </div>
               <div className={`space-y-3 relative z-10 overflow-hidden transition-all duration-300 ${expandedSections.contact ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 sm:max-h-96 sm:opacity-100'}`}>
                 <ul className="space-y-3">
-                  {["faq", "contactUs"].map((item) => (
-                    <li key={item}>
+                  {["contactUs"].map((item) => (
+                    <li key={item} className="text-sm text-[var(--color-desc)] transition-colors duration-200">
                       <Link
-                        href={`/${item === "contactUs" ? "#" : '#'}`}
-                        className="text-sm text-[var(--color-desc)] transition-colors duration-200 flex items-center group"
+                        href="#"
+                        target={item === "contactUs" ? "_blank" : undefined}
+                        rel={item === "contactUs" ? "noopener noreferrer" : undefined}
+                        onClick={item === "contactUs" ? (e) => e.preventDefault() : undefined}
                       >
-                        <span className="w-0 opacity-0 group-hover:w-2 group-hover:opacity-100 transition-all duration-300 h-px bg-[#777777] mr-0 group-hover:mr-2"></span>
                         {t(item)}
                       </Link>
                     </li>
