@@ -25,6 +25,7 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils";
 import Image from "next/image"
+import { ArrowLeft } from "lucide-react";
 
 const Navbar = () => {
   const t = useTranslations("NavBar")
@@ -200,7 +201,7 @@ const Navbar = () => {
                   onMouseLeave={handleMouseLeave}
                 >
                   <button className={cn(
-                    "flex items-center space-x-2 px-4 py-2.5 rounded-lg transition-all duration-200",
+                    "flex items-center space-x-1 px-2 py-2.5 rounded-lg transition-all duration-200",
                     getFontClass('medium'),
                     "text-gray-700 hover:text-gray-900 hover:bg-gray-100/60",
                     activeDropdown === item.id && "bg-blue-50 text-blue-700"
@@ -283,7 +284,7 @@ const Navbar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
-                  "px-4 py-2.5 rounded-lg text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100/60 transition-all duration-200",
+                  "px-4 lg:px-1 xl:px-4 py-2.5 rounded-lg text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100/60 transition-all duration-200",
                   getFontClass('medium')
                 )}
               >
@@ -292,7 +293,7 @@ const Navbar = () => {
               <Link
                 href='/how-it-works'
                 className={cn(
-                  "px-4 py-2.5 rounded-lg text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100/60 transition-all duration-200",
+                  "px-4 lg:px-1 xl:px-4 py-2.5 rounded-lg text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100/60 transition-all duration-200",
                   getFontClass('medium')
                 )}
               >
@@ -301,7 +302,7 @@ const Navbar = () => {
               <Link
                 href='/teacher'
                 className={cn(
-                  "px-4 py-2.5 rounded-lg text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100/60 transition-all duration-200",
+                  "px-4 lg:px-1 xl:px-4 py-2.5 rounded-lg text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100/60 transition-all duration-200",
                   getFontClass('medium')
                 )}
               >
@@ -326,18 +327,12 @@ const Navbar = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(
-                    "relative inline-flex items-center px-4 py-2 rounded-lg font-medium text-sm",
-                    "text-white bg-[#ff7f6e] hover:bg-[#ff6b5a] transition-all duration-300 ease-out",
-                    "border border-transparent hover:border-[#ff6b5a]",
-                    "backdrop-blur-sm",
-                    "group",
-                    getFontClass('medium')
+                    "inline-flex items-center px-4 py-2.5 rounded-lg font-medium text-sm",
+                    "bg-[#ff7f6e] hover:bg-[#ff6b5a] text-white transition-colors duration-200",
+                    getFontClass('semibold')
                   )}
                 >
                   Go To Class
-                  
-                  {/* Bottom border animation */}
-                  {/* <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300 ease-out"></div> */}
                 </Link>
               </div>
 
@@ -346,7 +341,7 @@ const Navbar = () => {
                 <Link
                   href="/registration"
                   className={cn(
-                    "inline-flex items-center px-6 py-2.5 rounded-lg font-medium text-sm",
+                    "inline-flex items-center px-4 py-2.5 rounded-lg font-medium text-sm",
                     "bg-[#3189c5] hover:bg-[#276c9a] text-white transition-colors duration-200",
                     getFontClass('semibold')
                   )}
@@ -608,7 +603,7 @@ const ModernSideDrawer = ({
             )}
           >
             <span>{tHero("getStartedNavbar")}</span>
-            <ArrowRight className="w-4 h-4" />
+            { isRTL ? ( <ArrowLeft className="w-4 h-4" /> ) : ( <ArrowRight className="w-4 h-4" /> )}
           </Link>
         </div>
       </div>

@@ -113,7 +113,7 @@ export default function OurCourses() {
           >
             <FlowerIcon
               style={{ width: 80, height: 80 }}
-              className={`text-[#68b9e3] absolute bottom-1 transform ${isRTL ? "-translate-x-50" : "-translate-x-1/2"}`}
+              className={`text-[#68b9e3] absolute bottom-1 transform ${isRTL ? "-translate-x-50" : "-translate-x-1/2"} hidden sm:block`}
             />
             {t("title")}
           </motion.h1>
