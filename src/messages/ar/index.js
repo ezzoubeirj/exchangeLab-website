@@ -41,9 +41,6 @@ export default {
   ...register,
   ...beTeacher,
   ...conditions,
-   // Fixed casing to match convention
-   // Fixed casing to match convention
-  // Add hero button translations
   Hero: {
     ...hero.Hero,
     primaryButton: "ابدأ الآن",

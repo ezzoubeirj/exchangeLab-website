@@ -1,10 +1,6 @@
-import { setRequestLocale } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import Hero from '@/components/hero/Hero';
 import FaqAccordion from '@/components/FaqAccordion';
-import TestimonialVideos from '@/components/TeachersTestimonial';
-// import TestimonialsCarousel from '@/components/TestimonialsCarousel';
 import StudentsTestimonial from '@/components/StudentsTestimonial';
 import ParentReviews from '@/components/parentReviews';
 import WhyChooseUs from '@/components/WhyChooseUs';
@@ -13,14 +9,9 @@ import LanguageBar from '@/components/hero/LanguageBar';
 import YoutubeTestimonials from '@/components/youtubeVideos';
 
 
-export async function generateMetadata({ params }) {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'HomePage' });
-
-  return {
-    // title: t('title'),
-    description: `Learn languages online in ${locale === 'ar' ? 'العربية' : 'Français'}`
-  };
+export async function generateMetadata({params: {locale}}) {
+  const messages = (await import(`@/messages/${locale}/hero.json`)).default;
+  return {title: messages.seoTitle};
 }
 
 export default function HomePage({ params }) {
