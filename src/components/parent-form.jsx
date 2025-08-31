@@ -231,8 +231,31 @@ export default function ParentForm({ parentInfo, childInfo, onParentInfoChange, 
     if (formIsValid) {
       // 🔔 META PIXEL — registration success
       if (typeof window !== "undefined" && window.fbq) {
-        window.fbq('track', 'CompleteRegistration')
-        window.fbq('trackCustom', 'LeadFormSubmitted')
+const getAgeRange = (age) => {
+  if (!age) return null;
+  const n = Number(age);
+  if (n <= 6) return "3-6";
+  if (n <= 10) return "7-10";
+  if (n <= 14) return "11-14";
+  return "15-18";
+};
+
+const baseParams = {
+  content_category: "education",
+  content_name: "kids_course_registration",
+};
+
+const customParams = {
+  ...baseParams,
+  user_type: "parent",
+  course_level: "kids",
+  child_age_range: getAgeRange(childInfo?.age),
+  country: parentInfo?.country || null, // no email/phone/names
+};
+
+window.fbq("track", "CompleteRegistration", baseParams);
+window.fbq("trackCustom", "LeadFormSubmitted", customParams);
+
       }
 
       // Your actual submit callback
