@@ -1,6 +1,7 @@
 import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import Script from "next/script";
+import FBPixelListener from "./fbpixel-listener";
 
 export default function RootLayout({ children }) {
   return (
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
         </noscript>
       </head>
       <body>
+        <FBPixelListener />
         {children}
         <Analytics />
       </body>
