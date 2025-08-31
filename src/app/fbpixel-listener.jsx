@@ -1,23 +1,16 @@
 "use client";
-import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 export default function FBPixelListener() {
-  const pathname = usePathname();
-
   useEffect(() => {
-    if (typeof window.fbq !== "undefined") {
-      // Always fire on initial load
+    if (typeof window !== "undefined" && window.fbq) {
+      // Fire a PageView once on first load
       window.fbq("track", "PageView");
+      console.log("FB Pixel: PageView fired");
+    } else {
+      console.warn("FB Pixel not found");
     }
-  }, []); // run once on first load
-
-  useEffect(() => {
-    if (typeof window.fbq !== "undefined") {
-      // Fire again on route change
-      window.fbq("track", "PageView");
-    }
-  }, [pathname]);
+  }, []);
 
   return null;
 }
