@@ -1,16 +1,23 @@
 "use client";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 export default function FBPixelListener() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.fbq) {
+    if (typeof window.fbq !== "undefined") {
+      // Always fire on initial load
       window.fbq("track", "PageView");
     }
-  }, [pathname, searchParams]); // triggers on first load + every route/query change
+  }, []); // run once on first load
+
+  useEffect(() => {
+    if (typeof window.fbq !== "undefined") {
+      // Fire again on route change
+      window.fbq("track", "PageView");
+    }
+  }, [pathname]);
 
   return null;
 }
