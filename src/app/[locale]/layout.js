@@ -27,7 +27,7 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  // Set font class based on locale
+  // Set font class based on locale 97
   const fontClass = locale === 'ar' ? 'tajawal-medium' : 'nunito-medium';
 
   return (
