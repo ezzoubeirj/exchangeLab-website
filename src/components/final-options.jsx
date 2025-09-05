@@ -6,11 +6,22 @@ import toast from "react-hot-toast"
 import { Toaster } from 'react-hot-toast'
 import { useRouter } from "@/i18n/navigation"
 import { useEffect } from "react"
+import FacebookPixel from "@/components/FacebookPixel" // Add this import
 
 export default function FinalOptions({ formData, onOptionSelect }) {
   const t = useTranslations("FinalOptions")
 
   const router = useRouter()
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.fbq) {
+      window.fbq('track', 'ViewContent', {
+        content_name: 'Final Options Page',
+        content_category: 'Registration'
+      })
+    }
+  }, [])
+
 
   const handleOptionSelect = async (option) => {
     // Here you would send all the form data to your backend
@@ -63,6 +74,7 @@ export default function FinalOptions({ formData, onOptionSelect }) {
 
   return (
     <>
+      <FacebookPixel />
       <Toaster
         toastOptions={{
           duration: 4000,
