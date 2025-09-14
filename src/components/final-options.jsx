@@ -24,40 +24,14 @@ export default function FinalOptions({ formData, onOptionSelect }) {
 
 
   const handleOptionSelect = async (option) => {
-    // Here you would send all the form data to your backend
-    const registrationData = {
-      ...formData,
-      language: formData.language === "childEnglish" ? "English" : formData.language,
-      finalChoice: 'submission',
+    if (option === "start_beginning") {
+      toast.success('merci pour votre intérêt, nous vous contacterons bientôt')
+      setTimeout(() => {
+        router.push("/") 
+      }, 4000);
+      return
     }
-    console.log("Selected option: *** *** ** ** ***", registrationData)
-
-    try {
-      // Replace with your actual backend endpoint
-      console.log("here is the api : /api/register")
-      const response = await fetch("/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(registrationData),
-      })
-
-      if (response.ok) {
-        if (option === "start_beginning") {
-          toast.success('merci pour votre intérêt, nous vous contacterons bientôt')
-          setTimeout(() => {
-            router.push("/")
-          }, 4000);
-          return
-        }
-        onOptionSelect(option)
-      } else {
-        console.error("Registration failed")
-      }
-    } catch (error) {
-      console.error("Error submitting registration:", error)
-    }
+    onOptionSelect(option)
   }
 
   const scrollToTop = () => {

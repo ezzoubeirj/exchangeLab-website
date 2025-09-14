@@ -107,14 +107,24 @@ export default function RegistrationPage() {
         return formData.userType === "parent" ? (
           <ParentForm
             parentInfo={formData.parentInfo}
-            childInfo={formData.childInfo}
+            childInfo={{
+              ...formData.childInfo,
+              language: formData.language,
+              userType: formData.userType,
+              reason: formData.reason
+            }}
             onParentInfoChange={(info) => updateFormData("parentInfo", info)}
             onChildInfoChange={(info) => updateFormData("childInfo", info)}
             onSubmit={nextStep}
           />
         ) : (
           <StudentForm
-            studentInfo={formData.studentInfo}
+            studentInfo={{
+                ...formData.studentInfo,
+                language: formData.language,
+                userType: formData.userType,
+                reason: formData.reason
+              }}
             onStudentInfoChange={(info) => updateFormData("studentInfo", info)}
             onSubmit={nextStep}
           />

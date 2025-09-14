@@ -180,30 +180,55 @@ export default function StudentForm({ studentInfo, onStudentInfoChange, onSubmit
     setTouchedFields(prev => ({ ...prev, [field]: true }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     // Validate all fields before submitting
     let formIsValid = true
     const newErrors = { ...errors }
-    
+    studentInfo.language = studentInfo.language === 'childEnglish' ? "English" : studentInfo.language;
+    const registrationData = {
+      studentInfo,
+      language: studentInfo.language,
+      reason: studentInfo.reason,
+      finalChoice: 'submission',
+    }
+    console.log("student infos: ", registrationData);
+    // return; 
+
+    try {
+      // Replace with your actual backend endpoint
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(registrationData),
+      })
+
+      if (!response.ok)
+        throw new Error('registration failed');
+    } catch (error) {
+      console.error("Error submitting registration:", error)
+    }
+    // return;
     // Validate all fields
     for (const field in studentInfo) {
       const errorMessage = validateField(field, studentInfo[field])
       newErrors[field] = errorMessage
       if (errorMessage) formIsValid = false
     }
-    
+
     setErrors(newErrors)
     setFormSubmitted(true)
-    
+
     // Mark all fields as touched on submit
     const allTouched = {}
     for (const field in touchedFields) {
       allTouched[field] = true
     }
     setTouchedFields(allTouched)
-    
+
     if (formIsValid) {
       onSubmit()
     }

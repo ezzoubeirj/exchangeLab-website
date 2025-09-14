@@ -197,9 +197,36 @@ export default function ParentForm({ parentInfo, childInfo, onParentInfoChange, 
     setTouchedFields(prev => ({ ...prev, [field]: true }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log("you should save the user here ***")
+
+    childInfo.language = childInfo.language === 'childEnglish' ? "English" : childInfo.language;
+    const registrationData = {
+      childInfo,
+      parentInfo,
+      language: childInfo.language,
+      reason: childInfo.reason,
+      finalChoice: 'submission',
+    }
+    console.log("all infos: ", registrationData);
+    // return; 
+
+    try {
+      // Replace with your actual backend endpoint
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(registrationData),
+      })
+
+      if (!response.ok)
+        throw new Error('registration failed');
+    } catch (error) {
+      console.error("Error submitting registration:", error)
+    }
+
     // Validate all fields before submitting
     let formIsValid = true
     const newErrors = { ...errors }
