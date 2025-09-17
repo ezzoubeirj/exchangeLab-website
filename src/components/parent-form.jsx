@@ -40,6 +40,8 @@ export default function ParentForm({ parentInfo, childInfo, onParentInfoChange, 
     age: false
   })
 
+  const [loading, setLoading] = useState(false);
+
   const countries = [
     // North America
     { key: "morocco", value: "Morocco", flag: "🇲🇦" },
@@ -210,7 +212,7 @@ export default function ParentForm({ parentInfo, childInfo, onParentInfoChange, 
     }
     console.log("all infos: ", registrationData);
     // return; 
-
+    setLoading(true);
     try {
       // Replace with your actual backend endpoint
       const response = await fetch("/api/register", {
@@ -225,6 +227,8 @@ export default function ParentForm({ parentInfo, childInfo, onParentInfoChange, 
         throw new Error('registration failed');
     } catch (error) {
       console.error("Error submitting registration:", error)
+    } finally {
+      setLoading(false);
     }
 
     // Validate all fields before submitting
@@ -542,10 +546,18 @@ export default function ParentForm({ parentInfo, childInfo, onParentInfoChange, 
 
         <div className="text-center pt-4">
           <button 
+            disabled={loading}
             type="submit" 
             className="w-full bg-[#3189c5] hover:bg-[#276c9a] text-white px-8 py-3 text-lg font-medium shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 rounded-lg"
           >
-            {t("signupChild")}
+            
+              {loading ? (
+                <span className="flex items-center justify-center">
+                  <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-white border-r-transparent"></span>
+                </span>
+                ) : (
+                  t("signupChild")
+                )}
           </button>
         </div>
       </form>
