@@ -157,7 +157,7 @@ export default function OurCourses() {
               <ul className="space-y-3">{renderParts("steps.step1")}</ul>
             </div>
             <Link
-              href="/registration?language=English"
+              href="/registration?language=childEnglish"
               className="bg-[#3189c5] text-white px-8 py-3 text-lg hover:bg-[#276c9a] transition-colors inline-block self-start z-20 hover:cursor-pointer rounded-xl"
             >
               {t("button")}
@@ -186,7 +186,7 @@ export default function OurCourses() {
               <ul className="space-y-3">{renderParts("steps.step2")}</ul>
             </div>
             <Link
-              href="/registration?language=childEnglish"
+              href="/registration?language=English"
               className="bg-[#3189c5] text-white px-8 py-3 text-lg hover:bg-[#276c9a] transition-colors inline-block self-start hover:cursor-pointer rounded-xl"
             >
               {t("button")}
