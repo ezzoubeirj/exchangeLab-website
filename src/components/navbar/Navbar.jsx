@@ -323,7 +323,7 @@ const Navbar = () => {
               {/* Go to Class Button */}
               <div className="hidden sm:block">
                 <Link
-                  href="https://www.xlabplatform.com/login/index.php"
+                  href="http://funcenter.xchangelab.info/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(
@@ -544,7 +544,7 @@ const ModernSideDrawer = ({
             <div className="space-y-2 pt-4 border-t border-gray-100">
               {/* Go to Class Link for Mobile */}
               <Link
-                href="https://www.xlabplatform.com/login/index.php" // Update this URL to your actual class/dashboard URL
+                href="http://funcenter.xchangelab.info/" // Update this URL to your actual class/dashboard URL
                 onClick={onClose}
                 className="flex items-center gap-3 p-3 rounded-xl text-gray-700 hover:bg-gray-50 transition-colors duration-200"
               >
