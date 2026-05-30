@@ -1,45 +1,39 @@
-"use client"
+// SERVER COMPONENT — exports metadata, renders the client component below.
+// ACTION REQUIRED: rename the existing page.jsx → PlacementTestClient.jsx before deploying.
 
-import dynamic from "next/dynamic"
-import { useMemo } from "react"
-import { useSearchParams } from "next/navigation"
+import PlacementTestClient from './PlacementTestClient';
 
-function LanguageTestSkeleton() {
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="animate-pulse space-y-6">
-        <div className="h-6 bg-gray-200 rounded w-1/3" />
-        <div className="h-10 bg-gray-200 rounded w-2/3" />
-        <div className="space-y-3">
-          <div className="h-24 bg-gray-200 rounded" />
-          <div className="h-24 bg-gray-200 rounded" />
-          <div className="h-24 bg-gray-200 rounded" />
-        </div>
-        <div className="flex gap-3">
-          <div className="h-10 bg-gray-200 rounded w-24" />
-          <div className="h-10 bg-gray-200 rounded w-24" />
-        </div>
-      </div>
-    </div>
-  )
+const BASE_URL = 'https://www.xchangelab.info';
+
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const seo = (await import(`@/messages/${locale}/seo.json`)).default;
+  const { title, description } = seo.placementTest;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/placement-test`,
+      languages: {
+        fr: `${BASE_URL}/fr/placement-test`,
+        ar: `${BASE_URL}/ar/placement-test`,
+        'x-default': `${BASE_URL}/fr/placement-test`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${BASE_URL}/${locale}/placement-test`,
+      siteName: 'Exchange Lab',
+      locale: locale === 'ar' ? 'ar_MA' : 'fr_MA',
+      type: 'website',
+      images: [{ url: `${BASE_URL}/og-image.jpg`, width: 1200, height: 630 }],
+    },
+    twitter: { card: 'summary_large_image', title, description },
+  };
 }
 
-const LanguageTest = dynamic(() => import("@/components/LanguageTest"), {
-  loading: () => <LanguageTestSkeleton />,
-})
-
-export default function Page() {
-  const searchParams = useSearchParams()
-  const formDataString = searchParams.get("formData")
-
-  const formData = useMemo(() => {
-    if (!formDataString) return null
-    try {
-      return JSON.parse(formDataString)
-    } catch {
-      return null
-    }
-  }, [formDataString])
-
-  return <LanguageTest formData={formData} />
+export default function PlacementTestPage() {
+  return <PlacementTestClient />;
 }

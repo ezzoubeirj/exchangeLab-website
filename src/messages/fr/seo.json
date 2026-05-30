@@ -1,0 +1,30 @@
+{
+  "home": {
+    "title": "Cours d'anglais en ligne pour enfants et adultes | Exchange Lab",
+    "description": "Cours d'anglais et d'espagnol en ligne en petits groupes. +1 300 élèves dans 12 pays. 4.8/5 sur Google. Essai gratuit."
+  },
+  "howItWorks": {
+    "title": "Comment ça marche | Exchange Lab",
+    "description": "Découvrez comment fonctionnent les cours Exchange Lab : test de niveau, petits groupes de 9-12 élèves et suivi personnalisé."
+  },
+  "courses": {
+    "title": "Nos cours de langues en ligne | Exchange Lab",
+    "description": "Cours d'anglais pour enfants et adultes, cours d'espagnol pour enfants. Petits groupes et profs qualifiés."
+  },
+  "teacher": {
+    "title": "Devenir enseignant chez Exchange Lab",
+    "description": "Rejoignez l'équipe Exchange Lab. Enseignez l'anglais ou l'espagnol en ligne à des élèves motivés dans 12 pays."
+  },
+  "registration": {
+    "title": "S'inscrire | Exchange Lab",
+    "description": "Inscrivez-vous à un cours d'anglais ou d'espagnol en ligne. Test de niveau gratuit inclus. Démarrez en 4 étapes simples."
+  },
+  "conditions": {
+    "title": "Conditions générales | Exchange Lab",
+    "description": "Consultez les conditions générales d'utilisation et de vente de Exchange Lab."
+  },
+  "placementTest": {
+    "title": "Test de niveau gratuit | Exchange Lab",
+    "description": "Passez notre test de niveau gratuit pour rejoindre la classe adaptée à votre niveau d'anglais ou d'espagnol."
+  }
+}
