@@ -1063,7 +1063,7 @@ const scoringSystems = {
 }
 
 export default function LanguageTest({ formData }) {
-  const [testState, setTestState] = useState("welcome")
+  const [testState, setTestState] = useState("testing")
   const [currentPage, setCurrentPage] = useState(0)
   const [currentQuestionInPage, setCurrentQuestionInPage] = useState(0)
   const [selectedAnswers, setSelectedAnswers] = useState({}) // Track answers for current page
