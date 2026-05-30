@@ -335,6 +335,110 @@ const questionSets = {
       ],
       correctAnswer: "saw",
     },
+    // Page 11
+    {
+      id: 31,
+      question: "___ you ever visited another country?",
+      options: [
+        { label: "A", value: "Do" },
+        { label: "B", value: "Did" },
+        { label: "C", value: "Have" },
+      ],
+      correctAnswer: "Have",
+    },
+    {
+      id: 32,
+      question: "It's cloudy. It ___ rain later.",
+      options: [
+        { label: "A", value: "will" },
+        { label: "B", value: "must" },
+        { label: "C", value: "might" },
+      ],
+      correctAnswer: "might",
+    },
+    {
+      id: 33,
+      question: "She arrived ___ Monday morning.",
+      options: [
+        { label: "A", value: "in" },
+        { label: "B", value: "at" },
+        { label: "C", value: "on" },
+      ],
+      correctAnswer: "on",
+    },
+    // Page 12
+    {
+      id: 34,
+      question: "Look at those clouds! It ___ rain.",
+      options: [
+        { label: "A", value: "will" },
+        { label: "B", value: "is going to" },
+        { label: "C", value: "might" },
+      ],
+      correctAnswer: "is going to",
+    },
+    {
+      id: 35,
+      question: "The teacher ___ taught us last year was very kind.",
+      options: [
+        { label: "A", value: "which" },
+        { label: "B", value: "what" },
+        { label: "C", value: "who" },
+      ],
+      correctAnswer: "who",
+    },
+    {
+      id: 36,
+      question: "English ___ in many countries.",
+      options: [
+        { label: "A", value: "speaks" },
+        { label: "B", value: "is speaking" },
+        { label: "C", value: "is spoken" },
+      ],
+      correctAnswer: "is spoken",
+    },
+    // Page 13
+    {
+      id: 37,
+      question: "I have never ___ sushi.",
+      options: [
+        { label: "A", value: "eat" },
+        { label: "B", value: "ate" },
+        { label: "C", value: "eaten" },
+      ],
+      correctAnswer: "eaten",
+    },
+    {
+      id: 38,
+      question: "You ___ wear a seatbelt in the car.",
+      options: [
+        { label: "A", value: "might" },
+        { label: "B", value: "could" },
+        { label: "C", value: "must" },
+      ],
+      correctAnswer: "must",
+    },
+    {
+      id: 39,
+      question: "The story ___ written by a famous author.",
+      options: [
+        { label: "A", value: "is" },
+        { label: "B", value: "was" },
+        { label: "C", value: "has" },
+      ],
+      correctAnswer: "was",
+    },
+    // Page 14
+    {
+      id: 40,
+      question: "I ___ be a doctor when I grow up. I've decided.",
+      options: [
+        { label: "A", value: "will" },
+        { label: "B", value: "am going to" },
+        { label: "C", value: "might" },
+      ],
+      correctAnswer: "am going to",
+    },
   ],
 
   // Adults English (34 questions - 12 pages: 11 pages of 3 questions + 1 page of 1 question)
@@ -931,6 +1035,10 @@ const scoringSystems = {
     { min: 28, max: 28, level: "Pre-intermediate 2 S2" },
     { min: 29, max: 29, level: "Pre-intermediate 3 S1" },
     { min: 30, max: 30, level: "Pre-intermediate 3 S2" },
+    { min: 31, max: 32, level: "Intermediate 1 S1" },
+    { min: 33, max: 34, level: "Intermediate 1 S2" },
+    { min: 35, max: 37, level: "Intermediate 2 S1" },
+    { min: 38, max: 40, level: "Intermediate 2 S2" },
   ],
   EnglishAdults: [
     { min: 0, max: 4, level: "Beginner 1" },
