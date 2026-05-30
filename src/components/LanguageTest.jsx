@@ -1154,7 +1154,7 @@ export default function LanguageTest({ formData }) {
     const testResults = {
       ...formData,
       language: formData.language === "childEnglish" ? "English" : formData.language,
-      audience_type: formData.userType === 'parent' ? 'kids' : 'adults',
+      audience_type: questionSetKey === 'EnglishKids' ? 'kids' : 'adults',
       testLanguage: formData.language,
       questionSetType: questionSetKey,
       answers: newAllAnswers,
