@@ -1,3 +1,5 @@
+"use client"
+
 import './globals.css';
 import { Analytics } from "@vercel/analytics/next"
 import Script from 'next/script';
