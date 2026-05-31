@@ -160,6 +160,6 @@ export default function RegistrationPage() {
           <div className="min-h-[100vh] bg-gray-50 mt-10">
                 <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
                 <div className="container mx-auto px-4 py-8">{renderCurrentStep()}</div>
-          </div>div>
+          </div>
         )
 }
