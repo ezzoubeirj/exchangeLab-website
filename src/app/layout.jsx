@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
                                                                                                             fbq('init', '${PIXEL_ID}');
                                                                                                                       fbq('track', 'PageView');
                                                                                                                               `}
-                </Script>Script>
+                </Script>
                 <noscript>
                         <img
                                     height="1"
@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
                                     src={`https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1`}
                                     alt=""
                                   />
-                </noscript>noscript>
+                </noscript>
           
             {children}
                 <Analytics />
@@ -54,6 +54,6 @@ export default function RootLayout({ children }) {
                                   <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.856L0 24l6.29-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.651-.502-5.178-1.381l-.371-.22-3.735.896.944-3.634-.241-.384A9.951 9.951 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
                         </svg>
                 </a>
-          </>>
+          </>
         );
-}</>
+}
