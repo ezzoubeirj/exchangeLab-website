@@ -121,9 +121,6 @@ export default function OurCourses() {
         <div className="absolute top-30 right-1/7 transform -translate-x-1/2 z-10 hidden lg:block">
           <ArrowDown style={{ width: 150, height: 150 }} />
         </div>
-        <p className="mt-6 text-base sm:text-lg text-[#777777] max-w-sm mx-auto relative z-10">
-          {t("description")}
-        </p>
       </div>
 
       {/* First Course */}
