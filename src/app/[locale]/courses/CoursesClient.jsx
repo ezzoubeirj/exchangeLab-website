@@ -137,6 +137,7 @@ export default function CoursesPage() {
         t('course5.feature2'),
         t('course5.feature3'),
       ],
+      registerLink: 'https://alhanaacoran.com/cours-enfants',
     },
     {
       id: 6,
@@ -344,7 +345,7 @@ export default function CoursesPage() {
                   {/* Buttons */}
                   <div className={`flex flex-wrap gap-3 mt-6 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
                     <Link
-                      href={`/${locale}/registration`}
+                      href={course.registerLink || `/${locale}/registration`}
                       className={`px-4 py-2.5 md:px-6 md:py-3 text-sm md:text-base rounded-lg shadow-md 
                       bg-white border border-[#1E76B5] text-[#1E76B5] 
                       transform transition-all duration-300
