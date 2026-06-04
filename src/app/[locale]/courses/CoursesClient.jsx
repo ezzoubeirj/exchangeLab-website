@@ -343,18 +343,8 @@ export default function CoursesPage() {
                   
                   {/* Buttons */}
                   <div className={`flex flex-wrap gap-3 mt-6 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-                    <button 
-                      className={`px-4 py-2.5 md:px-6 md:py-3 text-sm md:text-base rounded-lg shadow-md 
-                      bg-gradient-to-r from-[#1E76B5] to-[#777777] text-white 
-                      transform transition-all duration-300
-                      hover:shadow-xl hover:translate-y-[-2px]
-                      active:translate-y-[1px] 
-                      ${isRTL ? 'tajawal-medium' : 'open-sans-medium'}`}
-                    >
-                      {t('learnMore')}
-                    </button>
-                    
-                    <button 
+                    <Link
+                      href={`/${locale}/registration`}
                       className={`px-4 py-2.5 md:px-6 md:py-3 text-sm md:text-base rounded-lg shadow-md 
                       bg-white border border-[#1E76B5] text-[#1E76B5] 
                       transform transition-all duration-300
@@ -363,7 +353,7 @@ export default function CoursesPage() {
                       ${isRTL ? 'tajawal-medium' : 'open-sans-medium'}`}
                     >
                       {t('register')}
-                    </button>
+                    </Link>
 
                     <a
                       href="https://wa.me/212660329720"
