@@ -4,9 +4,9 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 
 const realNames = [
-  "Ezzoubeir", "Soumaya", "Amal", "Khaoula", "Selah", "Abdelghafour", "Houda", "Ahlam", "Mouad", "Meryem",
-  "Inass", "Radia", "Zineb", "Ayoub", "MarieLaure", "Hassna", "Hajar", "Hamza", "Laila", "FatimaEzzahra",
-  "Sanaa", "Douae", "Lamiae", "Fayza", "Imane", "Chaimaa"
+  "Ezzoubeir", "Soumaya", "Aya", "Khaoula", "Selah", "Abdelghafour", "Houda", "Ahlam", "Karima", "Meryem",
+  "Inass", "Radia", "Zineb", "Ayoub", "MarieLaure", "HajarRia", "Hajar", "Hamza", "FatimaZahra", "FatimaEzzahra",
+  "ZinebEsp", "Douae", "Lamiae", "Fayza", "Imane", "Chaimaa"
 ]
 
 export default function CircularTeamUI() {
