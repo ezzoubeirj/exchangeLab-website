@@ -57,6 +57,13 @@ export default function TeacherApplicationForm() {
     setIsSubmitting(true)
     setError("")
 
+    // Guard: Vercel serverless limit is 4.5 MB
+    if (formData.cv && formData.cv.size > 4 * 1024 * 1024) {
+      setError(t("formTeacher.fileTooLarge"))
+      setIsSubmitting(false)
+      return
+    }
+
     try {
       const data = new FormData()
       data.append("firstName", formData.firstName)
@@ -366,7 +373,7 @@ export default function TeacherApplicationForm() {
                     id="cv"
                     name="cv"
                     onChange={handleFileChange}
-                    accept=".pdf,.doc,.docx"
+                    accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
                     required
                     className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-gray-50 focus:bg-white file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                   />
