@@ -85,9 +85,15 @@ export default function PostPageClient({ post, locale }) {
       >
         {/* Meta row */}
         <div className="flex items-center gap-3 text-gray-400 text-sm mb-10 pb-8 border-b border-gray-100">
-          <div className="flex items-center justify-center w-8 h-8 bg-[#3189c5] rounded-full text-white text-xs font-bold">
-            {(post.author || 'EL')[0]}
-          </div>
+          {(post.author || 'Exchange Lab') === 'Exchange Lab' ? (
+            <div className="flex items-center justify-center w-8 h-8 rounded-full overflow-hidden bg-white border border-gray-100 flex-shrink-0">
+              <img src="/LOGO-XLAB.png" alt="Exchange Lab" className="w-full h-full object-contain" />
+            </div>
+          ) : (
+            <div className="flex items-center justify-center w-8 h-8 bg-[#3189c5] rounded-full text-white text-xs font-bold flex-shrink-0">
+              {(post.author || 'EL')[0]}
+            </div>
+          )}
           <span className="font-medium text-gray-600">{post.author || 'Exchange Lab'}</span>
           <span>·</span>
           <span>{formatDate(post.date, locale)}</span>

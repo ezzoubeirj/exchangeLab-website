@@ -114,11 +114,10 @@ export default function AdminPage() {
       <div className="min-h-screen bg-gradient-to-br from-[#003366] via-[#1a5294] to-[#3189c5] flex items-center justify-center p-4">
         <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-sm">
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-[#3189c5]/10 rounded-2xl mb-4">
-              <span className="text-3xl">✏️</span>
+            <div className="inline-flex items-center justify-center w-24 h-24 mb-4">
+              <img src="/LOGO-XLAB.png" alt="Exchange Lab" className="w-full h-full object-contain" />
             </div>
-            <h1 className="text-2xl font-bold text-[#2c58a2]">Admin Blog</h1>
-            <p className="text-gray-400 mt-1 text-sm">Exchange Lab</p>
+            <h1 className="text-2xl font-bold text-[#2c58a2]">Exchange Lab</h1>
           </div>
           <form onSubmit={handleAuth} className="space-y-4">
             <input

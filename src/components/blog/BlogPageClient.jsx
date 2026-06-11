@@ -41,7 +41,7 @@ export default function BlogPageClient({ posts, locale }) {
           transition={{ duration: 0.7 }}
         >
           <span className="inline-block bg-white/15 text-white text-sm font-semibold px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm">
-            {isRTL ? '📚 مدونة Exchange Lab' : '📚 Le Blog Exchange Lab'}
+            {isRTL ? 'مدونة Exchange Lab' : 'Le Blog Exchange Lab'}
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">
             {isRTL ? 'تعلّم اللغات بذكاء' : 'Apprenez les langues\navec intelligence'}
