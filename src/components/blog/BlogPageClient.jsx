@@ -99,9 +99,12 @@ export default function BlogPageClient({ posts, locale }) {
                   <p className="text-[#777777] text-xs mb-3 font-medium">
                     {formatDate(post.date, locale)}
                   </p>
-                  <h2 className="text-[#2c58a2] font-bold text-lg mb-3 leading-snug flex-1 group-hover:text-[#3189c5] transition-colors">
+                  <Link
+                    href={`/${locale}/blog/${post.slug}`}
+                    className="text-[#2c58a2] font-bold text-lg mb-3 leading-snug flex-1 block hover:text-[#3189c5] transition-colors"
+                  >
                     {post.title}
-                  </h2>
+                  </Link>
                   <p className="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3">
                     {post.excerpt}
                   </p>
@@ -131,7 +134,7 @@ export default function BlogPageClient({ posts, locale }) {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-2xl md:text-3xl font-bold text-[#2c58a2] mb-4">
-            {isRTL ? 'جاهز للبدء؟' : 'Prêt à vous lancer ?'}
+            {isRTL ? 'جاهز لمبدء؟' : 'Prêt à vous lancer ?'}
           </h2>
           <p className="text-gray-500 mb-8">
             {isRTL
