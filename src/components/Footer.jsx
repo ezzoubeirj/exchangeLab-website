@@ -179,7 +179,7 @@ onClick={() => toggleSection('contact')}
 >
 <h3 className="text-lg font-bold mb-2 sm:mb-6 text-[var(--color-title)] relative z-10">{t("contact")}</h3>
 <span className="sm:hidden">
-{expandedSections.contact ? <ChevronUp size={20} /> <ChevronDown size={20} />}
+{expandedSections.contact ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
 </span>
 </div>
 <div className={`space-y-3 relative z-10 overflow-hidden transition-all duration-300 ${expandedSections.contact ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 sm:max-h-96 sm:opacity-100'}`}>
@@ -201,7 +201,7 @@ onClick={item === "contactUs" ? (e) => e.preventDefault() : undefined}
 {/* WhatsApp Contact Section */}
 <div className="mt-6 p-4 bg-white rounded-lg border border-blue-100">
 <div className="flex items-center gap-1 text-sm mb-1 text-[var(--color-desc)]">
-<p className="flex items-center gap-2"><Whatsapp color="#838383" className="w-4 h-4 text-green-600"/> 00212663244841:</p>
+<p className="flex items-center gap-2"><Whatsapp color="#838383" className="w-4 h-4 text-green-600"/> 00212663244841</p>
 </div>
 <div className="space-y-1 text-sm text-[var(--color-desc)]">
 <p className="flex items-center gap-2"><Mail className="w-4 h-4" /> Contact@xchangelab.info </p>
@@ -240,7 +240,7 @@ className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full b
 <div className="container mx-auto px-4 sm:px-6">
 <div className="max-w-[1340px] mx-auto flex flex-col md:flex-row justify-between items-center">
 <div className="text-xs mb-6 md:mb-0 flex items-center text-center md:text-left">
-{/* <span className="text-lg mr-2 font-bold">×½</span> */}
+{/* <span className="text-lg mr-2 font-bold">×</span> */}
 © {currentYear} Exchange Lab - {t("allRightsReserved")}
 </div>
 
@@ -251,7 +251,7 @@ key={item}
 href={`/conditions`}
 className="text-xs text-blue-100 hover:text-white transition-colors duration-200"
 >
-{](item)}
+{t(item)}
 </Link>
 ))}
 </div>
