@@ -180,15 +180,20 @@ isMobileMenuOpen && "z-[120]" // Higher z-index when sidebar is open
 <div className={`container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-4 ${isMobileMenuOpen ? " bg-black/50 " : ""}`}>
 <div className={`flex items-center justify-between h-16 lg:h-20 `}>
 {/* Logo */}
-<Link href="/" className="flex-shrink-0 ">
+<style>{`@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap');`}</style>
+<Link href="/" className="flex-shrink-0 flex items-center gap-2">
 <Image
 src="/LOGO-XLAB.png"
-alt="Exchange Labs"
-width={160}
-height={45}
-className={`w-fit h-14 object-contain`}
+alt="Exchange Lab"
+width={44}
+height={44}
+className="w-10 h-10 object-contain"
 priority
 />
+<span style={{ fontFamily: "'Cairo', sans-serif", fontWeight: 700, fontSize: '1.2rem', lineHeight: 1, letterSpacing: '-0.01em' }}>
+  <span style={{ color: '#2c58a2' }}>Exchange</span>
+  <span style={{ color: '#cd1822' }}> Lab</span>
+</span>
 </Link>
 
 {/* Desktop Navigation */}
@@ -315,7 +320,7 @@ getFontClass('medium')
 <LanguageSwitcher />
 </div>
 
-{/* Separator Line */}
+{/* Separator Line */
 <div className="hidden sm:block w-px h-6 bg-gray-300"></div>
 
 {/* Go to Class Button */}
@@ -370,7 +375,7 @@ isMobileMenuOpen ? "rotate-0 opacity-100 scale-100" : "rotate-90 opacity-0 scale
 
 {/* Modern Simple Side Drawer */}
 <ModernSideDrawer
-isOpen={isMobileMenuOpen}
+izOpen={isMobileMenuOpen}
 onClose={closeMobileMenu}
 navItems={navItems}
 activeDropdown={activeDropdown}
