@@ -280,7 +280,7 @@ getFontClass('medium')
 
 {/* Direct Links */}
 <Link
-href={`/${locale}/blog`}
+href="/blog"
 className={cn(
 "px-4 lg:px-1 xl:px-4 py-2.5 rounded-lg text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100/60 transition-all duration-200",
 getFontClass('medium')
@@ -555,7 +555,7 @@ Go to Class
 </Link>
 
 <Link
-href={`/${locale}/blog`}
+href="/blog"
 onClick={onClose}
 className="flex items-center gap-3 p-3 rounded-xl text-gray-700 hover:bg-gray-50 transition-colors duration-200"
 >
