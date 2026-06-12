@@ -134,7 +134,7 @@ export default function BlogPageClient({ posts, locale }) {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-2xl md:text-3xl font-bold text-[#2c58a2] mb-4">
-            {isRTL ? 'جاهز لمبدء؟' : 'Prêt à vous lancer ?'}
+            {isRTL ? 'جاهز للبدء؟' : 'Prêt à vous lancer ?'}
           </h2>
           <p className="text-gray-500 mb-8">
             {isRTL
