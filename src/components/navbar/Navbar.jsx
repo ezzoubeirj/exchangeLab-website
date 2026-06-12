@@ -320,7 +320,7 @@ getFontClass('medium')
 <LanguageSwitcher />
 </div>
 
-{/* Separator Line */
+{/* Separator Line */}
 <div className="hidden sm:block w-px h-6 bg-gray-300"></div>
 
 {/* Go to Class Button */}
@@ -375,7 +375,7 @@ isMobileMenuOpen ? "rotate-0 opacity-100 scale-100" : "rotate-90 opacity-0 scale
 
 {/* Modern Simple Side Drawer */}
 <ModernSideDrawer
-izOpen={isMobileMenuOpen}
+isOpen={isMobileMenuOpen}
 onClose={closeMobileMenu}
 navItems={navItems}
 activeDropdown={activeDropdown}
