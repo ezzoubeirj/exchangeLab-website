@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { debounce } from 'lodash'
 import { motion } from 'framer-motion'
 import FlowerBackground from './SvgShape'
+
 const videos = [
   '/videos/student20.mp4',
   '/videos/student1.mp4',
@@ -74,30 +75,24 @@ export default function StudentsTestimonial() {
     }
   }, [])
 
-  // Scroll to video by index (for small screens)
   const scrollToIndex = (idx) => {
     const container = scrollRef.current
     if (!container) return
     const child = container.children[idx]
     if (!child) return
-  
     const left =
       child.offsetLeft - (container.clientWidth - child.clientWidth) / 2
-  
     container.scrollTo({ left: Math.max(0, left), behavior: 'smooth' })
   }
-  
-  // 2) Guard the effect to avoid auto-scroll on initial load
+
   const didInitRef = useRef(false)
   useEffect(() => {
     if (!isSmallScreen) return
-    if (!inView) return // optional: only after section is visible
-  
+    if (!inView) return
     if (!didInitRef.current) {
       didInitRef.current = true
-      return // skip first run on reload
+      return
     }
-  
     scrollToIndex(currentIndex)
   }, [currentIndex, isSmallScreen, inView])
 
@@ -152,35 +147,43 @@ export default function StudentsTestimonial() {
     }
   }
 
+  // Enhanced stagger: each card fades up with increasing delay
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
+        staggerChildren: 0.14,
+        delayChildren: 0.1,
       }
     }
   }
 
   const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
+    hidden: { y: 40, opacity: 0, scale: 0.96 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" }
+      scale: 1,
+      transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] }
     }
   }
 
+  const titleVariants = {
+    hidden: { y: 24, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }
+  }
+
   const videoContainerVariants = {
-    hidden: { opacity: 0, x: 20 },
+    hidden: { opacity: 0, y: 30, scale: 0.93 },
     visible: i => ({
       opacity: 1,
-      x: 0,
+      y: 0,
+      scale: 1,
       transition: {
-        delay: i * 0.15,
-        duration: 0.8,
-        ease: "easeOut"
+        delay: i * 0.12,
+        duration: 0.75,
+        ease: [0.16, 1, 0.3, 1]
       }
     })
   }
@@ -199,11 +202,11 @@ export default function StudentsTestimonial() {
       >
         <motion.div
           className={`${isRTL ? 'ml-auto' : 'mr-auto'} pb-16 pl-5 xl:pl-0`}
-          variants={itemVariants}
+          variants={titleVariants}
         >
           <motion.h2
-            className="  text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-[var(--color-title)] relative z-10 "
-            variants={itemVariants}
+            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-[var(--color-title)] relative z-10"
+            variants={titleVariants}
           >
             {t('title')}
             <motion.span
@@ -214,7 +217,7 @@ export default function StudentsTestimonial() {
             ></motion.span>
           </motion.h2>
           <motion.p
-            className="text-[var(--color-desc)] text-base sm:text-lg relative z-10 "
+            className="text-[var(--color-desc)] text-base sm:text-lg relative z-10"
             variants={itemVariants}
           >
             {t('description')}
@@ -224,9 +227,9 @@ export default function StudentsTestimonial() {
 
       {/* Videos Section */}
       <div className="relative">
-      <div className="absolute  -top-30 -right-105 w-[1800px] h-[1000px] z-0 pointer-events-none hidden lg:block opacity-50">
-        <FlowerBackground className="w-full h-full" width="100%" height="100%" />
-      </div>
+        <div className="absolute -top-30 -right-105 w-[1800px] h-[1000px] z-0 pointer-events-none hidden lg:block opacity-50">
+          <FlowerBackground className="w-full h-full" width="100%" height="100%" />
+        </div>
         {isSmallScreen ? (
           <motion.div
             className="relative mb-8"
@@ -265,10 +268,13 @@ export default function StudentsTestimonial() {
                   className="min-w-[200px] max-w-[200px] h-64 relative overflow-hidden rounded shadow-md snap-center flex-shrink-0"
                   variants={itemVariants}
                   custom={index}
-                  whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+                  whileHover={{
+                    y: -6,
+                    boxShadow: "0 16px 32px -8px rgba(49, 137, 197, 0.25)",
+                    borderRadius: "14px",
+                  }}
                   transition={{ duration: 0.3 }}
                 >
-                  {/* Video element */}
                   <video
                     ref={el => videoRefs.current[index] = el}
                     src={videoSrc}
@@ -282,7 +288,6 @@ export default function StudentsTestimonial() {
                     onTimeUpdate={() => updateProgress(index)}
                     playsInline
                   />
-                  {/* Thumbnail overlay */}
                   <motion.div
                     className={`absolute inset-0 cursor-pointer transition-opacity duration-300 ${
                       hasPlayed[index] && playingIndex === index ? 'opacity-0' : 'opacity-100'
@@ -298,7 +303,6 @@ export default function StudentsTestimonial() {
                       alt={`Video thumbnail ${index + 1}`}
                       className="w-full h-full object-cover"
                     />
-                    {/* Play button overlay */}
                     <div className="absolute top-4 left-4 bg-transparent group flex items-center">
                       <motion.div
                         className="bg-white bg-opacity-90 rounded-full p-2 hover:bg-opacity-100 transition-all duration-200 flex items-center"
@@ -321,7 +325,6 @@ export default function StudentsTestimonial() {
                       </motion.div>
                     </div>
                   </motion.div>
-                  {/* Custom play/pause button */}
                   {hasPlayed[index] && (
                     <motion.button
                       className="absolute top-4 left-4 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-2 z-30 transition-all"
@@ -376,9 +379,11 @@ export default function StudentsTestimonial() {
                 variants={videoContainerVariants}
                 custom={index}
                 whileHover={{
-                  boxShadow: "0 20px 40px -5px rgba(0, 0, 0, 0.15)",
-                  y: -5
+                  boxShadow: "0 24px 48px -8px rgba(49, 137, 197, 0.22)",
+                  y: -6,
+                  outline: "2px solid rgba(49, 137, 197, 0.25)",
                 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               >
                 <video
                   ref={el => videoRefs.current[index] = el}
@@ -396,7 +401,7 @@ export default function StudentsTestimonial() {
                 <motion.div
                   className={`absolute inset-0 cursor-pointer transition-opacity duration-300`}
                   onClick={() => togglePlayPause(index)}
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.04 }}
                   transition={{ duration: 0.5 }}
                 >
                   <Image
