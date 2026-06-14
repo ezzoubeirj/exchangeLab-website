@@ -3,11 +3,36 @@
 
 import { useEffect, useRef, useState } from "react"
 import { useTranslations, useLocale } from "next-intl"
-import Image from "next/image"
 import { motion } from "framer-motion"
 
 const STORAGE_KEY = "parentReviews.progress"
 
+const AVATAR_GRADIENTS = [
+  "linear-gradient(135deg, #1a5c9e, #3189c5)",
+  "linear-gradient(135deg, #b45309, #f59e0b)",
+  "linear-gradient(135deg, #be123c, #f43f5e)",
+  "linear-gradient(135deg, #3730a3, #6366f1)",
+]
+
+function getInitials(name = "") {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase() || "")
+    .join("")
+}
+
+// Deterministic waveform bar heights from an integer seed
+function genBars(seed, n = 22) {
+  const out = []
+  let v = seed | 0
+  for (let i = 0; i < n; i++) {
+    v = Math.imul(v, 1664525) + 1013904223
+    out.push(0.18 + ((v >>> 0) / 0xffffffff) * 0.78)
+  }
+  return out
+}
 
 const ParentReviews = () => {
   const t = useTranslations("ParentReviews")
@@ -16,65 +41,46 @@ const ParentReviews = () => {
   const [currentlyPlayingId, setCurrentlyPlayingId] = useState(null)
 
   const reviews = [
-    { id: 1, parentName: t("parent1.name"), parentImage: "/profele.png", audioSrc: "/audio/Adultes-Madame-Amal.wav", durationLabel: "0:30", type: t("parent1.type") },
-    { id: 2, parentName: t("parent3.name"), parentImage: "/profele.png", audioSrc: "/audio/Maman-de-Mariem.mp3", durationLabel: "0:46", type: t("parent2.type") },
-    { id: 3, parentName: t("parent2.name"), parentImage: "/profele.png", audioSrc: "/audio/Adultes-Madame-Ikram.wav", durationLabel: "0:31", type: t("parent1.type") },
-    { id: 4, parentName: t("parent4.name"), parentImage: "/profele.png", audioSrc: "/audio/Papa-de-Ghali.mp3", durationLabel: "0:41", type: t("parent2.type") },
+    { id: 1, parentName: t("parent1.name"), audioSrc: "/audio/Adultes-Madame-Amal.wav", durationLabel: "0:30", type: t("parent1.type") },
+    { id: 2, parentName: t("parent3.name"), audioSrc: "/audio/Maman-de-Mariem.mp3",    durationLabel: "0:46", type: t("parent2.type") },
+    { id: 3, parentName: t("parent2.name"), audioSrc: "/audio/Adultes-Madame-Ikram.wav",durationLabel: "0:31", type: t("parent1.type") },
+    { id: 4, parentName: t("parent4.name"), audioSrc: "/audio/Papa-de-Ghali.mp3",       durationLabel: "0:41", type: t("parent2.type") },
   ]
+
+  const sectionRef = useRef(null)
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
-  }
-
-  const titleVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: -20 
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
     },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
   }
 
   const cardVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 30,
-      scale: 0.95
-    },
+    hidden: { y: 30, opacity: 0 },
     visible: {
-      opacity: 1,
       y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
+      opacity: 1,
+      transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
+    },
+  }
+
+  const titleVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
   }
 
   return (
-    <motion.section 
-      className="bg-white px-4 sm:px-8 md:px-12 lg:px-24"
+    <motion.section
+      ref={sectionRef}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
       <div className="relative py-10 md:py-16 lg:py-20 overflow-hidden">
         <div className="container mx-auto px-4 text-left">
-          <motion.div 
+          <motion.div
             className="flex items-center justify-left mb-8 md:mb-12"
             variants={titleVariants}
           >
@@ -83,7 +89,7 @@ const ParentReviews = () => {
             </h2>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 ${isRTL ? "direction-rtl" : ""}`}
             variants={containerVariants}
           >
@@ -91,9 +97,9 @@ const ParentReviews = () => {
               <motion.div
                 key={r.id}
                 variants={cardVariants}
-                whileHover={{ 
-                  y: -5,
-                  transition: { duration: 0.2 }
+                whileHover={{
+                  y: -6,
+                  transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
                 }}
               >
                 <AudioCard
@@ -101,6 +107,8 @@ const ParentReviews = () => {
                   isRTL={isRTL}
                   currentlyPlayingId={currentlyPlayingId}
                   onPlayChange={setCurrentlyPlayingId}
+                  avatarGradient={AVATAR_GRADIENTS[index % AVATAR_GRADIENTS.length]}
+                  barSeed={r.id * 7919}
                 />
               </motion.div>
             ))}
@@ -125,7 +133,7 @@ const writeProgress = (map) => {
   } catch {}
 }
 
-const AudioCard = ({ review, isRTL, currentlyPlayingId, onPlayChange }) => {
+const AudioCard = ({ review, isRTL, currentlyPlayingId, onPlayChange, avatarGradient, barSeed }) => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
@@ -133,21 +141,21 @@ const AudioCard = ({ review, isRTL, currentlyPlayingId, onPlayChange }) => {
   const audioRef = useRef(null)
   const progressRef = useRef(null)
   const seekingRef = useRef(false)
-  const lastSaveTsRef = useRef(0)
   const restoredRef = useRef(false)
+  const lastSaveTsRef = useRef(0)
+
+  const initials = getInitials(review.parentName)
+  const bars = genBars(barSeed)
 
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
 
     const updateBuffered = () => {
-      if (!audio.buffered || !Number.isFinite(duration) || duration <= 0) {
-        setBufferedEnd(0)
-        return
-      }
       try {
+        if (!audio.buffered.length) return
         const last = audio.buffered.length - 1
-        if (last >= 0) setBufferedEnd(Math.min(audio.buffered.end(last), duration))
+        setBufferedEnd(Math.min(audio.buffered.end(last), duration))
       } catch {
         setBufferedEnd(0)
       }
@@ -182,27 +190,15 @@ const AudioCard = ({ review, isRTL, currentlyPlayingId, onPlayChange }) => {
 
     const onEnded = () => {
       setIsPlaying(false)
-      setCurrentTime(0)
       onPlayChange(null)
-      const map = readProgress()
-      if (map[review.audioSrc] != null) {
-        delete map[review.audioSrc]
-        writeProgress(map)
-      }
     }
 
-    // Attach listeners
     audio.addEventListener("loadedmetadata", handleLoaded)
     audio.addEventListener("loadeddata", handleLoaded)
     audio.addEventListener("durationchange", handleLoaded)
     audio.addEventListener("progress", updateBuffered)
     audio.addEventListener("timeupdate", onTimeUpdate)
     audio.addEventListener("ended", onEnded)
-
-    // Handle cached metadata on reload (event may have fired before listener)
-    if ((audio.readyState ?? 0) >= 1 || Number.isFinite(audio.duration)) {
-      handleLoaded()
-    }
 
     return () => {
       audio.removeEventListener("loadedmetadata", handleLoaded)
@@ -232,65 +228,13 @@ const AudioCard = ({ review, isRTL, currentlyPlayingId, onPlayChange }) => {
   }
 
   const seekToClientX = (clientX) => {
-    const audio = audioRef.current
-    if (!audio || !duration) return
-    const percent = getSeekPercentFromClientX(clientX)
-    if (percent == null) return
-    const next = percent * duration
-    audio.currentTime = next
-    setCurrentTime(next)
-    const map = readProgress()
-    map[review.audioSrc] = Math.floor(next)
-    writeProgress(map)
-  }
-
-  const onPointerDown = (e) => {
-    e.preventDefault()
-    seekingRef.current = true
-    progressRef.current?.setPointerCapture?.(e.pointerId)
-    seekToClientX(e.clientX)
-  }
-  const onPointerMove = (e) => {
-    if (!seekingRef.current) return
-    e.preventDefault()
-    seekToClientX(e.clientX)
-  }
-  const onPointerUp = (e) => {
-    if (!seekingRef.current) return
-    e.preventDefault()
-    seekingRef.current = false
-    progressRef.current?.releasePointerCapture?.(e.pointerId)
-  }
-  const onPointerLeave = (e) => {
-    if (!seekingRef.current) return
-    e.preventDefault()
-    seekingRef.current = false
-  }
-
-  const onSliderKeyDown = (e) => {
-    const audio = audioRef.current
-    if (!audio || !duration) return
-    const step = e.shiftKey ? 10 : 5
-    if (e.key === "ArrowRight" || (isRTL && e.key === "ArrowLeft")) {
-      e.preventDefault()
-      audio.currentTime = Math.min(duration, audio.currentTime + step)
-      setCurrentTime(audio.currentTime)
-    } else if (e.key === "ArrowLeft" || (isRTL && e.key === "ArrowRight")) {
-      e.preventDefault()
-      audio.currentTime = Math.max(0, audio.currentTime - step)
-      setCurrentTime(audio.currentTime)
-    } else if (e.key === "Home") {
-      e.preventDefault()
-      audio.currentTime = 0
-      setCurrentTime(0)
-    } else if (e.key === "End") {
-      e.preventDefault()
-      audio.currentTime = duration
-      setCurrentTime(duration)
-    } else if (e.key === " " || e.key === "Enter") {
-      e.preventDefault()
-      toggle()
-    }
+    const pct = getSeekPercentFromClientX(clientX)
+    if (pct === null) return
+    const t = pct * duration
+    try {
+      if (audioRef.current) audioRef.current.currentTime = t
+    } catch {}
+    setCurrentTime(t)
   }
 
   const toggle = () => {
@@ -299,105 +243,93 @@ const AudioCard = ({ review, isRTL, currentlyPlayingId, onPlayChange }) => {
     if (isPlaying) {
       audio.pause()
       setIsPlaying(false)
-      onPlayChange(null)
     } else {
-      audio
-        .play()
-        .then(() => {
-          setIsPlaying(true)
-          onPlayChange(review.id)
-        })
-        .catch(() => {})
+      onPlayChange(review.id)
+      audio.play().catch(() => {})
+      setIsPlaying(true)
     }
   }
 
-  const format = (t) => {
-    if (!isFinite(t)) return "0:00"
-    const m = Math.floor(t / 60)
-    const s = String(Math.floor(t % 60)).padStart(2, "0")
-    return `${m}:${s}`
+  const fmt = (s) => {
+    const t = isFinite(s) ? Math.floor(s) : 0
+    return `${Math.floor(t / 60)}:${String(t % 60).padStart(2, "0")}`
   }
 
-  const progressPct = duration ? (currentTime / duration) * 100 : 0
-  const bufferedPct = duration ? (bufferedEnd / duration) * 100 : 0
+  const progress = duration > 0 ? currentTime / duration : 0
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-3 sm:p-4 shadow-sm">
-      <div className="flex items-center gap-3 mb-3">
-        <Image
-          src={review.parentImage || "/placeholder.svg"}
-          alt={review.parentName}
-          width={40}
-          height={40}
-          className="rounded-md object-cover"
-        />
+    <div className="rounded-xl border border-slate-200 bg-white p-3 sm:p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
+      {/* Header: colored initials avatar + name */}
+      <div className="flex items-center gap-3 mb-4">
+        <div
+          className="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center text-sm font-bold text-white select-none"
+          style={{ background: avatarGradient }}
+        >
+          {initials}
+        </div>
         <div className="min-w-0">
           <div className="font-semibold text-slate-800 text-sm truncate">{review.parentName}</div>
           <div className="text-xs text-slate-500 truncate">{review.type}</div>
         </div>
       </div>
 
-      <div className="flex items-center gap-3">
+      {/* Waveform + controls */}
+      <div className="flex items-center gap-2">
+        {/* Play / Pause button */}
         <button
           onClick={toggle}
           aria-label={isPlaying ? "Pause audio" : "Play audio"}
-          className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-blue-600 text-white hover:bg-blue-500 transition"
+          className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#3189c5] text-white hover:bg-[#276c9a] transition-all duration-200 hover:scale-105 active:scale-95"
         >
           {isPlaying ? (
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-              <rect x="6" y="4" width="4" height="16" rx="1.5" />
-              <rect x="14" y="4" width="4" height="16" rx="1.5" />
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="6" y="4" width="4" height="16" rx="1" />
+              <rect x="14" y="4" width="4" height="16" rx="1" />
             </svg>
           ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 ml-0.5" viewBox="0 0 24 24" fill="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 ml-0.5" viewBox="0 0 24 24" fill="currentColor">
               <path d="M8 5v14l11-7z" />
             </svg>
           )}
         </button>
 
-        <div className="flex-1">
-          <div
-            ref={progressRef}
-            onPointerDown={onPointerDown}
-            onPointerMove={onPointerMove}
-            onPointerUp={onPointerUp}
-            onPointerLeave={onPointerLeave}
-            onKeyDown={onSliderKeyDown}
-            className="h-2 w-full rounded-full cursor-pointer relative select-none outline-none touch-none"
-            aria-label="Seek"
-            role="slider"
-            tabIndex={0}
-            aria-valuemin={0}
-            aria-valuemax={Math.floor(duration) || 0}
-            aria-valuenow={Math.floor(currentTime) || 0}
-            aria-valuetext={`${format(currentTime)} of ${format(duration)}`}
-          >
-            <div className="absolute inset-0 bg-slate-200 rounded-full" />
-            <div
-              className={`h-2 rounded-full absolute top-0 ${isRTL ? "right-0" : "left-0"} bg-slate-300`}
-              style={{ width: `${bufferedPct}%` }}
-            />
-            <div
-              className={`h-2 rounded-full absolute top-0 ${isRTL ? "right-0" : "left-0"} ${
-                isPlaying ? "bg-blue-600" : "bg-slate-400"
-              }`}
-              style={{ width: `${progressPct}%` }}
-            />
-            <div
-              className={`absolute -top-1 ${isRTL ? "right-0" : "left-0"} transform ${
-                isRTL ? "translate-x-1/2" : "-translate-x-1/2"
-              }`}
-              style={{ [isRTL ? "right" : "left"]: `${progressPct}%` }}
-              aria-hidden="true"
-            >
-              <div className={`w-4 h-4 rounded-full ${isPlaying ? "bg-blue-600" : "bg-slate-400"} shadow`} />
-            </div>
-          </div>
-          <div className="mt-1 flex items-center justify-between text-[11px] text-slate-500">
-            <span>{format(currentTime)}</span>
-            <span>{format(duration)}</span>
-          </div>
+        {/* Waveform bars + seek area */}
+        <div
+          ref={progressRef}
+          className="relative flex-1 h-8 flex items-end gap-[2px] cursor-pointer select-none"
+          onMouseDown={(e) => { seekingRef.current = true; seekToClientX(e.clientX) }}
+          onMouseMove={(e) => { if (seekingRef.current) seekToClientX(e.clientX) }}
+          onMouseUp={() => { seekingRef.current = false }}
+          onMouseLeave={() => { seekingRef.current = false }}
+          onTouchStart={(e) => { seekingRef.current = true; seekToClientX(e.touches[0].clientX) }}
+          onTouchMove={(e) => { if (seekingRef.current) seekToClientX(e.touches[0].clientX) }}
+          onTouchEnd={() => { seekingRef.current = false }}
+        >
+          {bars.map((h, i) => {
+            const barProgress = i / bars.length
+            const isFilled = barProgress <= progress
+            const isBuffered = barProgress <= (duration > 0 ? bufferedEnd / duration : 0)
+            return (
+              <div
+                key={i}
+                className="flex-1 rounded-sm transition-colors duration-100"
+                style={{
+                  height: `${Math.round(h * 100)}%`,
+                  background: isFilled
+                    ? "#3189c5"
+                    : isBuffered
+                    ? "#c7dff0"
+                    : "#e2e8f0",
+                }}
+              />
+            )
+          })}
         </div>
+
+        {/* Time */}
+        <span className="flex-shrink-0 text-xs tabular-nums text-slate-400 w-8 text-right">
+          {duration > 0 ? fmt(currentTime) : review.durationLabel}
+        </span>
       </div>
 
       <audio ref={audioRef} src={review.audioSrc} preload="metadata" />
