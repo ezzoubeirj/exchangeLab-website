@@ -2,30 +2,41 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { motion, useInView, useAnimation } from "framer-motion";
+import { motion, useInView, useAnimation, AnimatePresence } from "framer-motion";
 
 export default function YoutubeTestimonials() {
   const scrollerRef = useRef(null);
   const startRef = useRef(null);
   const endRef = useRef(null);
   const sectionRef = useRef(null);
-  
+
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
-  
+  const [activeTab, setActiveTab] = useState("all");
+
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const controls = useAnimation();
-  
+
   const t = useTranslations("howItWorks.homeVideo");
   const locale = useLocale();
   const isRTL = locale === "ar";
-  
+
   const videos = [
-    { id: "k1", youtubeId: "C6KylmEh6tU", title: t("readingchallenge"), blurb: t("kidsReadingDescription"), audience: t("kids") },
-    { id: "a1", youtubeId: "mu04GA47C0g", title: t("readinganddiscussion"), blurb: t("kidsDescription"), audience: t("adults") },
-    { id: "k2", youtubeId: "mCYSGMAkTrM", title: t("examplecources"), blurb: t("adultsReadingDescription"), audience: t("kids") },
-    { id: "a2", youtubeId: "HrZa0aDUyjA", title: t("communication"), blurb: t("adultsDescription"), audience: t("adults") },
-    { id: "k3", youtubeId: "LMPuRab2L_4", title: t("grammer"), blurb: t("adultsGrammarDescription"), audience: t("kids") }
+    { id: "k1", youtubeId: "C6KylmEh6tU", title: t("readingchallenge"), blurb: t("kidsReadingDescription"), audience: t("kids"), audienceKey: "kids" },
+    { id: "a1", youtubeId: "mu04GA47C0g", title: t("readinganddiscussion"), blurb: t("kidsDescription"), audience: t("adults"), audienceKey: "adults" },
+    { id: "k2", youtubeId: "mCYSGMAkTrM", title: t("examplecources"), blurb: t("adultsReadingDescription"), audience: t("kids"), audienceKey: "kids" },
+    { id: "a2", youtubeId: "HrZa0aDUyjA", title: t("communication"), blurb: t("adultsDescription"), audience: t("adults"), audienceKey: "adults" },
+    { id: "k3", youtubeId: "LMPuRab2L_4", title: t("grammer"), blurb: t("adultsGrammarDescription"), audience: t("kids"), audienceKey: "kids" }
+  ];
+
+  const filteredVideos = activeTab === "all"
+    ? videos
+    : videos.filter(v => v.audienceKey === activeTab);
+
+  const tabs = [
+    { key: "all", label: isRTL ? "الكل" : "Tous" },
+    { key: "kids", label: t("kids") },
+    { key: "adults", label: t("adults") },
   ];
 
   useEffect(() => {
@@ -53,20 +64,29 @@ export default function YoutubeTestimonials() {
     io.observe(startEl);
     io.observe(endEl);
     return () => io.disconnect();
-  }, []);
+  }, [filteredVideos]);
+
+  // Reset scroll when tab changes
+  useEffect(() => {
+    if (scrollerRef.current) {
+      scrollerRef.current.scrollTo({ left: 0, behavior: "smooth" });
+    }
+    setAtStart(true);
+    setAtEnd(false);
+  }, [activeTab]);
 
   const scrollByStep = (forward = true) => {
     const el = scrollerRef.current;
     if (!el) return;
-    
+
     const containerWidth = el.clientWidth;
     const gap = 16;
-    
+
     const isMobile = window.innerWidth < 640;
-    const step = isMobile 
+    const step = isMobile
       ? containerWidth
       : (containerWidth - (2 * gap)) / 3 + gap;
-    
+
     const sign = isRTL ? -1 : 1;
     const amount = (forward ? 1 : -1) * sign * step;
     el.scrollBy({ left: amount, behavior: "smooth" });
@@ -104,28 +124,28 @@ export default function YoutubeTestimonials() {
   };
 
   return (
-    <motion.section 
+    <motion.section
       ref={sectionRef}
       initial="hidden"
       animate={controls}
       variants={containerVariants}
       className="bg-white max-w-7xl mx-auto px-4  "
     >
-      <motion.div 
+      <motion.div
         variants={itemVariants}
         className=" bg-[#F2F7FD] rounded-3xl sm:rounded-[80px] md:rounded-[100px] lg:rounded-[100px] px-4 py-8 sm:px-6 sm:py-12 md:px-8 md:py-16"
       >
-        <motion.div 
+        <motion.div
           variants={itemVariants}
           className="space-y-2 text-left"
         >
-          <motion.h2 
+          <motion.h2
             variants={itemVariants}
             className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight ${isRTL ? "text-right" : "text-left"}`}
           >
             <span className="text-[var(--color-title)]">{t("title")}</span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             variants={itemVariants}
             className={`text-sm sm:text-lg text-[#777777] ${isRTL ? "text-right" : "text-left"}`}
           >
@@ -133,7 +153,34 @@ export default function YoutubeTestimonials() {
           </motion.p>
         </motion.div>
 
-        <motion.div 
+        {/* Tab filter */}
+        <motion.div
+          variants={itemVariants}
+          className={`flex gap-2 mt-6 ${isRTL ? "justify-end" : "justify-start"}`}
+        >
+          {tabs.map(tab => (
+            <button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key)}
+              className={`relative px-4 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 focus:outline-none ${
+                activeTab === tab.key
+                  ? "text-white"
+                  : "text-slate-600 bg-white hover:bg-slate-100"
+              }`}
+            >
+              {activeTab === tab.key && (
+                <motion.span
+                  layoutId="tabPill"
+                  className="absolute inset-0 rounded-full bg-[#3189c5]"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">{tab.label}</span>
+            </button>
+          ))}
+        </motion.div>
+
+        <motion.div
           variants={itemVariants}
           className="relative mt-6"
         >
@@ -209,9 +256,11 @@ export default function YoutubeTestimonials() {
             ].join(" ")}
           >
             <div ref={startRef} className="flex-none w-px" aria-hidden="true" />
-            {videos.map((v, index) => (
-              <VideoCard key={v.id} video={v} index={index} />
-            ))}
+            <AnimatePresence mode="popLayout">
+              {filteredVideos.map((v, index) => (
+                <VideoCard key={v.id} video={v} index={index} />
+              ))}
+            </AnimatePresence>
             <div ref={endRef} className="flex-none w-px" aria-hidden="true" />
           </motion.div>
         </motion.div>
@@ -223,18 +272,19 @@ export default function YoutubeTestimonials() {
 function VideoCard({ video, index }) {
   const cardRef = useRef(null);
   const isInView = useInView(cardRef, { once: true, margin: "-50px" });
-  
+
   const iframeSrc = `https://www.youtube.com/embed/${video.youtubeId}?rel=0&playsinline=1&modestbranding=1`;
 
   return (
-    <div
+    <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, y: 50, scale: 0.9 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
-      transition={{ 
-        duration: 0.6, 
-        delay: index * 0.1,
-        ease: "easeOut"
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.95 }}
+      exit={{ opacity: 0, scale: 0.92, transition: { duration: 0.2 } }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.08,
+        ease: [0.16, 1, 0.3, 1]
       }}
       className="group relative flex-none snap-start w-full sm:w-[calc((100%-2rem)/3)]"
     >
@@ -260,7 +310,7 @@ function VideoCard({ video, index }) {
             <span
               className={[
                 "inline-flex items-center rounded-full px-2 sm:px-1.5 md:px-2 py-0.5 text-xs sm:text-[10px] md:text-[11px] font-semibold",
-                video.audience === "Adults" ? "bg-blue-100 text-blue-800" : "bg-green-100 text-green-800"
+                video.audienceKey === "adults" ? "bg-blue-100 text-blue-800" : "bg-green-100 text-green-800"
               ].join(" ")}
             >
               {video.audience}
@@ -274,6 +324,6 @@ function VideoCard({ video, index }) {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
