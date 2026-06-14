@@ -6,11 +6,39 @@ import { Link } from "@/i18n/navigation"
 import CustomWave from "@/components/CustomWave"
 import CustomWaveAr from "@/components/CustomWaveAr"
 import { Whatsapp } from "@/components/Whatssap"
+import { motion } from "framer-motion"
 
 export default function HeroSection() {
   const t = useTranslations("Hero")
   const locale = useLocale()
   const isRTL = locale === "ar"
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 28 },
+    visible: (d = 0) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: d },
+    }),
+  }
+
+  const fadeRight = {
+    hidden: { opacity: 0, x: isRTL ? 40 : -40 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.15 },
+    },
+  }
+
+  const fadeLeft = {
+    hidden: { opacity: 0, x: isRTL ? -50 : 50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.05 },
+    },
+  }
 
   return (
     <section className="relative overflow-hidden min-h-[92vh] bg-[#F2F7FD] flex flex-col mx-auto ">
@@ -32,9 +60,18 @@ export default function HeroSection() {
       <div className=" max-w-7xl mx-auto py-12  md:py-16 flex-1 flex items-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
           {/* Content Section */}
-          <div className="space-y-6 md:space-y-8 text-left order-2 lg:order-1">
+          <motion.div
+            className="space-y-6 md:space-y-8 text-left order-2 lg:order-1"
+            initial="hidden"
+            animate="visible"
+            variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
+          >
             <div className="space-y-4 md:space-y-6">
-              <h1 className={`text-2xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-title)] leading-tight ${locale === 'ar' ? 'text-right' : 'text-left'}`}>
+              <motion.h1
+                className={`text-2xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-title)] leading-tight ${locale === 'ar' ? 'text-right' : 'text-left'}`}
+                variants={fadeUp}
+                custom={0}
+              >
                 {t("title")}
                 <span className="text-[#ff7f6e]"> {t("titleHighlight")}</span>{" "}
                 <div className="relative inline-block">
@@ -45,15 +82,19 @@ export default function HeroSection() {
                     <CustomWave className="absolute -right-12 w-[120%] h-100 -bottom-60 z-50 hidden lg:block" />
                   )}
                 </div>
-              </h1>
-              <p className={`text-base sm:text-lg md:text-xl text-[var(--color-desc)] leading-relaxed max-w-none md:max-w-lg ${locale === 'ar' ? 'text-right' : 'text-left'}`}>
+              </motion.h1>
+              <motion.p
+                className={`text-base sm:text-lg md:text-xl text-[var(--color-desc)] leading-relaxed max-w-none md:max-w-lg ${locale === 'ar' ? 'text-right' : 'text-left'}`}
+                variants={fadeUp}
+                custom={0.1}
+              >
                 {t("subtitle")}
-              </p>
+              </motion.p>
             </div>
-            <div className="flex flex-col items-start gap-4">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <div className="flex items-center gap-2 text-slate-600 text-sm">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <motion.div className="flex flex-col items-start gap-4" variants={fadeUp} custom={0.2}>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <div className="flex items-center gap-2 text-slate-600 text-sm">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                   <span>{t("ads")}</span>
                 </div>
                 <Link
@@ -77,11 +118,16 @@ export default function HeroSection() {
                   <ArrowRight className="ml-3 group-hover:translate-x-1 h-5 w-5 transition-transform" />
                 )}
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Image Section */}
-          <div className="relative flex justify-center items-center order-1 lg:order-2 mt-8 lg:mt-0 ">
+          <motion.div
+            className="relative flex justify-center items-center order-1 lg:order-2 mt-8 lg:mt-0 "
+            initial="hidden"
+            animate="visible"
+            variants={fadeLeft}
+          >
             <div className="relative w-full max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl">
               <img
                 src="/herosection1.png"
@@ -89,7 +135,7 @@ export default function HeroSection() {
                 className="relative z-10 w-full h-auto object-contain"
               />
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
