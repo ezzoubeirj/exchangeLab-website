@@ -3,16 +3,56 @@
 import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useState, useCallback } from "react"
 import { Star } from "lucide-react"
 
+// Spotlight card — tracks mouse and paints a radial glow that follows it
+function SpotlightCard({ children, className }) {
+  const ref = useRef(null)
+  const [spotlight, setSpotlight] = useState({ x: 0, y: 0, active: false })
+
+  const handleMouseMove = useCallback((e) => {
+    const rect = ref.current?.getBoundingClientRect()
+    if (!rect) return
+    setSpotlight({ x: e.clientX - rect.left, y: e.clientY - rect.top, active: true })
+  }, [])
+
+  const handleMouseLeave = useCallback(() => {
+    setSpotlight(s => ({ ...s, active: false }))
+  }, [])
+
+  return (
+    <div
+      ref={ref}
+      className={`relative overflow-hidden ${className ?? ''}`}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Spotlight layer */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          zIndex: 0,
+          borderRadius: "inherit",
+          background: spotlight.active
+            ? `radial-gradient(220px circle at ${spotlight.x}px ${spotlight.y}px, rgba(49, 137, 197, 0.12) 0%, transparent 70%)`
+            : "transparent",
+          transition: "background 0.05s ease",
+        }}
+      />
+      <div style={{ position: "relative", zIndex: 1 }}>{children}</div>
+    </div>
+  )
+}
 
 export default function WhyChooseUs() {
   const t = useTranslations("verbling")
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -32,6 +72,37 @@ export default function WhyChooseUs() {
       transition: { duration: 0.6, ease: "easeOut" }
     }
   }
+
+  const cards = [
+    {
+      bg: "bg-red-200",
+      dotBg: "bg-red-300",
+      src: "/whyus1.png",
+      titleKey: "features.verified_tutors.title",
+      descKey: "features.verified_tutors.description",
+    },
+    {
+      bg: "bg-blue-200",
+      dotBg: "bg-blue-300",
+      src: "/whyus2.jpg",
+      titleKey: "features.affordable.title",
+      descKey: "features.affordable.description",
+    },
+    {
+      bg: "bg-red-200",
+      dotBg: "bg-red-300",
+      src: "/whyus3.png",
+      titleKey: "features.flexible_schedule.title",
+      descKey: "features.flexible_schedule.description",
+    },
+    {
+      bg: "bg-blue-200",
+      dotBg: "bg-blue-300",
+      src: "/whyus4.png",
+      titleKey: "features.all_in_one.title",
+      descKey: "features.all_in_one.description",
+    },
+  ]
 
   return (
     <section
@@ -72,7 +143,7 @@ export default function WhyChooseUs() {
           {/* Rating Text */}
           <div className="text-[#777777] font-medium text-xs md:text-lg">{t("google")} </div>
         </div>
-        
+
         <motion.p
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
@@ -118,231 +189,68 @@ export default function WhyChooseUs() {
               animate={isInView ? "visible" : "hidden"}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"
             >
-              {/* Verified tutors */}
-              <motion.div variants={itemVariants} className="text-center">
-                <div className="relative mb-5 sm:mb-6 flex justify-center">
-                  <motion.div
-                    className="relative"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className="w-45 h-45 sm:w-55 sm:h-55 bg-red-200 rounded-2xl flex items-center justify-center relative overflow-hidden">
+              {cards.map((card, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  className="text-center"
+                >
+                  <SpotlightCard className="rounded-2xl p-3 transition-shadow duration-300 hover:shadow-md hover:shadow-blue-100/60">
+                    <div className="relative mb-5 sm:mb-6 flex justify-center">
                       <motion.div
-                        className="absolute top-2 right-2 w-3 h-3 bg-red-300 rounded-full"
-                        animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 3, repeat: Infinity }}
-                      ></motion.div>
-                      <motion.div
-                        className="absolute bottom-3 left-3 w-2 h-2 bg-red-300 rounded-full"
-                        animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
-                      ></motion.div>
-                      <motion.div
-                        className="absolute top-1/2 left-1 w-1.5 h-1.5 bg-red-300 rounded-full"
-                        animate={{ scale: [1, 1.4, 1], opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                      ></motion.div>
-                      <img
-                        src="/whyus1.png"
-                        alt="Why Choose Us"
-                        className="icon w-35 h-35 sm:w-45 sm:h-45 object-cover rounded-lg"
-                      />
+                        className="relative"
+                        whileHover={{ scale: 1.06, y: -4 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      >
+                        <div className={`w-45 h-45 sm:w-55 sm:h-55 ${card.bg} rounded-2xl flex items-center justify-center relative overflow-hidden`}>
+                          <motion.div
+                            className={`absolute top-2 right-2 w-3 h-3 ${card.dotBg} rounded-full`}
+                            animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
+                            transition={{ duration: 3, repeat: Infinity }}
+                          />
+                          <motion.div
+                            className={`absolute bottom-3 left-3 w-2 h-2 ${card.dotBg} rounded-full`}
+                            animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
+                            transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
+                          />
+                          <motion.div
+                            className={`absolute top-1/2 left-1 w-1.5 h-1.5 ${card.dotBg} rounded-full`}
+                            animate={{ scale: [1, 1.4, 1], opacity: [0.7, 1, 0.7] }}
+                            transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                          />
+                          <img
+                            src={card.src}
+                            alt={t(card.titleKey)}
+                            className="icon w-35 h-35 sm:w-45 sm:h-45 object-cover rounded-lg"
+                          />
+                        </div>
+                        <motion.div
+                          className={`absolute -top-2 -right-2 w-4 h-4 ${card.dotBg} rounded-full opacity-60`}
+                          animate={{ scale: [1, 1.2, 1] }}
+                          transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
+                        />
+                        <motion.div
+                          className={`absolute -bottom-1 -left-1 w-3 h-3 ${card.bg} rounded-full opacity-70`}
+                          animate={{ scale: [1, 1.3, 1] }}
+                          transition={{ duration: 2.5, repeat: Infinity, repeatType: "reverse", delay: 0.5 }}
+                        />
+                      </motion.div>
                     </div>
-                    <motion.div
-                      className="absolute -top-2 -right-2 w-4 h-4 bg-red-300 rounded-full opacity-60"
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
-                    ></motion.div>
-                    <motion.div
-                      className="absolute -bottom-1 -left-1 w-3 h-3 bg-red-200 rounded-full opacity-70"
-                      animate={{ scale: [1, 1.3, 1] }}
-                      transition={{ duration: 2.5, repeat: Infinity, repeatType: "reverse", delay: 0.5 }}
-                    ></motion.div>
-                  </motion.div>
-                </div>
-                <motion.h3
-                  variants={itemVariants}
-                  className="text-lg sm:text-xl font-semibold text-[var(--color-title)] mb-2 sm:mb-3"
-                >
-                  {t("features.verified_tutors.title")}
-                </motion.h3>
-                <motion.p
-                  variants={itemVariants}
-                  className="text-[var(--color-desc)] text-sm sm:text-base leading-relaxed"
-                >
-                  {t("features.verified_tutors.description")}
-                </motion.p>
-              </motion.div>
-
-              {/* Affordable */}
-              <motion.div variants={itemVariants} className="text-center">
-                <div className="relative mb-5 sm:mb-6 flex justify-center">
-                  <motion.div
-                    className="relative"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className="w-45 h-45 sm:w-55 sm:h-55 bg-blue-200 rounded-2xl flex items-center justify-center relative overflow-hidden">
-                      <motion.div
-                        className="absolute top-2 left-2 w-3 h-3 bg-blue-300 rounded-full"
-                        animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 3.2, repeat: Infinity }}
-                      ></motion.div>
-                      <motion.div
-                        className="absolute bottom-2 right-3 w-2 h-2 bg-blue-300 rounded-full"
-                        animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 2.7, repeat: Infinity, delay: 0.6 }}
-                      ></motion.div>
-                      <motion.div
-                        className="absolute top-1/2 right-1 w-1.5 h-1.5 bg-blue-300 rounded-full"
-                        animate={{ scale: [1, 1.4, 1], opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 2.2, repeat: Infinity, delay: 1.1 }}
-                      ></motion.div>
-                      <img
-                        src="/whyus2.jpg"
-                        alt="Why Choose Us"
-                        className="icon w-35 h-35 sm:w-45 sm:h-45 object-cover rounded-lg"
-                      />
-                    </div>
-                    <motion.div
-                      className="absolute -top-1 -left-2 w-3 h-3 bg-blue-300 rounded-full opacity-60"
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 3.1, repeat: Infinity, repeatType: "reverse" }}
-                    ></motion.div>
-                    <motion.div
-                      className="absolute -bottom-2 -right-1 w-4 h-4 bg-blue-200 rounded-full opacity-70"
-                      animate={{ scale: [1, 1.3, 1] }}
-                      transition={{ duration: 2.8, repeat: Infinity, repeatType: "reverse", delay: 0.7 }}
-                    ></motion.div>
-                  </motion.div>
-                </div>
-                <motion.h3
-                  variants={itemVariants}
-                  className="text-lg sm:text-xl font-semibold text-[var(--color-title)] mb-2 sm:mb-3"
-                >
-                  {t("features.affordable.title")}
-                </motion.h3>
-                <motion.p
-                  variants={itemVariants}
-                  className="text-[var(--color-desc)] text-sm sm:text-base leading-relaxed"
-                >
-                  {t("features.affordable.description")}
-                </motion.p>
-              </motion.div>
-
-              {/* Flexible schedule */}
-              <motion.div variants={itemVariants} className="text-center">
-                <div className="relative mb-5 sm:mb-6 flex justify-center">
-                  <motion.div
-                    className="relative"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className="w-45 h-45 sm:w-55 sm:h-55 bg-red-200 rounded-2xl flex items-center justify-center relative overflow-hidden">
-                      <motion.div
-                        className="absolute top-3 right-2 w-2 h-2 bg-red-300 rounded-full"
-                        animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 2.8, repeat: Infinity }}
-                      ></motion.div>
-                      <motion.div
-                        className="absolute bottom-2 left-2 w-3 h-3 bg-red-300 rounded-full"
-                        animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 3.3, repeat: Infinity, delay: 0.8 }}
-                      ></motion.div>
-                      <motion.div
-                        className="absolute top-1/3 left-1 w-1.5 h-1.5 bg-red-300 rounded-full"
-                        animate={{ scale: [1, 1.4, 1], opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 2.4, repeat: Infinity, delay: 1.2 }}
-                      ></motion.div>
-                      <img
-                        src="/whyus3.png"
-                        alt="Why Choose Us"
-                        width={45}
-                        height={45}
-                        className="icon w-35 h-35 sm:w-45 sm:h-45 object-cover rounded-lg"
-                      />
-                    </div>
-                    <motion.div
-                      className="absolute -top-2 -left-1 w-4 h-4 bg-red-300 rounded-full opacity-60"
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 3.2, repeat: Infinity, repeatType: "reverse" }}
-                    ></motion.div>
-                    <motion.div
-                      className="absolute -bottom-1 -right-2 w-3 h-3 bg-red-200 rounded-full opacity-70"
-                      animate={{ scale: [1, 1.3, 1] }}
-                      transition={{ duration: 2.9, repeat: Infinity, repeatType: "reverse", delay: 0.9 }}
-                    ></motion.div>
-                  </motion.div>
-                </div>
-                <motion.h3
-                  variants={itemVariants}
-                  className="text-lg sm:text-xl font-semibold text-[var(--color-title)] mb-2 sm:mb-3"
-                >
-                  {t("features.flexible_schedule.title")}
-                </motion.h3>
-                <motion.p
-                  variants={itemVariants}
-                  className="text-[var(--color-desc)] text-sm sm:text-base leading-relaxed"
-                >
-                  {t("features.flexible_schedule.description")}
-                </motion.p>
-              </motion.div>
-
-              {/* All-in-one platform */}
-              <motion.div variants={itemVariants} className="text-center">
-                <div className="relative mb-5 sm:mb-6 flex justify-center">
-                  <motion.div
-                    className="relative"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className="w-45 h-45 sm:w-55 sm:h-55 bg-blue-200 rounded-2xl flex items-center justify-center relative overflow-hidden">
-                      <motion.div
-                        className="absolute top-2 left-3 w-2 h-2 bg-blue-300 rounded-full"
-                        animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 3.4, repeat: Infinity }}
-                      ></motion.div>
-                      <motion.div
-                        className="absolute bottom-3 right-2 w-3 h-3 bg-blue-300 rounded-full"
-                        animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 2.6, repeat: Infinity, delay: 0.7 }}
-                      ></motion.div>
-                      <motion.div
-                        className="absolute top-1/2 right-1 w-1.5 h-1.5 bg-blue-300 rounded-full"
-                        animate={{ scale: [1, 1.4, 1], opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 2.3, repeat: Infinity, delay: 1.3 }}
-                      ></motion.div>
-                      <img
-                        src="/whyus4.png"
-                        alt="Why Choose Us"
-                        className="icon w-35 h-35 sm:w-45 sm:h-45 object-cover rounded-lg"
-                      />
-                    </div>
-                    <motion.div
-                      className="absolute -top-1 -right-2 w-3 h-3 bg-blue-300 rounded-full opacity-60"
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 3.3, repeat: Infinity, repeatType: "reverse" }}
-                    ></motion.div>
-                    <motion.div
-                      className="absolute -bottom-2 -left-1 w-4 h-4 bg-blue-200 rounded-full opacity-70"
-                      animate={{ scale: [1, 1.3, 1] }}
-                      transition={{ duration: 3, repeat: Infinity, repeatType: "reverse", delay: 1 }}
-                    ></motion.div>
-                  </motion.div>
-                </div>
-                <motion.h3
-                  variants={itemVariants}
-                  className="text-lg sm:text-xl font-semibold text-[var(--color-title)] mb-2 sm:mb-3"
-                >
-                  {t("features.all_in_one.title")}
-                </motion.h3>
-                <motion.p
-                  variants={itemVariants}
-                  className="text-[var(--color-desc)] text-sm sm:text-base leading-relaxed"
-                >
-                  {t("features.all_in_one.description")}
-                </motion.p>
-              </motion.div>
+                    <motion.h3
+                      variants={itemVariants}
+                      className="text-lg sm:text-xl font-semibold text-[var(--color-title)] mb-2 sm:mb-3"
+                    >
+                      {t(card.titleKey)}
+                    </motion.h3>
+                    <motion.p
+                      variants={itemVariants}
+                      className="text-[var(--color-desc)] text-sm sm:text-base leading-relaxed"
+                    >
+                      {t(card.descKey)}
+                    </motion.p>
+                  </SpotlightCard>
+                </motion.div>
+              ))}
             </motion.div>
           </div>
         </motion.div>
