@@ -302,7 +302,7 @@ function VideoCard({ video, index }) {
           className={[
             "pointer-events-none absolute inset-x-0 bottom-0 p-3 sm:p-2 md:p-4",
             "bg-gradient-to-t from-white/95 via-white/80 to-transparent",
-            "transition-all duration-300",
+            "[transition:opacity_300ms,transform_300ms]",
             "opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0"
           ].join(" ")}
         >
