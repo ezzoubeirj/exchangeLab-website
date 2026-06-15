@@ -3,33 +3,36 @@
 import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
-import { useRef, useState, useCallback } from "react"
+import { useRef, useCallback } from "react"
 import { Star } from "lucide-react"
 
-// Spotlight card — tracks mouse and paints a radial glow that follows it
+// Spotlight card — direct DOM mutation, zero React re-renders on mousemove
 function SpotlightCard({ children, className }) {
-  const ref = useRef(null)
-  const [spotlight, setSpotlight] = useState({ x: 0, y: 0, active: false })
+  const containerRef = useRef(null)
+  const spotRef = useRef(null)
 
   const handleMouseMove = useCallback((e) => {
-    const rect = ref.current?.getBoundingClientRect()
-    if (!rect) return
-    setSpotlight({ x: e.clientX - rect.left, y: e.clientY - rect.top, active: true })
+    const rect = containerRef.current?.getBoundingClientRect()
+    if (!rect || !spotRef.current) return
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    spotRef.current.style.background = `radial-gradient(220px circle at ${x}px ${y}px, rgba(49, 137, 197, 0.12) 0%, transparent 70%)`
   }, [])
 
   const handleMouseLeave = useCallback(() => {
-    setSpotlight(s => ({ ...s, active: false }))
+    if (spotRef.current) spotRef.current.style.background = "transparent"
   }, [])
 
   return (
     <div
-      ref={ref}
+      ref={containerRef}
       className={`relative overflow-hidden ${className ?? ''}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Spotlight layer */}
+      {/* Spotlight layer — written directly by DOM mutation, no React state */}
       <div
+        ref={spotRef}
         aria-hidden="true"
         style={{
           position: "absolute",
@@ -37,10 +40,6 @@ function SpotlightCard({ children, className }) {
           pointerEvents: "none",
           zIndex: 0,
           borderRadius: "inherit",
-          background: spotlight.active
-            ? `radial-gradient(220px circle at ${spotlight.x}px ${spotlight.y}px, rgba(49, 137, 197, 0.12) 0%, transparent 70%)`
-            : "transparent",
-          transition: "background 0.05s ease",
         }}
       />
       <div style={{ position: "relative", zIndex: 1 }}>{children}</div>
@@ -109,6 +108,12 @@ export default function WhyChooseUs() {
       ref={sectionRef}
       className="bg-white py-14 px-2 sm:py-14 sm:px-4 md:py-16 md:px-8"
     >
+      {/* CSS keyframes for dot pulse — runs in compositor thread, zero JS */}
+      <style>{`
+        @keyframes xlabPulse1 { 0%,100%{transform:scale(1);opacity:.7} 50%{transform:scale(1.2);opacity:1} }
+        @keyframes xlabPulse2 { 0%,100%{transform:scale(1);opacity:.7} 50%{transform:scale(1.3);opacity:1} }
+        @keyframes xlabPulse3 { 0%,100%{transform:scale(1);opacity:.7} 50%{transform:scale(1.4);opacity:1} }
+      `}</style>
       <div className="flex flex-col items-center justify-center mt-5 md:mt-0">
         <div className="flex items-center gap-3 py-6">
           {/* Google Logo SVG */}
@@ -203,20 +208,17 @@ export default function WhyChooseUs() {
                         transition={{ type: "spring", stiffness: 300, damping: 20 }}
                       >
                         <div className={`w-45 h-45 sm:w-55 sm:h-55 ${card.bg} rounded-2xl flex items-center justify-center relative overflow-hidden`}>
-                          <motion.div
+                          <div
                             className={`absolute top-2 right-2 w-3 h-3 ${card.dotBg} rounded-full`}
-                            animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
-                            transition={{ duration: 3, repeat: Infinity }}
+                            style={{ animation: "xlabPulse1 3s ease-in-out infinite" }}
                           />
-                          <motion.div
+                          <div
                             className={`absolute bottom-3 left-3 w-2 h-2 ${card.dotBg} rounded-full`}
-                            animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
-                            transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
+                            style={{ animation: "xlabPulse2 2.5s ease-in-out infinite 0.5s" }}
                           />
-                          <motion.div
+                          <div
                             className={`absolute top-1/2 left-1 w-1.5 h-1.5 ${card.dotBg} rounded-full`}
-                            animate={{ scale: [1, 1.4, 1], opacity: [0.7, 1, 0.7] }}
-                            transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                            style={{ animation: "xlabPulse3 2s ease-in-out infinite 1s" }}
                           />
                           <img
                             src={card.src}
@@ -224,15 +226,13 @@ export default function WhyChooseUs() {
                             className="icon w-35 h-35 sm:w-45 sm:h-45 object-cover rounded-lg"
                           />
                         </div>
-                        <motion.div
+                        <div
                           className={`absolute -top-2 -right-2 w-4 h-4 ${card.dotBg} rounded-full opacity-60`}
-                          animate={{ scale: [1, 1.2, 1] }}
-                          transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
+                          style={{ animation: "xlabPulse1 3s ease-in-out infinite" }}
                         />
-                        <motion.div
+                        <div
                           className={`absolute -bottom-1 -left-1 w-3 h-3 ${card.bg} rounded-full opacity-70`}
-                          animate={{ scale: [1, 1.3, 1] }}
-                          transition={{ duration: 2.5, repeat: Infinity, repeatType: "reverse", delay: 0.5 }}
+                          style={{ animation: "xlabPulse2 2.5s ease-in-out infinite 0.5s" }}
                         />
                       </motion.div>
                     </div>
