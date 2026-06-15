@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
 import Image from 'next/image'
 import { debounce } from 'lodash'
-import { motion } from 'framer-motion'
+import { motion, LayoutGroup } from 'framer-motion'
 import FlowerBackground from './SvgShape'
 
 const videos = [
@@ -268,11 +268,7 @@ export default function StudentsTestimonial() {
                   className="min-w-[200px] max-w-[200px] h-64 relative overflow-hidden rounded shadow-md snap-center flex-shrink-0"
                   variants={itemVariants}
                   custom={index}
-                  whileHover={{
-                    y: -6,
-                    boxShadow: "0 16px 32px -8px rgba(49, 137, 197, 0.25)",
-                    borderRadius: "14px",
-                  }}
+                  whileHover={{ y: -6 }}
                   transition={{ duration: 0.3 }}
                 >
                   <video
@@ -356,6 +352,7 @@ export default function StudentsTestimonial() {
             </div>
           </motion.div>
         ) : (
+          <LayoutGroup id="video-cards">
           <motion.div
             className="max-w-[1340px] mx-auto flex gap-4 justify-center items-center h-[27rem] px-4"
             initial="hidden"
@@ -365,25 +362,24 @@ export default function StudentsTestimonial() {
             {videos.map((videoSrc, index) => (
               <motion.div
                 key={index}
-                className={`transition-all duration-500 ease-linear h-full relative overflow-hidden rounded-3xl shadow-md video-container ${
-                  playingIndex === index
-                    ? 'w-[100%]'
-                    : hoveredIndex === index
-                    ? 'w-[50%]'
-                    : index === 0
-                    ? 'w-[50%]'
-                    : 'w-[20%]'
-                }`}
+                layout
+                style={{
+                  flexGrow: playingIndex === index ? 4 : hoveredIndex === index ? 2.5 : index === 0 ? 2 : 1,
+                  flexShrink: 1,
+                  flexBasis: 0,
+                  minWidth: 0,
+                }}
+                className="h-full relative overflow-hidden rounded-3xl shadow-md video-container"
                 onMouseEnter={() => debouncedSetHoveredIndex(index)}
                 onMouseLeave={() => debouncedSetHoveredIndex(null)}
                 variants={videoContainerVariants}
                 custom={index}
-                whileHover={{
-                  boxShadow: "0 24px 48px -8px rgba(49, 137, 197, 0.22)",
-                  y: -6,
-                  outline: "2px solid rgba(49, 137, 197, 0.25)",
+                whileHover={{ y: -6 }}
+                transition={{
+                  layout: { type: "spring", stiffness: 180, damping: 26 },
+                  duration: 0.35,
+                  ease: [0.16, 1, 0.3, 1],
                 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               >
                 <video
                   ref={el => videoRefs.current[index] = el}
@@ -485,6 +481,7 @@ export default function StudentsTestimonial() {
               </motion.div>
             ))}
           </motion.div>
+          </LayoutGroup>
         )}
       </div>
     </div>
