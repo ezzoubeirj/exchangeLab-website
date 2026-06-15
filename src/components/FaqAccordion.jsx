@@ -162,14 +162,11 @@ export default function FAQ() {
                   initial={{ opacity: 0.9 }}
                   whileHover={{ opacity: 1 }}
                 >
-                  <motion.span
-                    className={`text-sm md:text-lg font-medium text-gray-700 ${isRTL ? "text-right" : "text-left"}`}
-                    animate={{
-                      color: isOpen ? "var(--color-title)" : "#374151"
-                    }}
+                  <span
+                    className={`text-sm md:text-lg font-medium transition-colors duration-300 ${isRTL ? "text-right" : "text-left"} ${isOpen ? "text-[var(--color-title)]" : "text-gray-700"}`}
                   >
                     {item.question}
-                  </motion.span>
+                  </span>
                   <motion.div
                     className="flex-shrink-0"
                     animate={{
@@ -224,16 +221,13 @@ export default function FAQ() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
           >
-            {isRTL ? "لديك المزيد من الأسئلة؟" : "Vous avez d'autres questions ?"}
+            {isRTL ? "لديك المزيد من الأسئـة؟" : "Vous avez d'autres questions ?"}
           </motion.p>
 
           <motion.button
             onClick={handleWhatsAppContact}
-            className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-            }}
+            className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-[box-shadow,background] duration-300 hover:-translate-y-1"
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <motion.div
