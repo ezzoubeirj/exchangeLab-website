@@ -13,12 +13,19 @@ export async function generateMetadata({ params }) {
       : "Conseils, ressources et actualités pour apprendre les langues avec Exchange Lab.",
     alternates: {
       canonical: `${BASE_URL}/${locale}/blog`,
+      // Articles are only written in French today. Declaring a separate
+      // "ar" alternate when the content served there is identical French
+      // text creates a hreflang/content mismatch, so we only advertise
+      // the language that actually has translated content.
       languages: {
         fr: `${BASE_URL}/fr/blog`,
-        ar: `${BASE_URL}/ar/blog`,
         'x-default': `${BASE_URL}/fr/blog`,
       },
     },
+    // No Arabic translation exists yet for blog content — keep the route
+    // crawlable for users (so it doesn't 404) but out of the index until
+    // real Arabic articles are written. Remove this once translated.
+    ...(isAr ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       title: isAr ? 'المدونة | Exchange Lab' : 'Blog | Exchange Lab',
       description: isAr
