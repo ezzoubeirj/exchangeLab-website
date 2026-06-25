@@ -19,6 +19,14 @@ export default function PostPageClient({ post, locale }) {
   return (
     <main dir={isRTL ? 'rtl' : 'ltr'} className="min-h-screen bg-white">
 
+      {/* No Arabic translation exists yet for this article — same stopgap
+          notice as the blog index. Remove once translated. */}
+      {isRTL && (
+        <div dir="rtl" className="bg-amber-50 border-b border-amber-200 text-amber-900 text-sm px-4 py-3 text-center">
+          هذا المقال متوفر حالياً بالفرنسية فقط. نعمل على ترجمته إلى العربية قريباً.
+        </div>
+      )}
+
       {/* ── Cover Hero ── */}
       {post.coverImage ? (
         <div className="relative h-72 md:h-[420px] w-full overflow-hidden">

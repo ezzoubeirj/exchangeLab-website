@@ -1,3 +1,5 @@
+import { getAllSlugs } from '@/lib/posts';
+
 export default function sitemap() {
   const base = 'https://www.xchangelab.info';
   const locales = ['fr', 'ar'];
@@ -13,7 +15,7 @@ export default function sitemap() {
     { path: '/conditions', priority: 0.3, changeFrequency: 'yearly' },
   ];
 
-  return locales.flatMap(locale =>
+  const staticEntries = locales.flatMap(locale =>
     routes.map(({ path, priority, changeFrequency }) => ({
       url: `${base}/${locale}${path}`,
       lastModified: new Date(),
@@ -21,4 +23,26 @@ export default function sitemap() {
       priority,
     }))
   );
+
+  // Blog index — French only is fully indexable; Arabic blog has no
+  // translated content yet and is marked noindex in its own metadata,
+  // so it's intentionally left out of the sitemap until that's fixed.
+  const blogIndexEntries = [
+    {
+      url: `${base}/fr/blog`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+  ];
+
+  const slugs = getAllSlugs();
+  const postEntries = slugs.map(slug => ({
+    url: `${base}/fr/blog/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
+
+  return [...staticEntries, ...blogIndexEntries, ...postEntries];
 }
