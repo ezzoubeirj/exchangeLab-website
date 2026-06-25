@@ -5,6 +5,23 @@ import { routing } from '@/i18n/routing';
 import Navbar from '@/components/navbar/Navbar';
 import Footer from '@/components/Footer';
 
+const BASE_URL = 'https://www.xchangelab.info';
+
+// Organization structured data — same on every page, describes the
+// business as a whole rather than any single page's content.
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Exchange Lab',
+  url: BASE_URL,
+  logo: `${BASE_URL}/logo.png`,
+  sameAs: [
+    'https://www.instagram.com/exchange_lab/',
+    'https://www.youtube.com/@Exchange Lab',
+    'https://www.tiktok.com/@exchange_lab',
+  ],
+};
+
 export default async function LocaleLayout({
   children,
   params
@@ -33,6 +50,10 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} dir={direction}>
       <body className={`${fontClass}`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <NextIntlClientProvider locale={locale} messages={messages}> 
           <Navbar />
           <main className="max-w-8xl mx-auto">
