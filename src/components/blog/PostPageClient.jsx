@@ -19,48 +19,40 @@ export default function PostPageClient({ post, locale }) {
   return (
     <main dir={isRTL ? 'rtl' : 'ltr'} className="min-h-screen bg-white">
 
-      {/* No Arabic translation exists yet for this article — same stopgap
-          notice as the blog index. Remove once translated. */}
-      {isRTL && (
-        <div dir="rtl" className="bg-amber-50 border-b border-amber-200 text-amber-900 text-sm px-4 py-3 text-center">
-          هذا المقال متوفر حالياً بالفرنسية فقط. نعمل على ترجمته إلى العربية قريباً.
-        </div>
-      )}
-
       {/* ── Cover Hero ── */}
       {post.coverImage ? (
-        <div className="relative h-72 md:h-[420px] w-full overflow-hidden">
-          <img
-            src={post.coverImage}
-            alt={post.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+        <>
+          {/* Image — full visibility, centered, not cropped */}
+          <div className="w-full bg-gray-50 flex justify-center px-4 pt-6 pb-2">
+            <img
+              src={post.coverImage}
+              alt={post.title}
+              className="max-w-3xl w-full rounded-2xl object-contain max-h-[420px] shadow-sm"
+            />
+          </div>
 
-          {/* Title overlay */}
+          {/* Title + tags below the image */}
           <motion.div
-            className="absolute bottom-0 left-0 right-0 px-4 md:px-0"
+            className="max-w-3xl mx-auto px-4 md:px-6 pt-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="max-w-3xl mx-auto pb-10">
-              <div className="flex flex-wrap gap-2 mb-4">
-                {post.tags?.map(tag => (
-                  <span
-                    key={tag}
-                    className="bg-[#3189c5] text-white text-xs font-semibold px-3 py-1 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <h1 className="text-2xl md:text-4xl font-bold text-white leading-tight">
-                {post.title}
-              </h1>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {post.tags?.map(tag => (
+                <span
+                  key={tag}
+                  className="bg-[#3189c5] text-white text-xs font-semibold px-3 py-1 rounded-full"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
+            <h1 className="text-2xl md:text-4xl font-bold text-[#2c58a2] leading-tight">
+              {post.title}
+            </h1>
           </motion.div>
-        </div>
+        </>
       ) : (
         /* No cover — plain header */
         <div className="bg-gradient-to-br from-[#003366] to-[#3189c5] py-16 px-4">

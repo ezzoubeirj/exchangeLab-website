@@ -28,16 +28,6 @@ export default function BlogPageClient({ posts, locale }) {
   return (
     <main dir={isRTL ? 'rtl' : 'ltr'} className="min-h-screen bg-[#F5F5F5]">
 
-      {/* No Arabic translation exists yet for blog articles — this view
-          renders the French content. Make this visible to readers instead
-          of silently serving the wrong language. Remove once articles are
-          translated. */}
-      {isRTL && (
-        <div dir="rtl" className="bg-amber-50 border-b border-amber-200 text-amber-900 text-sm px-4 py-3 text-center">
-          هذا القسم متوفر حالياً بالفرنسية فقط. نعمل على ترجمته إلى العربية قريباً.
-        </div>
-      )}
-
       {/* ── Hero ── */}
       <section className="bg-gradient-to-br from-[#003366] via-[#1a5294] to-[#3189c5] py-24 px-4 relative overflow-hidden">
         {/* decorative circles */}
@@ -86,7 +76,7 @@ export default function BlogPageClient({ posts, locale }) {
                 className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group"
               >
                 {/* Cover */}
-                <div className="relative h-52 overflow-hidden bg-gray-100">
+                <Link href={`/${locale}/blog/${post.slug}`} className="block relative h-52 overflow-hidden bg-gray-100">
                   {post.coverImage ? (
                     <img
                       src={post.coverImage}
@@ -102,7 +92,7 @@ export default function BlogPageClient({ posts, locale }) {
                       {post.tags[0]}
                     </span>
                   )}
-                </div>
+                </Link>
 
                 {/* Body */}
                 <div className="p-6 flex flex-col flex-1">
