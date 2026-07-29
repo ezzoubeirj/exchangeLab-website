@@ -72,6 +72,9 @@ async function handleSubmission(body) {
     const country = studentInfo.country || parentInfo.country || "";
     const age = childInfo.age ? parseInt(childInfo.age, 10) : null;
 
+    // ✅ Derive type: kids if age provided (child form), adults otherwise
+    const type = age !== null ? 'kids' : 'adults';
+
     // ✅ Parent info
     const parent_name = parentInfo.parentName || null;
     const parent_email = parentInfo.email || null;
@@ -90,6 +93,7 @@ async function handleSubmission(body) {
         phone,
         country,
         age,
+        type,
         is_synch: true,
         parent_name,
         parent_email,
