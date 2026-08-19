@@ -106,18 +106,28 @@ const CSS = `
 
 .cp-root .lang-head{position:relative}
 .cp-root .plane-img{position:absolute;right:0;top:-30px;width:48%;pointer-events:none}
-.cp-root .langs{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:940px;margin:14px auto 0}
-.cp-root .lang{position:relative;width:100%;padding-bottom:66.7%;overflow:hidden;border-radius:26px;transition:transform .3s var(--ease)}
-.cp-root .lang:hover{transform:translateY(-6px)}
-.cp-root .lang .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:bottom;border-radius:26px}
-.cp-root .lang .in{position:absolute;inset:0;z-index:1;padding:9% 9% 0;display:flex;flex-direction:column}
-.cp-root .lang .badge2{position:absolute;top:7%;right:8%;z-index:2;width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#fff}
-.cp-root .lang h3{font-size:22px;font-weight:800;color:var(--blue-ink);margin:16px 0 8px}
-.cp-root .lang p{color:var(--muted);font-size:14px}
-.cp-root .lang .arrowb{position:absolute;left:9%;bottom:8%;width:46px;height:46px;border-radius:50%;background:#fff;box-shadow:var(--shadow-s);display:flex;align-items:center;justify-content:center;color:var(--blue)}
-.cp-root .lang.en h3,.cp-root .lang.en p{color:#fff}.cp-root .lang.en p{color:rgba(255,255,255,.85)}
-.cp-root .lang.en .badge2{background:#fff;color:var(--blue)}
-.cp-root .lang.es .badge2{background:#f2b64c}.cp-root .lang.ar .badge2{background:#37b3a5}.cp-root .lang.fr .badge2{background:#8f83d8}
+.cp-root .langsel{margin-top:30px}
+.cp-root .lstabs{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+.cp-root .ltab{border:1px solid var(--line);background:#fff;color:var(--muted);font-family:inherit;font-weight:700;font-size:15px;padding:11px 26px;border-radius:40px;cursor:pointer;transition:transform .2s var(--ease),background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease)}
+.cp-root .ltab:hover{transform:translateY(-2px)}
+.cp-root .ltab.en.on{background:#3a6cb4;border-color:#3a6cb4;color:#fff}
+.cp-root .ltab.es.on{background:#e9a52f;border-color:#e9a52f;color:#fff}
+.cp-root .ltab.ar.on{background:#37b3a5;border-color:#37b3a5;color:#fff}
+.cp-root .ltab.fr.on{background:#8f83d8;border-color:#8f83d8;color:#fff}
+.cp-root .lpanels{position:relative;margin-top:34px}
+.cp-root .lpanel{display:none;grid-template-columns:1fr 1.05fr;gap:52px;align-items:center}
+.cp-root .lpanel.on{display:grid;animation:cpfade .45s var(--ease)}
+@keyframes cpfade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.cp-root .lp-badge{display:inline-flex;align-items:center;justify-content:center;min-width:48px;height:48px;padding:0 13px;border-radius:15px;color:#fff;font-weight:800;font-size:19px}
+.cp-root .lpanel.en .lp-badge{background:#3a6cb4}.cp-root .lpanel.es .lp-badge{background:#e9a52f}.cp-root .lpanel.ar .lp-badge{background:#37b3a5}.cp-root .lpanel.fr .lp-badge{background:#8f83d8}
+.cp-root .lp-text h3{font-size:clamp(27px,3.4vw,40px);font-weight:800;color:var(--blue-ink);margin:18px 0 10px;letter-spacing:-.02em}
+.cp-root .lp-text .lp-desc{color:var(--muted);font-size:clamp(16px,1.5vw,18px);max-width:42ch}
+.cp-root .lp-chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 28px}
+.cp-root .lp-chips span{display:inline-flex;align-items:center;gap:8px;background:var(--band);color:#3a4a63;font-weight:600;font-size:14px;padding:9px 16px;border-radius:30px}
+.cp-root .lp-chips span::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--coral)}
+.cp-root .lpanel.en .lp-chips span::before{background:#3a6cb4}.cp-root .lpanel.es .lp-chips span::before{background:#e9a52f}.cp-root .lpanel.ar .lp-chips span::before{background:#37b3a5}.cp-root .lpanel.fr .lp-chips span::before{background:#8f83d8}
+.cp-root .lp-media{position:relative}
+.cp-root .lp-media img{width:100%;border-radius:28px;box-shadow:var(--shadow)}
 .cp-root .needcard{margin-top:20px;display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow-s);padding:20px 24px}
 .cp-root .needcard .pl{width:46px;height:46px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
 .cp-root .needcard h4{font-size:17px;font-weight:800;color:var(--blue-ink)}.cp-root .needcard p{color:var(--muted);font-size:14px}
@@ -213,7 +223,7 @@ const CSS = `
 @media(max-width:960px){
   .cp-root .hero,.cp-root .why-grid,.cp-root .how-grid,.cp-root .prog-grid{grid-template-columns:1fr;gap:34px}
   .cp-root .proof,.cp-root .bstrip{grid-template-columns:1fr 1fr}.cp-root .ben+.ben::before{display:none}
-  .cp-root .langs{grid-template-columns:1fr 1fr}
+  .cp-root .lpanel.on{grid-template-columns:1fr;gap:30px}.cp-root .lp-media{order:-1}
   .cp-root .steps .spine{display:none}.cp-root .step:nth-child(even){margin-left:0}
   .cp-root .suivi-blob{display:none}.cp-root .motion{display:none}.cp-root .arrowheart{position:static;width:40%;margin:10px auto 0}
   .cp-root .avis-wa,.cp-root .avis-lh{display:none}
@@ -299,11 +309,55 @@ const HTML = `
     <p class="sub" style="margin-top:10px">Choisissez la langue de votre enfant et nous construisons le parcours idéal.</p>
     <img class="plane-img" src="/one-to-one/lang-plane.png" alt="">
   </div>
-  <div class="langs">
-    <div class="reveal lang en" style="--i:0"><img class="bg" src="/one-to-one/lang-en-card.png" alt=""><div class="in"><span class="badge2">En</span><h3>Anglais</h3><p>Parler avec aisance, renforcer les bases et progresser à l'école.</p></div><a class="arrowb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-    <div class="reveal lang es" style="--i:1"><img class="bg" src="/one-to-one/lang-es-card.png" alt=""><div class="in"><span class="badge2">Es</span><h3>Espagnol</h3><p>Débuter ou progresser, pratiquer l'oral à son rythme.</p></div><a class="arrowb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-    <div class="reveal lang ar" style="--i:2"><img class="bg" src="/one-to-one/lang-ar-card.png" alt=""><div class="in"><span class="badge2">ع</span><h3>Arabe · العربية</h3><p>Développer l'expression, la lecture et l'écriture.</p></div><a class="arrowb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-    <div class="reveal lang fr" style="--i:3"><img class="bg" src="/one-to-one/lang-fr-card.png" alt=""><div class="in"><span class="badge2">Fr</span><h3>Français</h3><p>Confiance à l'oral et à l'écrit, et soutien scolaire.</p></div><a class="arrowb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  <div class="langsel reveal">
+    <div class="lstabs" role="tablist">
+      <button type="button" class="ltab en on" data-l="en" role="tab">Anglais</button>
+      <button type="button" class="ltab es" data-l="es" role="tab">Espagnol</button>
+      <button type="button" class="ltab ar" data-l="ar" role="tab">Arabe</button>
+      <button type="button" class="ltab fr" data-l="fr" role="tab">Français</button>
+    </div>
+    <div class="lpanels">
+      <div class="lpanel en on">
+        <div class="lp-text">
+          <span class="lp-badge">En</span>
+          <h3>Anglais</h3>
+          <p class="lp-desc">Parler avec aisance, renforcer les bases et progresser à l'école — à l'oral comme à l'écrit.</p>
+          <div class="lp-chips"><span>Conversation</span><span>Bases solides</span><span>Soutien scolaire</span></div>
+          <button class="btn btn-coral">Inscrire mon enfant <svg class="ar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="lp-media"><img src="/one-to-one/lang-en-card.png" alt="Cours d'anglais en ligne pour enfants"></div>
+      </div>
+      <div class="lpanel es">
+        <div class="lp-text">
+          <span class="lp-badge">Es</span>
+          <h3>Espagnol</h3>
+          <p class="lp-desc">Débuter ou progresser en espagnol, en pratiquant l'oral à son rythme et en confiance.</p>
+          <div class="lp-chips"><span>Débutants bienvenus</span><span>Oral en priorité</span><span>À son rythme</span></div>
+          <button class="btn btn-coral">Inscrire mon enfant <svg class="ar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="lp-media"><img src="/one-to-one/lang-es-card.png" alt="Cours d'espagnol en ligne pour enfants"></div>
+      </div>
+      <div class="lpanel ar">
+        <div class="lp-text">
+          <span class="lp-badge">ع</span>
+          <h3>Arabe · العربية</h3>
+          <p class="lp-desc">Développer l'expression, la lecture et l'écriture, avec un professeur adapté au niveau de votre enfant.</p>
+          <div class="lp-chips"><span>Expression</span><span>Lecture</span><span>Écriture</span></div>
+          <button class="btn btn-coral">Inscrire mon enfant <svg class="ar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="lp-media"><img src="/one-to-one/lang-ar-card.png" alt="Cours d'arabe en ligne pour enfants"></div>
+      </div>
+      <div class="lpanel fr">
+        <div class="lp-text">
+          <span class="lp-badge">Fr</span>
+          <h3>Français</h3>
+          <p class="lp-desc">Gagner en confiance à l'oral et à l'écrit, avec un vrai soutien scolaire au quotidien.</p>
+          <div class="lp-chips"><span>Oral &amp; écrit</span><span>Confiance</span><span>Soutien scolaire</span></div>
+          <button class="btn btn-coral">Inscrire mon enfant <svg class="ar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="lp-media"><img src="/one-to-one/lang-fr-card.png" alt="Cours de français en ligne pour enfants"></div>
+      </div>
+    </div>
   </div>
   <div class="reveal needcard" style="--i:4"><span class="pl"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span><div><h4>Un besoin précis ?</h4><p>On adapte le programme à l'objectif de votre enfant.</p></div><span class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3a6cb4" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
 </div></section>
@@ -438,8 +492,21 @@ export default function CoursParticuliersClient() {
     );
     root.querySelectorAll(".reveal, #report, #pricecount").forEach((el) => io.observe(el));
 
-    // smooth accordion
+    // language selector tabs
     const cleanups = [];
+    const ltabs = [...root.querySelectorAll(".ltab")];
+    const lpanels = [...root.querySelectorAll(".lpanel")];
+    ltabs.forEach((t) => {
+      const onTab = () => {
+        const l = t.dataset.l;
+        ltabs.forEach((x) => x.classList.toggle("on", x === t));
+        lpanels.forEach((p) => p.classList.toggle("on", p.classList.contains(l)));
+      };
+      t.addEventListener("click", onTab);
+      cleanups.push(() => t.removeEventListener("click", onTab));
+    });
+
+    // smooth accordion
     root.querySelectorAll(".faq details").forEach((d) => {
       const ans = d.querySelector(".ans");
       ans.style.overflow = "hidden";
