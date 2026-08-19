@@ -42,11 +42,12 @@ const CSS = `
 .cp-root .orbit{position:absolute;inset:-4px;overflow:visible;pointer-events:none;z-index:1}
 .cp-root .orbit rect{fill:none;stroke:url(#og);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;animation:cpdraw 1.6s var(--ease) .5s forwards}
 @keyframes cpdraw{to{stroke-dashoffset:0}}
+.cp-root .hero-toggle{position:absolute;top:0;right:0;z-index:4}
 
 .cp-root .hero{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;padding:56px 0 64px}
 .cp-root .hero h1{font-size:clamp(38px,5.6vw,62px);font-weight:900;color:var(--blue-ink);letter-spacing:-.03em;line-height:1.02}
 .cp-root .hero h1 .c{color:var(--coral);position:relative;white-space:nowrap}
-.cp-root .hero h1 .c svg{position:absolute;left:0;bottom:-.16em;width:100%;height:.22em;overflow:visible}
+.cp-root .hero h1 .c svg{position:absolute;left:0;bottom:.04em;width:100%;height:.22em;overflow:visible}
 .cp-root .hero h1 .c path{stroke:var(--blue);stroke-width:5;fill:none;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;animation:cpdraw 1s var(--ease) .9s forwards}
 .cp-root .hero p{margin:24px 0 30px;color:var(--muted);font-size:clamp(16px,1.5vw,19px);max-width:44ch}
 .cp-root .hero-cta{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
@@ -58,7 +59,7 @@ const CSS = `
 .cp-root .hv .blobbg{position:absolute;inset:20px 4px 10px 30px;background:radial-gradient(circle at 60% 40%,#dbe8fb,#eef4fc);border-radius:44% 56% 52% 48%/54% 46% 54% 46%;z-index:0}
 .cp-root .hv .badge{position:absolute;z-index:2;background:#fff;border-radius:16px;padding:11px 15px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;color:var(--blue-ink)}
 .cp-root .hv .badge small{color:var(--muted);font-weight:600;display:block;font-size:11px}
-.cp-root .hv .b1{top:2%;right:-2%;animation:cpfloaty 6s ease-in-out infinite}
+.cp-root .hv .b1{top:20%;right:-2%;animation:cpfloaty 6s ease-in-out infinite}
 .cp-root .hv .b2{bottom:10%;left:-4%;animation:cpfloaty 7s ease-in-out infinite .6s}
 .cp-root .ic{width:34px;height:34px;border-radius:10px;background:var(--band);display:flex;align-items:center;justify-content:center;color:var(--blue);flex:0 0 auto}
 @keyframes cpfloaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
@@ -82,9 +83,9 @@ const CSS = `
 .cp-root .why-clouds{display:flex;flex-direction:column;gap:14px}
 .cp-root .wc{position:relative}
 .cp-root .wc img{width:100%;height:auto}
-.cp-root .wc .ptext{position:absolute;top:0;bottom:0;right:0;width:47%;display:flex;flex-direction:column;justify-content:center;padding-right:6%}
-.cp-root .wc .ptext h3{font-size:clamp(12px,1.4vw,16px);font-weight:800;color:var(--blue-ink);line-height:1.1}
-.cp-root .wc .ptext p{font-size:clamp(9.5px,1.05vw,12px);color:var(--muted);margin-top:4px;line-height:1.3}
+.cp-root .wc .ptext{position:absolute;top:0;bottom:0;right:0;width:56%;display:flex;flex-direction:column;justify-content:center;padding-right:5%}
+.cp-root .wc .ptext h3{font-size:clamp(11px,1.3vw,15px);font-weight:800;color:var(--blue-ink);line-height:1.12}
+.cp-root .wc .ptext p{font-size:clamp(8.5px,1vw,11px);color:var(--muted);margin-top:4px;line-height:1.25}
 
 .cp-root .how-grid{display:grid;grid-template-columns:.96fr 1.04fr;gap:48px;align-items:center}
 .cp-root .how-left .how-scene{border-radius:28px}
@@ -110,12 +111,12 @@ const CSS = `
 .cp-root .lang:hover{transform:translateY(-6px)}
 .cp-root .lang .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:bottom;border-radius:26px}
 .cp-root .lang .in{position:absolute;inset:0;z-index:1;padding:9% 9% 0;display:flex;flex-direction:column}
-.cp-root .lang .badge2{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#fff}
+.cp-root .lang .badge2{position:absolute;top:7%;right:8%;z-index:2;width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#fff}
 .cp-root .lang h3{font-size:22px;font-weight:800;color:var(--blue-ink);margin:16px 0 8px}
 .cp-root .lang p{color:var(--muted);font-size:14px}
 .cp-root .lang .arrowb{position:absolute;left:9%;bottom:8%;width:46px;height:46px;border-radius:50%;background:#fff;box-shadow:var(--shadow-s);display:flex;align-items:center;justify-content:center;color:var(--blue)}
 .cp-root .lang.en h3,.cp-root .lang.en p{color:#fff}.cp-root .lang.en p{color:rgba(255,255,255,.85)}
-.cp-root .lang.en .badge2{background:rgba(255,255,255,.22)}
+.cp-root .lang.en .badge2{background:#fff;color:var(--blue)}
 .cp-root .lang.es .badge2{background:#f2b64c}.cp-root .lang.ar .badge2{background:#37b3a5}.cp-root .lang.fr .badge2{background:#8f83d8}
 .cp-root .needcard{margin-top:20px;display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow-s);padding:20px 24px}
 .cp-root .needcard .pl{width:46px;height:46px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
@@ -142,9 +143,9 @@ const CSS = `
 .cp-root .report-wrap{position:relative}
 .cp-root .suivi-blob{position:absolute;z-index:0;width:165%;left:-28%;top:-18%;transform:rotate(-4deg);opacity:.9}
 .cp-root .motion{position:absolute;z-index:2;width:58px;pointer-events:none}
-.cp-root .motion.a{top:-5%;left:-1%;transform:scaleX(-1)}
-.cp-root .motion.b{top:-4%;right:8%;transform:scaleX(-1)}
-.cp-root .report{position:relative;z-index:1;background:#fff;border-radius:26px;border:1px solid var(--line);box-shadow:var(--shadow);padding:28px}
+.cp-root .motion.a{top:-8%;left:-5%}
+.cp-root .motion.b{top:1%;right:8%;transform:scaleX(-1)}
+.cp-root .report{position:relative;z-index:1;background:#fff;border-radius:26px;border:1px solid var(--line);box-shadow:var(--shadow);padding:28px;transform:rotate(-5deg)}
 .cp-root .report .rh{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .cp-root .report .rh b{color:var(--blue-ink);font-size:18px;display:flex;align-items:center;gap:10px}
 .cp-root .report .rh .ric{width:40px;height:40px;display:flex;align-items:center;justify-content:center}
@@ -159,7 +160,7 @@ const CSS = `
 .cp-root .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--blue),#8f83d8,var(--coral));transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--ease)}
 .cp-root .report.in .m1 i{transform:scaleX(.82)}.cp-root .report.in .m2 i{transform:scaleX(.68)}.cp-root .report.in .m3 i{transform:scaleX(.91)}
 .cp-root .report .ends{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-weight:600;margin-top:4px}
-.cp-root .arrowheart{position:absolute;z-index:2;bottom:-8%;left:16%;width:44%;pointer-events:none}
+.cp-root .arrowheart{position:absolute;z-index:2;bottom:-18%;left:14%;width:44%;pointer-events:none}
 .cp-root .prooftrio{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-s);padding:20px 0}
 .cp-root .pt{text-align:center;padding:4px 16px;position:relative}
 .cp-root .pt+.pt::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:1px;background:var(--line)}
@@ -224,16 +225,6 @@ const CSS = `
 `;
 
 const HTML = `
-<div class="subbar"><div class="wrap subbar-in">
-  <div class="toggle-wrap">
-    <svg class="orbit" viewBox="0 0 200 48" preserveAspectRatio="none">
-      <defs><linearGradient id="og" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ef8266"/><stop offset=".5" stop-color="#ef8266"/><stop offset=".5" stop-color="#3a6cb4"/><stop offset="1" stop-color="#3a6cb4"/></linearGradient></defs>
-      <rect x="3" y="3" width="194" height="42" rx="21" ry="21" pathLength="100"/>
-    </svg>
-    <div class="toggle" role="tablist"><button class="on" role="tab" aria-selected="true">Enfants</button><button role="tab" aria-selected="false">Adultes</button></div>
-  </div>
-</div></div>
-
 <section class="hero-sec">
   <div class="wrap hero">
     <div>
@@ -247,6 +238,13 @@ const HTML = `
       <div class="reveal hero-trust" style="--i:4"><span class="stars">★★★★★</span> 4,8 sur Google · familles satisfaites</div>
     </div>
     <div class="reveal hv" style="--i:2">
+      <div class="toggle-wrap hero-toggle">
+        <svg class="orbit" viewBox="0 0 200 48" preserveAspectRatio="none">
+          <defs><linearGradient id="og" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ef8266"/><stop offset=".5" stop-color="#ef8266"/><stop offset=".5" stop-color="#3a6cb4"/><stop offset="1" stop-color="#3a6cb4"/></linearGradient></defs>
+          <rect x="3" y="3" width="194" height="42" rx="21" ry="21" pathLength="100"/>
+        </svg>
+        <div class="toggle" role="tablist"><button class="on" role="tab" aria-selected="true">Enfants</button><button role="tab" aria-selected="false">Adultes</button></div>
+      </div>
       <div class="blobbg"></div>
       <img class="scene" src="/one-to-one/hero-scene.png" alt="Enfant en cours particulier en ligne">
       <div class="badge b1"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3a6cb4" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="3"/><path d="M8 21h8"/></svg></span><div>1 élève · 1 prof<small>séance en ligne</small></div></div>
@@ -273,7 +271,7 @@ const HTML = `
     <div class="quote"><span class="qm">“</span><p>Un accompagnement <b>sur mesure</b> pour révéler tout le potentiel de votre enfant.</p></div>
   </div>
   <div class="why-clouds">
-    <div class="reveal wc" style="--i:0"><img src="/one-to-one/why-cloud-1.png" alt=""><div class="ptext"><h3>Toute l'attention du professeur</h3><p>Pour surmonter les difficultés précises de votre enfant, sans se perdre dans un groupe.</p></div></div>
+    <div class="reveal wc" style="--i:0"><img src="/one-to-one/why-cloud-1.png" alt=""><div class="ptext"><h3>Toute l'attention du prof</h3><p>Pour surmonter les difficultés précises de votre enfant, sans se perdre dans un groupe.</p></div></div>
     <div class="reveal wc" style="--i:1"><img src="/one-to-one/why-cloud-2.png" alt=""><div class="ptext"><h3>On cible ce qui compte</h3><p>L'oral, la grammaire ou l'écrit — le professeur travaille exactement le bon point.</p></div></div>
     <div class="reveal wc" style="--i:2"><img src="/one-to-one/why-cloud-3.png" alt=""><div class="ptext"><h3>Un rythme adapté</h3><p>Plus de temps pour parler, poser des questions et avancer à sa vitesse.</p></div></div>
   </div>
@@ -391,7 +389,7 @@ const HTML = `
     <details><summary><span class="qic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a6cb4" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>Combien de temps dure une séance ?<span class="pm"></span></summary><div class="ans">À partir d'1h00, avec 1h15 recommandé pour les enfants. Vous choisissez la durée.</div></details>
     <details><summary><span class="qic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a6cb4" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 2.5 3 6 3s6-2 6-3v-5"/></svg></span>Comment choisissez-vous le professeur de mon enfant ?<span class="pm"></span></summary><div class="ans">Selon son âge, son niveau, ses objectifs et ses disponibilités.</div></details>
     <details><summary><span class="qic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a6cb4" stroke-width="2"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5M15 20c0-2 2-3.5 4-3.5s3 1 3 3"/></svg></span>Mon enfant garde-t-il le même professeur ?<span class="pm"></span></summary><div class="ans">Oui, le même professeur à chaque séance.</div></details>
-    <details><summary><span class="qic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a6cb4" stroke-width="2"><path d="M7 4 3 8l4 4"/><path d="M3 8h14a4 4 0 0 1 0 8h-1"/><path d="m17 20 4-4-4-4"/></svg></span>Peut-on changer de professeur si besoin ?<span class="pm"></span></summary><div class="ans">Oui, bien sûr. Si le courant ne passe pas, nous trouvons un autre professeur.</div></details>
+    <details><summary><span class="qic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a6cb4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-9 9 9 9 0 0 1-8-5"/><path d="M3 12a9 9 0 0 1 9-9 9 9 0 0 1 8 5"/><path d="M20 4v4h-4"/><path d="M4 20v-4h4"/></svg></span>Peut-on changer de professeur si besoin ?<span class="pm"></span></summary><div class="ans">Oui, bien sûr. Si le courant ne passe pas, nous trouvons un autre professeur.</div></details>
     <details><summary><span class="qic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a6cb4" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>Comment choisir les horaires de mon enfant ?<span class="pm"></span></summary><div class="ans">Vous choisissez vos jours et vos horaires dans le formulaire d'inscription, puis nous vous contactons pour confirmer.</div></details>
     <details><summary><span class="qic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a6cb4" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span>Comment puis-je suivre les progrès de mon enfant ?<span class="pm"></span></summary><div class="ans">Un résumé après chaque leçon et un point complet chaque mois.</div></details>
     <details><summary><span class="qic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a6cb4" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h13v18H6a2 2 0 0 1-2-2Z"/><path d="M8 7h7"/></svg></span>Quels supports sont utilisés pendant les cours ?<span class="pm"></span></summary><div class="ans">Nous disposons d'une variété de manuels et de supports pédagogiques, et nous choisissons celui qui correspond le mieux aux besoins de votre enfant.</div></details>
@@ -407,6 +405,7 @@ export default function CoursParticuliersClient() {
     const root = document.querySelector(".cp-root");
     if (!root) return;
 
+    // teacher rail (placeholder circles until real photos)
     const track = root.querySelector("#track");
     if (track) {
       const one =
@@ -416,11 +415,13 @@ export default function CoursParticuliersClient() {
       track.innerHTML = set + set;
     }
 
-    function count(el, to, dur) {
+    // scroll reveal + one-time counter
+    function count(el, from, to, dur) {
       const s = performance.now();
+      el.textContent = from;
       (function step(t) {
         const p = Math.min(1, (t - s) / dur);
-        el.textContent = Math.round(p * to);
+        el.textContent = Math.round(from + (to - from) * p);
         if (p < 1) requestAnimationFrame(step);
       })(s);
     }
@@ -429,7 +430,7 @@ export default function CoursParticuliersClient() {
         es.forEach((e) => {
           if (!e.isIntersecting) return;
           e.target.classList.add("in");
-          if (e.target.id === "pricecount") count(e.target, 150, 900);
+          if (e.target.id === "pricecount") count(e.target, 220, 150, 900);
           io.unobserve(e.target);
         });
       },
@@ -437,6 +438,7 @@ export default function CoursParticuliersClient() {
     );
     root.querySelectorAll(".reveal, #report, #pricecount").forEach((el) => io.observe(el));
 
+    // smooth accordion
     const cleanups = [];
     root.querySelectorAll(".faq details").forEach((d) => {
       const ans = d.querySelector(".ans");
