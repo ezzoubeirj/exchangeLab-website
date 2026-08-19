@@ -39,12 +39,12 @@ const CSS = `
 .cp-root .toggle{display:inline-flex;background:#e7eefb;border-radius:40px;padding:5px;gap:3px;position:relative;z-index:2}
 .cp-root .toggle button{border:none;background:transparent;padding:9px 20px;border-radius:40px;font-weight:700;font-family:inherit;cursor:pointer;color:var(--muted);font-size:14px;transition:.25s var(--ease)}
 .cp-root .toggle button.on{background:#fff;color:var(--blue-d);box-shadow:0 3px 10px rgba(43,83,144,.16)}
-.cp-root .orbit{position:absolute;inset:-4px;overflow:visible;pointer-events:none;z-index:1}
+.cp-root .orbit{position:absolute;inset:-2px;overflow:visible;pointer-events:none;z-index:1}
 .cp-root .orbit rect{fill:none;stroke:url(#og);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;animation:cpdraw 1.6s var(--ease) .5s forwards}
 @keyframes cpdraw{to{stroke-dashoffset:0}}
 .cp-root .hero-toggle{position:absolute;top:0;right:0;z-index:4}
 
-.cp-root .hero{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;padding:56px 0 64px}
+.cp-root .hero{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;padding:92px 0 64px}
 .cp-root .hero h1{font-size:clamp(38px,5.6vw,62px);font-weight:900;color:var(--blue-ink);letter-spacing:-.03em;line-height:1.02}
 .cp-root .hero h1 .c{color:var(--coral);position:relative;white-space:nowrap}
 .cp-root .hero h1 .c svg{position:absolute;left:0;bottom:.04em;width:100%;height:.22em;overflow:visible}
@@ -83,7 +83,7 @@ const CSS = `
 .cp-root .why-clouds{display:flex;flex-direction:column;gap:14px}
 .cp-root .wc{position:relative}
 .cp-root .wc img{width:100%;height:auto}
-.cp-root .wc .ptext{position:absolute;top:0;bottom:0;right:0;width:56%;display:flex;flex-direction:column;justify-content:center;padding-right:5%}
+.cp-root .wc .ptext{position:absolute;top:0;bottom:0;right:0;width:50%;display:flex;flex-direction:column;justify-content:center;padding-right:3%}
 .cp-root .wc .ptext h3{font-size:clamp(11px,1.3vw,15px);font-weight:800;color:var(--blue-ink);line-height:1.12}
 .cp-root .wc .ptext p{font-size:clamp(8.5px,1vw,11px);color:var(--muted);margin-top:4px;line-height:1.25}
 
@@ -143,9 +143,9 @@ const CSS = `
 .cp-root .report-wrap{position:relative}
 .cp-root .suivi-blob{position:absolute;z-index:0;width:165%;left:-28%;top:-18%;transform:rotate(-4deg);opacity:.9}
 .cp-root .motion{position:absolute;z-index:2;width:58px;pointer-events:none}
-.cp-root .motion.a{top:-8%;left:-5%}
+.cp-root .motion.a{top:-13%;left:-18%}
 .cp-root .motion.b{top:1%;right:8%;transform:scaleX(-1)}
-.cp-root .report{position:relative;z-index:1;background:#fff;border-radius:26px;border:1px solid var(--line);box-shadow:var(--shadow);padding:28px;transform:rotate(-5deg)}
+.cp-root .report{position:relative;z-index:1;background:#fff;border-radius:26px;border:1px solid var(--line);box-shadow:var(--shadow);padding:28px;transform:translateX(-38px) rotate(-5deg)}
 .cp-root .report .rh{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .cp-root .report .rh b{color:var(--blue-ink);font-size:18px;display:flex;align-items:center;gap:10px}
 .cp-root .report .rh .ric{width:40px;height:40px;display:flex;align-items:center;justify-content:center}
@@ -174,7 +174,7 @@ const CSS = `
 .cp-root .avis .cb2{width:200px;height:200px;background:#fbe6dd;right:0;top:38%}
 .cp-root .avis .dots{position:absolute;z-index:0;color:#cdd9ee}
 .cp-root .avis .dl{left:2%;bottom:6%}.cp-root .avis .dr{right:3%;top:64%}
-.cp-root .avis-wa{position:absolute;right:6%;top:8%;width:150px;z-index:2}
+.cp-root .avis-wa{position:absolute;right:11%;top:6%;width:112px;z-index:2;filter:drop-shadow(0 3px 12px rgba(120,130,150,.45))}
 .cp-root .avis-lh{position:absolute;left:2%;top:16%;width:230px;z-index:2}
 .cp-root .avis .head{position:relative;z-index:1;max-width:640px;margin:0 auto}
 .cp-root .avis h2 .c{color:var(--coral);position:relative}
@@ -241,7 +241,7 @@ const HTML = `
       <div class="toggle-wrap hero-toggle">
         <svg class="orbit" viewBox="0 0 200 48" preserveAspectRatio="none">
           <defs><linearGradient id="og" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ef8266"/><stop offset=".5" stop-color="#ef8266"/><stop offset=".5" stop-color="#3a6cb4"/><stop offset="1" stop-color="#3a6cb4"/></linearGradient></defs>
-          <rect x="3" y="3" width="194" height="42" rx="21" ry="21" pathLength="100"/>
+          <rect x="2" y="2" width="196" height="44" rx="22" ry="22" pathLength="100"/>
         </svg>
         <div class="toggle" role="tablist"><button class="on" role="tab" aria-selected="true">Enfants</button><button role="tab" aria-selected="false">Adultes</button></div>
       </div>
