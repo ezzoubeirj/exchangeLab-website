@@ -42,7 +42,7 @@ const CSS = `
 .cp-root .orbit{position:absolute;inset:-7px;overflow:visible;pointer-events:none;z-index:3}
 .cp-root .orbit rect{fill:none;stroke:url(#og);stroke-width:3.2;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;animation:cpdraw 1.6s var(--ease) .5s forwards}
 @keyframes cpdraw{to{stroke-dashoffset:0}}
-.cp-root .hero-toggle{position:absolute;top:0;right:0;z-index:4}
+.cp-root .hero-toggle{position:absolute;top:22px;right:0;z-index:4}
 
 .cp-root .hero{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;padding:92px 0 64px}
 .cp-root .hero h1{font-size:clamp(38px,5.6vw,62px);font-weight:900;color:var(--blue-ink);letter-spacing:-.03em;line-height:1.02}
@@ -83,8 +83,8 @@ const CSS = `
 .cp-root .why-clouds{display:flex;flex-direction:column;gap:14px}
 .cp-root .wc{position:relative}
 .cp-root .wc img{width:100%;height:auto}
-.cp-root .wc .ptext{position:absolute;top:0;bottom:0;right:0;width:56%;display:flex;flex-direction:column;justify-content:center;padding-right:5%}
-.cp-root .wc .ptext h3{font-size:clamp(16px,1.9vw,22px);font-weight:800;color:var(--blue-ink);line-height:1.15}
+.cp-root .wc .ptext{position:absolute;top:0;bottom:0;right:0;width:56%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 4%}
+.cp-root .wc .ptext h3{font-size:clamp(17px,2.1vw,24px);font-weight:800;color:var(--blue-ink);line-height:1.22}
 .cp-root .wc .ptext p{font-size:clamp(11.5px,1.35vw,15px);color:var(--muted);margin-top:6px;line-height:1.3}
 
 .cp-root .how-grid{display:grid;grid-template-columns:.96fr 1.04fr;gap:48px;align-items:center}
@@ -106,8 +106,8 @@ const CSS = `
 
 .cp-root .lang-head{position:relative}
 .cp-root .plane-img{position:absolute;right:0;top:-30px;width:48%;pointer-events:none}
-.cp-root .langs{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:14px}
-.cp-root .lang{position:relative;width:100%;padding-bottom:84%;overflow:hidden;border-radius:26px;transition:transform .3s var(--ease)}
+.cp-root .langs{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:940px;margin:14px auto 0}
+.cp-root .lang{position:relative;width:100%;padding-bottom:66.7%;overflow:hidden;border-radius:26px;transition:transform .3s var(--ease)}
 .cp-root .lang:hover{transform:translateY(-6px)}
 .cp-root .lang .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:bottom;border-radius:26px}
 .cp-root .lang .in{position:absolute;inset:0;z-index:1;padding:9% 9% 0;display:flex;flex-direction:column}
@@ -143,8 +143,8 @@ const CSS = `
 .cp-root .report-wrap{position:relative}
 .cp-root .suivi-blob{position:absolute;z-index:0;width:165%;left:-28%;top:-18%;transform:rotate(-4deg);opacity:.9}
 .cp-root .motion{position:absolute;z-index:2;width:58px;pointer-events:none}
-.cp-root .motion.a{top:-8%;left:-18%}
-.cp-root .motion.b{top:6%;right:8%;transform:scaleX(-1)}
+.cp-root .motion.a{top:0%;left:-18%}
+.cp-root .motion.b{top:3%;right:4%;transform:scaleX(-1)}
 .cp-root .report{position:relative;z-index:1;background:#fff;border-radius:26px;border:1px solid var(--line);box-shadow:var(--shadow);padding:28px;transform:translateX(-38px) rotate(-5deg)}
 .cp-root .report .rh{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .cp-root .report .rh b{color:var(--blue-ink);font-size:18px;display:flex;align-items:center;gap:10px}
@@ -174,7 +174,7 @@ const CSS = `
 .cp-root .avis .cb2{width:200px;height:200px;background:#fbe6dd;right:0;top:38%}
 .cp-root .avis .dots{position:absolute;z-index:0;color:#cdd9ee}
 .cp-root .avis .dl{left:2%;bottom:6%}.cp-root .avis .dr{right:3%;top:64%}
-.cp-root .avis-wa{position:absolute;right:16%;top:10%;width:112px;z-index:2;filter:drop-shadow(0 3px 12px rgba(120,130,150,.45))}
+.cp-root .avis-wa{position:absolute;right:22%;top:10%;width:112px;z-index:2;filter:drop-shadow(0 5px 18px rgba(120,130,150,.6))}
 .cp-root .avis-lh{position:absolute;left:2%;top:16%;width:230px;z-index:2}
 .cp-root .avis .head{position:relative;z-index:1;max-width:640px;margin:0 auto}
 .cp-root .avis h2 .c{color:var(--coral);position:relative}
@@ -271,9 +271,9 @@ const HTML = `
     <div class="quote"><span class="qm">“</span><p>Un accompagnement <b>sur mesure</b> pour révéler tout le potentiel de votre enfant.</p></div>
   </div>
   <div class="why-clouds">
-    <div class="reveal wc" style="--i:0"><img src="/one-to-one/why-cloud-1.png" alt=""><div class="ptext"><h3>Toute l'attention du prof</h3><p>Pour surmonter les difficultés précises de votre enfant, sans se perdre dans un groupe.</p></div></div>
-    <div class="reveal wc" style="--i:1"><img src="/one-to-one/why-cloud-2.png" alt=""><div class="ptext"><h3>On cible ce qui compte</h3><p>L'oral, la grammaire ou l'écrit — le professeur travaille exactement le bon point.</p></div></div>
-    <div class="reveal wc" style="--i:2"><img src="/one-to-one/why-cloud-3.png" alt=""><div class="ptext"><h3>Un rythme adapté</h3><p>Plus de temps pour parler, poser des questions et avancer à sa vitesse.</p></div></div>
+    <div class="reveal wc" style="--i:0"><img src="/one-to-one/why-cloud-1.png" alt=""><div class="ptext"><h3>Toute l'attention<br>du prof</h3></div></div>
+    <div class="reveal wc" style="--i:1"><img src="/one-to-one/why-cloud-2.png" alt=""><div class="ptext"><h3>On cible ce qui<br>compte</h3></div></div>
+    <div class="reveal wc" style="--i:2"><img src="/one-to-one/why-cloud-3.png" alt=""><div class="ptext"><h3>Un rythme adapté</h3></div></div>
   </div>
 </div></section>
 
