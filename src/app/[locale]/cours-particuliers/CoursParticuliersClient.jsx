@@ -39,8 +39,6 @@ const CSS = `
 .cp-root .toggle{display:inline-flex;background:#e7eefb;border-radius:40px;padding:5px;gap:3px;position:relative;z-index:2}
 .cp-root .toggle button{border:none;background:transparent;padding:9px 20px;border-radius:40px;font-weight:700;font-family:inherit;cursor:pointer;color:var(--muted);font-size:14px;transition:.25s var(--ease)}
 .cp-root .toggle button.on{background:#fff;color:var(--blue-d);box-shadow:0 3px 10px rgba(43,83,144,.16)}
-.cp-root .orbit{position:absolute;inset:-3px -7px -11px -7px;overflow:visible;pointer-events:none;z-index:3}
-.cp-root .orbit rect{fill:none;stroke:url(#og);stroke-width:3.2;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;animation:cpdraw 1.6s var(--ease) .5s forwards}
 @keyframes cpdraw{to{stroke-dashoffset:0}}
 .cp-root .hero-toggle{position:absolute;top:22px;right:0;z-index:4}
 
@@ -128,7 +126,9 @@ const CSS = `
 .cp-root .lpanel.en .lp-chips span::before{background:#3a6cb4}.cp-root .lpanel.es .lp-chips span::before{background:#e9a52f}.cp-root .lpanel.ar .lp-chips span::before{background:#37b3a5}.cp-root .lpanel.fr .lp-chips span::before{background:#8f83d8}
 .cp-root .lp-media{position:relative}
 .cp-root .lp-media img{width:100%;border-radius:28px;box-shadow:var(--shadow)}
-.cp-root .lp-cap{position:absolute;top:8%;left:7%;max-width:62%;z-index:2;color:#fff;font-weight:700;font-size:clamp(15px,1.5vw,19px);line-height:1.3;background:rgba(18,28,48,.32);backdrop-filter:blur(2px);padding:11px 16px;border-radius:16px}
+.cp-root .lp-cap{position:absolute;top:28%;left:13%;max-width:58%;z-index:2;font-weight:800;font-size:clamp(16px,1.6vw,20px);line-height:1.3}
+.cp-root .lpanel.en .lp-cap{color:#fff}
+.cp-root .lpanel.es .lp-cap,.cp-root .lpanel.ar .lp-cap,.cp-root .lpanel.fr .lp-cap{color:#2b5390}
 .cp-root .needcard{margin-top:20px;display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow-s);padding:20px 24px}
 .cp-root .needcard .pl{width:46px;height:46px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
 .cp-root .needcard h4{font-size:17px;font-weight:800;color:var(--blue-ink)}.cp-root .needcard p{color:var(--muted);font-size:14px}
@@ -250,10 +250,6 @@ const HTML = `
     </div>
     <div class="reveal hv" style="--i:2">
       <div class="toggle-wrap hero-toggle">
-        <svg class="orbit" viewBox="0 0 200 48" preserveAspectRatio="none">
-          <defs><linearGradient id="og" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ef8266"/><stop offset=".5" stop-color="#ef8266"/><stop offset=".5" stop-color="#3a6cb4"/><stop offset="1" stop-color="#3a6cb4"/></linearGradient></defs>
-          <rect x="1.6" y="1.6" width="196.8" height="44.8" rx="22.4" ry="22.4" pathLength="100"/>
-        </svg>
         <div class="toggle" role="tablist"><button class="on" role="tab" aria-selected="true">Enfants</button><button role="tab" aria-selected="false">Adultes</button></div>
       </div>
       <div class="blobbg"></div>
