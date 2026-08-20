@@ -14,6 +14,7 @@ const copy = {
     intro: "Dites-nous qui vous êtes et quels créneaux reviennent chaque semaine.",
     formStep: "Informations et horaires",
     testStep: "Test de niveau",
+    confirmationStep: "Confirmation",
     parentName: "Nom du parent",
     firstNameKids: "Prénom de l'enfant",
     firstNameAdults: "Prénom",
@@ -38,8 +39,7 @@ const copy = {
     takeTestHelp: "Votre résultat sera ajouté à votre demande.",
     skip: "Je commence de zéro",
     skipHelp: "Aucun niveau ne sera attribué maintenant.",
-    done: "Merci, votre demande a bien été enregistrée. Notre équipe vous contactera.",
-    unavailable: "Le test en ligne pour cette langue n'est pas encore disponible. Votre demande reste enregistrée sans niveau.",
+    done: "Merci, nous vous contacterons au plus vite.",
     error: "L'enregistrement a échoué. Vérifiez vos informations puis réessayez.",
   },
   ar: {
@@ -48,6 +48,7 @@ const copy = {
     intro: "أخبرونا بمعلومات المتعلم والمواعيد الأسبوعية المناسبة.",
     formStep: "المعلومات والمواعيد",
     testStep: "اختبار المستوى",
+    confirmationStep: "تأكيد التسجيل",
     parentName: "اسم ولي الأمر",
     firstNameKids: "الاسم الشخصي للطفل",
     firstNameAdults: "الاسم الشخصي",
@@ -72,8 +73,7 @@ const copy = {
     takeTestHelp: "سنضيف النتيجة إلى طلب التسجيل.",
     skip: "البدء من الصفر",
     skipHelp: "سيبقى المستوى والنتيجة فارغين حالياً.",
-    done: "شكراً، تم تسجيل طلبكم وسيتواصل معكم فريقنا.",
-    unavailable: "الاختبار الإلكتروني لهذه اللغة غير متوفر حالياً. سيبقى طلبكم مسجلاً بدون مستوى.",
+    done: "شكراً، سنتواصل معكم في أقرب وقت ممكن.",
     error: "تعذر تسجيل الطلب. تحققوا من المعلومات ثم حاولوا مجدداً.",
   },
 };
@@ -148,7 +148,7 @@ export default function OneToOneRegistrationClient() {
       const result = await response.json();
       if (!response.ok || !result.data?.intake_token) throw new Error(result.error || "Intake failed");
       setIntakeToken(result.data.intake_token);
-      setStep("choice");
+      setStep(testSupported ? "choice" : "done");
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (submissionError) {
       console.error(submissionError);
@@ -176,7 +176,9 @@ export default function OneToOneRegistrationClient() {
       <div className="mx-auto max-w-3xl">
         <div className="mb-8 flex items-center justify-center gap-3 text-sm font-bold">
           <span className="rounded-full bg-[#3a6cb4] px-4 py-2 text-white">1 · {t.formStep}</span>
-          <span className={`rounded-full px-4 py-2 ${step !== "form" ? "bg-[#3a6cb4] text-white" : "bg-white text-[#6a7994]"}`}>2 · {t.testStep}</span>
+          <span className={`rounded-full px-4 py-2 ${step !== "form" ? "bg-[#3a6cb4] text-white" : "bg-white text-[#6a7994]"}`}>
+            2 · {testSupported ? t.testStep : t.confirmationStep}
+          </span>
         </div>
 
         <section className="rounded-[32px] border border-[#e4ecf7] bg-white p-6 shadow-xl shadow-blue-900/10 md:p-10">
@@ -230,7 +232,7 @@ export default function OneToOneRegistrationClient() {
             <div className="mt-8">
               <p className="text-lg font-bold text-[#22345a]">{t.choose}</p>
               <div className="mt-6 grid gap-4 md:grid-cols-2">
-                <button type="button" onClick={() => testSupported ? setStep("test") : setStep("unavailable")} className="rounded-2xl border-2 border-[#3a6cb4] p-6 text-start transition hover:bg-[#eef4fc]">
+                <button type="button" onClick={() => setStep("test")} className="rounded-2xl border-2 border-[#3a6cb4] p-6 text-start transition hover:bg-[#eef4fc]">
                   <strong className="block text-xl text-[#22345a]">{t.takeTest}</strong>
                   <span className="mt-2 block text-sm text-[#6a7994]">{t.takeTestHelp}</span>
                 </button>
@@ -242,7 +244,7 @@ export default function OneToOneRegistrationClient() {
             </div>
           ) : (
             <div className="mt-8 rounded-2xl bg-[#eef4fc] p-6 text-lg font-bold text-[#22345a]">
-              {step === "unavailable" ? t.unavailable : t.done}
+              {t.done}
             </div>
           )}
         </section>
