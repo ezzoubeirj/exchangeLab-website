@@ -39,7 +39,7 @@ const CSS = `
 .cp-root .toggle{display:inline-flex;background:#e7eefb;border-radius:40px;padding:5px;gap:3px;position:relative;z-index:2}
 .cp-root .toggle button{border:none;background:transparent;padding:9px 20px;border-radius:40px;font-weight:700;font-family:inherit;cursor:pointer;color:var(--muted);font-size:14px;transition:.25s var(--ease)}
 .cp-root .toggle button.on{background:#fff;color:var(--blue-d);box-shadow:0 3px 10px rgba(43,83,144,.16)}
-.cp-root .orbit{position:absolute;inset:-7px;overflow:visible;pointer-events:none;z-index:3}
+.cp-root .orbit{position:absolute;inset:-3px -7px -11px -7px;overflow:visible;pointer-events:none;z-index:3}
 .cp-root .orbit rect{fill:none;stroke:url(#og);stroke-width:3.2;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;animation:cpdraw 1.6s var(--ease) .5s forwards}
 @keyframes cpdraw{to{stroke-dashoffset:0}}
 .cp-root .hero-toggle{position:absolute;top:22px;right:0;z-index:4}
@@ -59,7 +59,7 @@ const CSS = `
 .cp-root .hv .blobbg{position:absolute;inset:20px 4px 10px 30px;background:radial-gradient(circle at 60% 40%,#dbe8fb,#eef4fc);border-radius:44% 56% 52% 48%/54% 46% 54% 46%;z-index:0}
 .cp-root .hv .badge{position:absolute;z-index:2;background:#fff;border-radius:16px;padding:11px 15px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;color:var(--blue-ink)}
 .cp-root .hv .badge small{color:var(--muted);font-weight:600;display:block;font-size:11px}
-.cp-root .hv .b1{top:20%;right:-2%;animation:cpfloaty 6s ease-in-out infinite}
+.cp-root .hv .b1{top:37%;right:-2%;animation:cpfloaty 6s ease-in-out infinite}
 .cp-root .hv .b2{bottom:10%;left:-4%;animation:cpfloaty 7s ease-in-out infinite .6s}
 .cp-root .ic{width:34px;height:34px;border-radius:10px;background:var(--band);display:flex;align-items:center;justify-content:center;color:var(--blue);flex:0 0 auto}
 @keyframes cpfloaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
@@ -83,7 +83,7 @@ const CSS = `
 .cp-root .why-clouds{display:flex;flex-direction:column;gap:14px}
 .cp-root .wc{position:relative}
 .cp-root .wc img{width:100%;height:auto}
-.cp-root .wc .ptext{position:absolute;top:0;bottom:0;right:0;width:56%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 4%}
+.cp-root .wc .ptext{position:absolute;top:0;bottom:0;right:10%;width:56%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 4%}
 .cp-root .wc .ptext h3{font-size:clamp(17px,2.1vw,24px);font-weight:800;color:var(--blue-ink);line-height:1.22}
 .cp-root .wc .ptext p{font-size:clamp(11.5px,1.35vw,15px);color:var(--muted);margin-top:6px;line-height:1.3}
 
@@ -128,6 +128,7 @@ const CSS = `
 .cp-root .lpanel.en .lp-chips span::before{background:#3a6cb4}.cp-root .lpanel.es .lp-chips span::before{background:#e9a52f}.cp-root .lpanel.ar .lp-chips span::before{background:#37b3a5}.cp-root .lpanel.fr .lp-chips span::before{background:#8f83d8}
 .cp-root .lp-media{position:relative}
 .cp-root .lp-media img{width:100%;border-radius:28px;box-shadow:var(--shadow)}
+.cp-root .lp-cap{position:absolute;top:8%;left:7%;max-width:62%;z-index:2;color:#fff;font-weight:700;font-size:clamp(15px,1.5vw,19px);line-height:1.3;background:rgba(18,28,48,.32);backdrop-filter:blur(2px);padding:11px 16px;border-radius:16px}
 .cp-root .needcard{margin-top:20px;display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow-s);padding:20px 24px}
 .cp-root .needcard .pl{width:46px;height:46px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
 .cp-root .needcard h4{font-size:17px;font-weight:800;color:var(--blue-ink)}.cp-root .needcard p{color:var(--muted);font-size:14px}
@@ -325,7 +326,7 @@ const HTML = `
           <div class="lp-chips"><span>Conversation</span><span>Bases solides</span><span>Soutien scolaire</span></div>
           <button class="btn btn-coral">Inscrire mon enfant <svg class="ar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
-        <div class="lp-media"><img src="/one-to-one/lang-en-card.png" alt="Cours d'anglais en ligne pour enfants"></div>
+        <div class="lp-media"><div class="lp-cap">L'anglais ouvre les portes du monde entier.</div><img src="/one-to-one/lang-en-card.png" alt="Cours d'anglais en ligne pour enfants"></div>
       </div>
       <div class="lpanel es">
         <div class="lp-text">
@@ -335,7 +336,7 @@ const HTML = `
           <div class="lp-chips"><span>Débutants bienvenus</span><span>Oral en priorité</span><span>À son rythme</span></div>
           <button class="btn btn-coral">Inscrire mon enfant <svg class="ar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
-        <div class="lp-media"><img src="/one-to-one/lang-es-card.png" alt="Cours d'espagnol en ligne pour enfants"></div>
+        <div class="lp-media"><div class="lp-cap">L'espagnol, parlé par plus de 500 millions de personnes.</div><img src="/one-to-one/lang-es-card.png" alt="Cours d'espagnol en ligne pour enfants"></div>
       </div>
       <div class="lpanel ar">
         <div class="lp-text">
@@ -345,7 +346,7 @@ const HTML = `
           <div class="lp-chips"><span>Expression</span><span>Lecture</span><span>Écriture</span></div>
           <button class="btn btn-coral">Inscrire mon enfant <svg class="ar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
-        <div class="lp-media"><img src="/one-to-one/lang-ar-card.png" alt="Cours d'arabe en ligne pour enfants"></div>
+        <div class="lp-media"><div class="lp-cap">L'arabe, la langue de la culture et des racines.</div><img src="/one-to-one/lang-ar-card.png" alt="Cours d'arabe en ligne pour enfants"></div>
       </div>
       <div class="lpanel fr">
         <div class="lp-text">
@@ -355,7 +356,7 @@ const HTML = `
           <div class="lp-chips"><span>Oral &amp; écrit</span><span>Confiance</span><span>Soutien scolaire</span></div>
           <button class="btn btn-coral">Inscrire mon enfant <svg class="ar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
-        <div class="lp-media"><img src="/one-to-one/lang-fr-card.png" alt="Cours de français en ligne pour enfants"></div>
+        <div class="lp-media"><div class="lp-cap">Le français, la langue de la réussite à l'école.</div><img src="/one-to-one/lang-fr-card.png" alt="Cours de français en ligne pour enfants"></div>
       </div>
     </div>
   </div>
