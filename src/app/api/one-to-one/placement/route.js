@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@/supabase/server";
+import { createOneToOneClient } from "@/supabase/oneToOneServer";
 
 export async function POST(request) {
   try {
     const body = await request.json();
-    const supabase = await createClient();
+    const supabase = createOneToOneClient();
     const { data, error } = await supabase.rpc("complete_one_to_one_placement", {
       p_intake_token: body.intakeToken,
       p_score: body.score,

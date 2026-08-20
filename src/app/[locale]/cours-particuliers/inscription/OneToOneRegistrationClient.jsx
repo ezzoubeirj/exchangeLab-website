@@ -172,7 +172,7 @@ export default function OneToOneRegistrationClient() {
   }
 
   return (
-    <main className="cp-root min-h-screen bg-[#eef4fc] px-4 py-16 text-[#243349]" dir={direction}>
+    <main className="cp-root min-h-screen bg-[#eef4fc] px-4 pb-16 pt-32 text-[#243349] md:pt-36" dir={direction}>
       <div className="mx-auto max-w-3xl">
         <div className="mb-8 flex items-center justify-center gap-3 text-sm font-bold">
           <span className="rounded-full bg-[#3a6cb4] px-4 py-2 text-white">1 · {t.formStep}</span>

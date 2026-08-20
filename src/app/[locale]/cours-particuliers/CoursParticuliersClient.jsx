@@ -157,7 +157,7 @@ const CSS = `
 .cp-root .suivi-blob{position:absolute;z-index:0;width:165%;left:-28%;top:-18%;transform:rotate(-4deg);opacity:.9}
 .cp-root .motion{position:absolute;z-index:2;width:58px;pointer-events:none}
 .cp-root .motion.a{top:0%;left:-18%}
-.cp-root .motion.b{top:3%;right:4%;transform:scaleX(-1)}
+.cp-root .motion.b{top:3%;right:calc(4% - 40px);transform:scaleX(-1)}
 .cp-root .report{position:relative;z-index:1;background:#fff;border-radius:26px;border:1px solid var(--line);box-shadow:var(--shadow);padding:28px;transform:translateX(-38px) rotate(-5deg)}
 .cp-root .report .rh{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .cp-root .report .rh b{color:var(--blue-ink);font-size:18px;display:flex;align-items:center;gap:10px}
@@ -222,6 +222,17 @@ const CSS = `
 .cp-root .faq summary .pm::after{width:2.5px;height:13px;transform:translate(-50%,-50%)}
 .cp-root .faq details[open] summary .pm::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
 .cp-root .faq .ans{padding:0 22px 20px 76px;color:var(--muted);font-size:15.5px;line-height:1.6}
+
+.cp-root[dir="rtl"]{text-align:right}
+.cp-root[dir="rtl"] .hero-toggle{right:auto;left:0}
+.cp-root[dir="rtl"] .wc .ptext{right:auto;left:10%}
+.cp-root[dir="rtl"] .steps .spine{left:auto;right:0;transform:scaleX(-1)}
+.cp-root[dir="rtl"] .needcard .go{margin-left:0;margin-right:auto;transform:scaleX(-1)}
+.cp-root[dir="rtl"] .btn .ar{transform:scaleX(-1)}
+.cp-root[dir="rtl"] .btn-coral:hover .ar{transform:scaleX(-1) translateX(4px)}
+.cp-root[dir="rtl"] .price ul{text-align:right}
+.cp-root[dir="rtl"] .faq .ans{padding:0 76px 20px 22px}
+.cp-root[dir="rtl"] .assign::before{left:auto;right:50%}
 
 @media(max-width:960px){
   .cp-root .hero,.cp-root .why-grid,.cp-root .how-grid,.cp-root .prog-grid{grid-template-columns:1fr;gap:34px}
@@ -324,7 +335,7 @@ const KIDS_HTML = `
           <div class="lp-chips"><span>Conversation</span><span>Bases solides</span><span>Soutien scolaire</span></div>
           <button class="btn btn-coral">Inscrire mon enfant <svg class="ar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
-        <div class="lp-media"><div class="lp-cap">L'anglais ouvre les portes du monde entier.</div><img src="/one-to-one/lang-en-card.png" alt="Cours d'anglais en ligne pour enfants"></div>
+        <div class="lp-media"><div class="lp-cap">L'anglais, la langue internationale des affaires, des études et d'Internet.</div><img src="/one-to-one/lang-en-card.png" alt="Cours d'anglais en ligne pour enfants"></div>
       </div>
       <div class="lpanel es">
         <div class="lp-text">
@@ -354,7 +365,7 @@ const KIDS_HTML = `
           <div class="lp-chips"><span>Oral &amp; écrit</span><span>Confiance</span><span>Soutien scolaire</span></div>
           <button class="btn btn-coral">Inscrire mon enfant <svg class="ar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
-        <div class="lp-media"><div class="lp-cap">Le français, la langue de la réussite à l'école.</div><img src="/one-to-one/lang-fr-card.png" alt="Cours de français en ligne pour enfants"></div>
+        <div class="lp-media"><div class="lp-cap">Le français, une langue de culture et d'opportunités.</div><img src="/one-to-one/lang-fr-card.png" alt="Cours de français en ligne pour enfants"></div>
       </div>
     </div>
   </div>
@@ -458,7 +469,24 @@ const ADULT_REPLACEMENTS = [
   ["Un professeur dédié, un rythme adapté au niveau et aux objectifs de votre enfant.", "Un professeur dédié, un rythme adapté à votre niveau et à vos objectifs."],
   ["Inscrire mon enfant", "M'inscrire"],
   ["Enfant en cours particulier en ligne", "Adulte en cours particulier en ligne"],
+  ["1 élève · 1 prof", "un apprenant · 1 prof"],
+  ["/one-to-one/hero-scene.png", "/one-to-one-adults/hero-scene.png"],
+  ["/one-to-one/why-scene%2002.57.12.png", "/one-to-one-adults/why-scene.png"],
+  ["/one-to-one/how-scene.png", "/one-to-one-adults/how-scene.png"],
+  ["Cours d'anglais en ligne pour enfants", "Cours d'anglais en ligne pour adultes"],
+  ["Cours d'espagnol en ligne pour enfants", "Cours d'espagnol en ligne pour adultes"],
+  ["Cours d'arabe en ligne pour enfants", "Cours d'arabe en ligne pour adultes"],
+  ["Cours de français en ligne pour enfants", "Cours de français en ligne pour adultes"],
   ["choisis pour votre enfant", "choisis pour vous"],
+  ["Un suivi adapté à chaque enfant.", "Un suivi adapté à chaque apprenant."],
+  ["pour révéler tout le potentiel de votre enfant.", "pour révéler tout votre potentiel."],
+  ["Un parcours flexible, pensé pour votre enfant.", "Un parcours flexible, pensé pour vous."],
+  ["Ce que votre enfant veut atteindre.", "Ce que vous voulez atteindre."],
+  ["Construit autour de lui.", "Construit autour de vous."],
+  ["Choisissez la langue de votre enfant et nous construisons le parcours idéal.", "Choisissez votre langue et nous construisons le parcours idéal."],
+  ["On adapte le programme à l'objectif de votre enfant.", "On adapte le programme à votre objectif."],
+  ["Prêt à aider votre enfant à progresser ?", "Prêt à atteindre vos objectifs ?"],
+  ["nous choisissons celui qui correspond le mieux aux besoins de votre enfant.", "nous choisissons celui qui correspond le mieux à vos besoins."],
   ["Vous savez où en est votre enfant", "Vous savez exactement où vous en êtes"],
   ["les parents", "nos apprenants"],
   ["des parents", "des adultes"],
@@ -477,23 +505,215 @@ const ADULT_REPLACEMENTS = [
   ["avec 1h15 recommandé pour les enfants", "avec des créneaux jusqu'à 2h00 pour les adultes"],
 ];
 
-function getPageHtml(audience) {
-  if (audience === "kids") return KIDS_HTML;
+const AR_COMMON_REPLACEMENTS = [
+  ["Cours particuliers en ligne", "دروس فردية عبر الإنترنت"],
+  ["Voir les tarifs", "اطّلع على الأسعار"],
+  ["4,8 sur Google · familles satisfaites", "4.8 على Google · عائلات راضية"],
+  ["Enfants", "الأطفال"],
+  ["Adultes", "الراشدون"],
+  ["séance en ligne", "حصة عبر الإنترنت"],
+  ["Suivi mensuel", "متابعة شهرية"],
+  ["progrès visibles", "تقدّم واضح"],
+  ["100% en ligne", "100% عبر الإنترنت"],
+  ["Apprendre depuis chez vous.", "التعلّم من منزلكم."],
+  ["Attention personnalisée", "اهتمام شخصي"],
+  ["Résumé des leçons", "ملخص الدروس"],
+  ["Après chaque séance pour suivre les progrès.", "بعد كل حصة لمتابعة التقدّم."],
+  ["Professeurs qualifiés", "مدرّسون مؤهلون"],
+  ["Pédagogues expérimentés et bienveillants.", "خبرة تربوية وتعامل مشجّع."],
+  ["Le cours individuel", "الدرس الفردي"],
+  ["Pourquoi un cours individuel change tout", "لماذا يصنع الدرس الفردي فرقاً؟"],
+  ["Toute l'attention<br>du prof", "كل اهتمام<br>المدرّس"],
+  ["On cible ce qui<br>compte", "نركّز على ما<br>يهم فعلاً"],
+  ["Un rythme adapté", "وتيرة مناسبة"],
+  ["Comment ça se passe", "كيف تسير الدروس؟"],
+  ["Vous décidez<br>du rythme", "أنتم تختارون<br>الوتيرة"],
+  ["Niveau actuel", "المستوى الحالي"],
+  ["On évalue le point de départ.", "نحدّد نقطة الانطلاق."],
+  ["Objectifs", "الأهداف"],
+  ["Programme personnalisé", "برنامج مخصّص"],
+  ["Progression", "التقدّم"],
+  ["Étape par étape, séance après séance.", "خطوة بعد خطوة، وحصة بعد حصة."],
+  ["Nos langues", "لغاتنا"],
+  ["Quatre langues, un cours sur mesure", "أربع لغات، ودرس مصمّم حسب الحاجة"],
+  ["Anglais", "الإنجليزية"],
+  ["Espagnol", "الإسبانية"],
+  ["Arabe · العربية", "العربية"],
+  ["Arabe", "العربية"],
+  ["Français", "الفرنسية"],
+  ["Parler avec aisance, renforcer les bases et progresser à l'école — à l'oral comme à l'écrit.", "التحدّث بطلاقة، وترسيخ الأساسيات، والتقدّم شفهياً وكتابياً."],
+  ["Conversation", "محادثة"],
+  ["Bases solides", "أساس متين"],
+  ["Soutien scolaire", "دعم دراسي"],
+  ["L'anglais, la langue internationale des affaires, des études et d'Internet.", "الإنجليزية، اللغة الدولية للأعمال والدراسة والإنترنت."],
+  ["Débuter ou progresser en espagnol, en pratiquant l'oral à son rythme et en confiance.", "بدء تعلّم الإسبانية أو تطويرها من خلال ممارسة المحادثة بثقة وبالوتيرة المناسبة."],
+  ["Débutants bienvenus", "مناسب للمبتدئين"],
+  ["Oral en priorité", "الأولوية للمحادثة"],
+  ["À son rythme", "بالوتيرة المناسبة"],
+  ["L'espagnol, parlé par plus de 500 millions de personnes.", "الإسبانية، لغة يتحدث بها أكثر من 500 مليون شخص."],
+  ["Développer l'expression, la lecture et l'écriture, avec un professeur adapté au niveau de votre enfant.", "تطوير التعبير والقراءة والكتابة مع مدرّس يناسب مستوى طفلكم."],
+  ["Développer l'expression, la lecture et l'écriture, avec un professeur adapté au niveau de vous.", "تطوير التعبير والقراءة والكتابة مع مدرّس يناسب مستواكم."],
+  ["Expression", "التعبير"],
+  ["Lecture", "القراءة"],
+  ["Écriture", "الكتابة"],
+  ["L'arabe, la langue de la culture et des racines.", "العربية، لغة الثقافة والجذور."],
+  ["Gagner en confiance à l'oral et à l'écrit, avec un vrai soutien scolaire au quotidien.", "اكتساب الثقة في التعبير الشفهي والكتابي مع دعم منتظم."],
+  ["Oral &amp; écrit", "شفهي وكتابي"],
+  ["Confiance", "الثقة"],
+  ["Le français, une langue de culture et d'opportunités.", "الفرنسية، لغة الثقافة والفرص."],
+  ["Un besoin précis ?", "لديكم هدف محدّد؟"],
+  ["Nos professeurs", "مدرّسونا"],
+  ["Passionnés, pédagogues et à l'écoute.", "شغوفون بالتعليم، متفهّمون، وحريصون على الاستماع."],
+  ["Nous choisissons le professeur", "نختار المدرّس المناسب"],
+  ["Bulletin de progrès", "تقرير التقدّم"],
+  ["Chaque mois", "كل شهر"],
+  ["Expression orale", "التعبير الشفهي"],
+  ["Vocabulaire", "المفردات"],
+  ["Chaque mois, un point clair : les progrès, les points à renforcer et les prochaines priorités. Et après chaque leçon, un court résumé.", "كل شهر، نقدم صورة واضحة عن التقدّم والجوانب التي تحتاج إلى تعزيز والخطوات المقبلة، مع ملخص قصير بعد كل درس."],
+  ["Des progrès suivis", "متابعة التقدّم"],
+  ["mois après mois", "شهراً بعد شهر"],
+  ["Points à renforcer", "جوانب للتطوير"],
+  ["identifiés clairement", "محدّدة بوضوح"],
+  ["Un résumé", "ملخص"],
+  ["après chaque leçon", "بعد كل درس"],
+  ["Avis", "آراء المتعلمين"],
+  ["Vos 6 captures WhatsApp viendront ici (carrousel)", "ستظهر هنا شهادات واتساب"],
+  ["Tarifs", "الأسعار"],
+  ["Un tarif simple et clair", "سعر بسيط وواضح"],
+  ["Une seule formule", "صيغة واحدة"],
+  ["/ heure", "/ الساعة"],
+  ["Tarifs hors taxe · paiement mensuel réglé à l'avance · +100 DH d'inscription (une seule fois)", "الأسعار دون الضريبة · الأداء الشهري مقدماً · 100 درهم رسوم تسجيل تُدفع مرة واحدة"],
+  ["Un professeur dédié", "مدرّس مخصّص"],
+  ["Un programme personnalisé", "برنامج مخصّص"],
+  ["Un résumé après chaque leçon", "ملخص بعد كل درس"],
+  ["Un suivi mensuel", "متابعة شهرية"],
+  ["Un accompagnement individuel, en anglais, espagnol, arabe ou français.", "مواكبة فردية بالإنجليزية أو الإسبانية أو العربية أو الفرنسية."],
+  ["FAQ", "الأسئلة الشائعة"],
+  ["Vos questions", "أسئلتكم"],
+  ["Combien de temps dure une séance ?", "ما مدة الحصة؟"],
+  ["Peut-on changer de professeur si besoin ?", "هل يمكن تغيير المدرّس عند الحاجة؟"],
+  ["Oui, bien sûr. Si le courant ne passe pas, nous trouvons un autre professeur.", "نعم بالتأكيد. إذا لم يكن المدرّس مناسباً، نختار مدرّساً آخر."],
+  ["Vous choisissez vos jours et vos horaires dans le formulaire d'inscription, puis nous vous contactons pour confirmer.", "تختارون الأيام والأوقات في استمارة التسجيل، ثم نتواصل معكم لتأكيدها."],
+  ["Un résumé après chaque leçon et un point complet chaque mois.", "ملخص بعد كل درس وتقرير شامل كل شهر."],
+  ["Quels supports sont utilisés pendant les cours ?", "ما الوسائل التعليمية المستخدمة؟"],
+  ["Quels sont les tarifs et comment payer ?", "ما الأسعار وكيف يتم الأداء؟"],
+  ["150 DH / heure (hors taxe). Paiement mensuel réglé à l'avance, avec 100 DH de frais d'inscription la première fois seulement.", "150 درهماً للساعة دون الضريبة. الأداء شهري ومسبق، مع 100 درهم رسوم تسجيل تُدفع مرة واحدة."],
+  ["Une bonne connexion internet et un ordinateur, une tablette ou un smartphone.", "اتصال جيد بالإنترنت وحاسوب أو جهاز لوحي أو هاتف ذكي."],
+  ["التعبير orale", "التعبير الشفهي"],
+  ["كل شهر, un point clair : les progrès, les points à renforcer et les prochaines priorités. Et بعد كل درس, un court résumé.", "كل شهر، نقدم صورة واضحة عن التقدّم والجوانب التي تحتاج إلى تعزيز والخطوات المقبلة، مع ملخص قصير بعد كل درس."],
+  ["الأسعار hors taxe · paiement mensuel réglé à l'avance · +100 DH d'inscription (une seule fois)", "الأسعار دون الضريبة · الأداء الشهري مقدماً · 100 درهم رسوم تسجيل تُدفع مرة واحدة"],
+  ["ملخص بعد كل درس et un point complet chaque mois.", "ملخص بعد كل درس وتقرير شامل كل شهر."],
+  ["150 DH / الساعة (hors taxe). Paiement mensuel réglé à l'avance, avec 100 DH de frais d'inscription la première fois seulement.", "150 درهماً للساعة دون الضريبة. الأداء شهري ومسبق، مع 100 درهم رسوم تسجيل تُدفع مرة واحدة."],
+];
 
-  let html = KIDS_HTML;
-  ADULT_REPLACEMENTS.forEach(([from, to]) => {
+const AR_KIDS_REPLACEMENTS = [
+  ["Un cours rien que pour <span class=\"c\">votre enfant", "درس مصمّم خصيصاً <span class=\"c\">لطفلكم"],
+  ["Anglais, espagnol, arabe ou français. Un professeur dédié, un rythme adapté au niveau et aux objectifs de votre enfant.", "الإنجليزية أو الإسبانية أو العربية أو الفرنسية، مع مدرّس مخصّص ووتيرة تناسب مستوى طفلكم وأهدافه."],
+  ["Inscrire mon enfant", "تسجيل طفلي"],
+  ["Enfant en cours particulier en ligne", "طفل يتابع درساً فردياً عبر الإنترنت"],
+  ["Cours d'anglais en ligne pour enfants", "دروس الإنجليزية الفردية للأطفال عبر الإنترنت"],
+  ["Cours d'espagnol en ligne pour enfants", "دروس الإسبانية الفردية للأطفال عبر الإنترنت"],
+  ["Cours d'arabe en ligne pour enfants", "دروس العربية الفردية للأطفال عبر الإنترنت"],
+  ["Cours de français en ligne pour enfants", "دروس الفرنسية الفردية للأطفال عبر الإنترنت"],
+  ["1 élève · 1 prof", "طفل واحد · مدرّس واحد"],
+  ["Un suivi adapté à chaque enfant.", "متابعة تناسب كل طفل."],
+  ["Professeur et enfant en cours individuel", "مدرّس وطفل في درس فردي"],
+  ["Un accompagnement <b>sur mesure</b> pour révéler tout le potentiel de votre enfant.", "مواكبة <b>مصمّمة خصيصاً</b> لإبراز كامل إمكانات طفلكم."],
+  ["Le parcours d'apprentissage de l'enfant", "مسار تعلّم الطفل"],
+  ["Un parcours flexible, pensé pour votre enfant.", "مسار مرن مصمّم لطفلكم."],
+  ["Ce que votre enfant veut atteindre.", "ما يريد طفلكم الوصول إليه."],
+  ["Construit autour de lui.", "مصمّم حول احتياجاته."],
+  ["Choisissez la langue de votre enfant et nous construisons le parcours idéal.", "اختاروا لغة طفلكم وسنبني له المسار الأنسب."],
+  ["On adapte le programme à l'objectif de votre enfant.", "نكيّف البرنامج مع هدف طفلكم."],
+  ["Des professeurs qualifiés,<br>choisis pour votre enfant", "مدرّسون مؤهلون<br>نختارهم لطفلكم"],
+  ["selon l'âge, le niveau, les objectifs et les disponibilités.", "حسب العمر والمستوى والأهداف والأوقات المناسبة."],
+  ["Vous savez où en est votre enfant", "تعرفون مستوى تقدّم طفلكم"],
+  ["Ce que disent <span class=\"c\">les parents</span>", "ما يقوله <span class=\"c\">الآباء والأمهات</span>"],
+  ["Des familles qui progressent avec", "عائلات تتقدّم مع"],
+  ["Prêt à aider votre enfant à progresser ?", "هل أنتم مستعدون لمساعدة طفلكم على التقدّم؟"],
+  ["Retrouvez ici les réponses aux questions les plus fréquentes des parents.", "إليكم إجابات عن أكثر أسئلة الآباء والأمهات شيوعاً."],
+  ["À partir de quel âge mon enfant peut-il suivre des cours ?", "ابتداءً من أي عمر يمكن لطفلي متابعة الدروس؟"],
+  ["À partir de 8 ans.", "ابتداءً من سن 8 سنوات."],
+  ["À partir d'1h00, avec 1h15 recommandé pour les enfants. Vous choisissez la durée.", "ابتداءً من ساعة، ونوصي بساعة و15 دقيقة للأطفال. أنتم تختارون المدة."],
+  ["Comment choisissez-vous le professeur de mon enfant ?", "كيف تختارون مدرّس طفلي؟"],
+  ["Selon son âge, son niveau, ses objectifs et ses disponibilités.", "حسب عمره ومستواه وأهدافه والأوقات المناسبة له."],
+  ["Mon enfant garde-t-il le même professeur ?", "هل يحتفظ طفلي بنفس المدرّس؟"],
+  ["Oui, le même professeur à chaque séance.", "نعم، نفس المدرّس في كل حصة."],
+  ["Comment choisir les horaires de mon enfant ?", "كيف أختار أوقات طفلي؟"],
+  ["Comment puis-je suivre les progrès de mon enfant ?", "كيف يمكنني متابعة تقدّم طفلي؟"],
+  ["Nous disposons d'une variété de manuels et de supports pédagogiques, et nous choisissons celui qui correspond le mieux aux besoins de votre enfant.", "نوفر مجموعة متنوعة من الكتب والوسائل التعليمية، ونختار الأنسب لاحتياجات طفلكم."],
+  ["De quoi mon enfant a-t-il besoin pour suivre le cours en ligne ?", "ماذا يحتاج طفلي لمتابعة الدرس عبر الإنترنت؟"],
+];
+
+const AR_ADULT_REPLACEMENTS = [
+  ["Un cours rien que pour <span class=\"c\">vous", "درس مصمّم خصيصاً <span class=\"c\">لكم"],
+  ["Anglais, espagnol, arabe ou français. Un professeur dédié, un rythme adapté à votre niveau et à vos objectifs.", "الإنجليزية أو الإسبانية أو العربية أو الفرنسية، مع مدرّس مخصّص ووتيرة تناسب مستواكم وأهدافكم."],
+  ["M'inscrire", "سجّل الآن"],
+  ["Adulte en cours particulier en ligne", "متعلم راشد يتابع درساً فردياً عبر الإنترنت"],
+  ["Cours d'anglais en ligne pour adultes", "دروس الإنجليزية الفردية للراشدين عبر الإنترنت"],
+  ["Cours d'espagnol en ligne pour adultes", "دروس الإسبانية الفردية للراشدين عبر الإنترنت"],
+  ["Cours d'arabe en ligne pour adultes", "دروس العربية الفردية للراشدين عبر الإنترنت"],
+  ["Cours de français en ligne pour adultes", "دروس الفرنسية الفردية للراشدين عبر الإنترنت"],
+  ["un apprenant · 1 prof", "متعلم واحد · مدرّس واحد"],
+  ["Un suivi adapté à chaque apprenant.", "متابعة تناسب كل متعلم."],
+  ["Professeur et enfant en cours individuel", "مدرّس ومتعلم في درس فردي"],
+  ["Un accompagnement <b>sur mesure</b> pour révéler tout votre potentiel.", "مواكبة <b>مصمّمة خصيصاً</b> لإبراز كامل إمكاناتكم."],
+  ["Le parcours d'apprentissage de l'enfant", "مسار التعلّم الفردي"],
+  ["Un parcours flexible, pensé pour vous.", "مسار مرن مصمّم لكم."],
+  ["Ce que vous voulez atteindre.", "ما تريدون الوصول إليه."],
+  ["Construit autour de vous.", "مصمّم حول احتياجاتكم."],
+  ["Choisissez votre langue et nous construisons le parcours idéal.", "اختاروا اللغة وسنبني لكم المسار الأنسب."],
+  ["On adapte le programme à votre objectif.", "نكيّف البرنامج مع هدفكم."],
+  ["Des professeurs qualifiés,<br>choisis pour vous", "مدرّسون مؤهلون<br>نختارهم لكم"],
+  ["selon l'âge, le niveau, les objectifs et les disponibilités.", "حسب المستوى والأهداف والأوقات المناسبة."],
+  ["Vous savez exactement où vous en êtes", "تعرفون مستوى تقدّمكم بدقة"],
+  ["Ce que disent <span class=\"c\">nos apprenants</span>", "ما يقوله <span class=\"c\">متعلمونا</span>"],
+  ["Des familles qui progressent avec", "متعلمون يتقدّمون مع"],
+  ["Prêt à atteindre vos objectifs ?", "هل أنتم مستعدون لتحقيق أهدافكم؟"],
+  ["Retrouvez ici les réponses aux questions les plus fréquentes des adultes.", "إليكم إجابات عن أكثر أسئلة المتعلمين الراشدين شيوعاً."],
+  ["Puis-je commencer même si je suis débutant ?", "هل يمكنني البدء حتى لو كنت مبتدئاً؟"],
+  ["Nos cours particuliers sont ouverts aux adultes de tous niveaux.", "دروسنا الفردية مفتوحة للراشدين من جميع المستويات."],
+  ["À partir d'1h00, avec des créneaux jusqu'à 2h00 pour les adultes. Vous choisissez la durée.", "ابتداءً من ساعة، مع إمكانية اختيار حصص تصل إلى ساعتين. أنتم تختارون المدة."],
+  ["Comment choisissez-vous mon professeur ?", "كيف تختارون مدرّسي؟"],
+  ["Selon votre niveau, vos objectifs et vos disponibilités.", "حسب مستواكم وأهدافكم والأوقات المناسبة لكم."],
+  ["Est-ce que je garde le même professeur ?", "هل أحتفظ بنفس المدرّس؟"],
+  ["Oui, le même professeur à chaque séance.", "نعم، نفس المدرّس في كل حصة."],
+  ["Comment choisir mes horaires ?", "كيف أختار أوقاتي؟"],
+  ["Comment puis-je suivre mes progrès ?", "كيف يمكنني متابعة تقدّمي؟"],
+  ["Nous disposons d'une variété de manuels et de supports pédagogiques, et nous choisissons celui qui correspond le mieux à vos besoins.", "نوفر مجموعة متنوعة من الكتب والوسائل التعليمية، ونختار الأنسب لاحتياجاتكم."],
+  ["De quoi ai-je besoin pour suivre le cours en ligne ?", "ماذا أحتاج لمتابعة الدرس عبر الإنترنت؟"],
+];
+
+function applyReplacements(html, replacements) {
+  replacements.forEach(([from, to]) => {
     html = html.replaceAll(from, to);
   });
-  return html.replace(
-    '<div class="toggle" role="tablist"><button class="on" role="tab" aria-selected="true">Enfants</button><button role="tab" aria-selected="false">Adultes</button></div>',
-    '<div class="toggle" role="tablist"><button role="tab" aria-selected="false">Enfants</button><button class="on" role="tab" aria-selected="true">Adultes</button></div>'
-  );
+  return html;
+}
+
+function getPageHtml(audience, locale) {
+  let html = KIDS_HTML;
+
+  if (audience === "adults") {
+    html = applyReplacements(html, ADULT_REPLACEMENTS);
+    html = html.replace(
+      '<div class="toggle" role="tablist"><button class="on" role="tab" aria-selected="true">Enfants</button><button role="tab" aria-selected="false">Adultes</button></div>',
+      '<div class="toggle" role="tablist"><button role="tab" aria-selected="false">Enfants</button><button class="on" role="tab" aria-selected="true">Adultes</button></div>'
+    );
+  }
+
+  if (locale === "ar") {
+    html = applyReplacements(html, audience === "kids" ? AR_KIDS_REPLACEMENTS : AR_ADULT_REPLACEMENTS);
+    html = applyReplacements(html, AR_COMMON_REPLACEMENTS);
+  }
+
+  return html;
 }
 
 export default function CoursParticuliersClient({ audience = "kids" }) {
   const locale = useLocale();
   const router = useRouter();
-  const html = useMemo(() => getPageHtml(audience), [audience]);
+  const html = useMemo(() => getPageHtml(audience, locale), [audience, locale]);
 
   useEffect(() => {
     const root = document.querySelector(".cp-root");
@@ -591,7 +811,7 @@ export default function CoursParticuliersClient({ audience = "kids" }) {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
-      <div className="cp-root" dangerouslySetInnerHTML={{ __html: html }} />
+      <div className="cp-root" dir={locale === "ar" ? "rtl" : "ltr"} dangerouslySetInnerHTML={{ __html: html }} />
     </>
   );
 }

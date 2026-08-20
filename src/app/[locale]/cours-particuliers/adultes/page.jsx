@@ -4,9 +4,13 @@ const BASE_URL = 'https://www.xchangelab.info';
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
-  const title = 'Cours particuliers de langues en ligne pour adultes | Exchange Lab';
-  const description =
-    "Cours particuliers en ligne pour adultes : anglais, espagnol, arabe ou français. Un professeur dédié et des horaires adaptés à vos objectifs.";
+  const isArabic = locale === 'ar';
+  const title = isArabic
+    ? 'دروس لغات فردية للراشدين عبر الإنترنت | Exchange Lab'
+    : 'Cours particuliers de langues en ligne pour adultes | Exchange Lab';
+  const description = isArabic
+    ? 'دروس فردية للراشدين عبر الإنترنت في الإنجليزية والإسبانية والعربية والفرنسية، مع مدرّس مخصّص وأوقات تناسب أهدافكم.'
+    : "Cours particuliers en ligne pour adultes : anglais, espagnol, arabe ou français. Un professeur dédié et des horaires adaptés à vos objectifs.";
 
   return {
     title,

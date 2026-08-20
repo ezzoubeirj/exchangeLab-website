@@ -5,9 +5,13 @@ const BASE_URL = 'https://www.xchangelab.info';
 export async function generateMetadata({ params }) {
   const { locale } = await params;
 
-  const title = 'Cours particuliers de langues en ligne pour enfants | Exchange Lab';
-  const description =
-    "Cours particuliers en ligne pour enfants : anglais, espagnol, arabe ou français. Un professeur dédié, un rythme adapté au niveau et aux objectifs de votre enfant. Suivi mensuel des progrès.";
+  const isArabic = locale === 'ar';
+  const title = isArabic
+    ? 'دروس لغات فردية للأطفال عبر الإنترنت | Exchange Lab'
+    : 'Cours particuliers de langues en ligne pour enfants | Exchange Lab';
+  const description = isArabic
+    ? 'دروس فردية للأطفال عبر الإنترنت في الإنجليزية والإسبانية والعربية والفرنسية، مع مدرّس مخصّص ومتابعة شهرية للتقدّم.'
+    : "Cours particuliers en ligne pour enfants : anglais, espagnol, arabe ou français. Un professeur dédié, un rythme adapté au niveau et aux objectifs de votre enfant. Suivi mensuel des progrès.";
 
   return {
     title,

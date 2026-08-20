@@ -1060,6 +1060,11 @@ const scoringSystems = {
     { min: 15, max: 17, level: "Beginner 3 S1" },
     { min: 18, max: 20, level: "Beginner 3 S2" },
   ],
+  SpanishAdults: [
+    { min: 0, max: 8, level: "Beginner 1" },
+    { min: 9, max: 14, level: "Beginner 2" },
+    { min: 15, max: 20, level: "Beginner 3" },
+  ],
 }
 
 export default function LanguageTest({ formData, onComplete }) {
@@ -1080,14 +1085,14 @@ export default function LanguageTest({ formData, onComplete }) {
     const lang = formData?.language
     const userType = formData?.userType
   
-    if (lang === "Spanish") return "Spanish"
+    if (lang === "Spanish") return userType === "parent" ? "Spanish" : "SpanishAdults"
     if (lang === "childEnglish") return "EnglishKids"
   
     return "EnglishAdults"
   }
 
   const questionSetKey = getQuestionSetKey()
-  const questions = questionSets[questionSetKey] || []
+  const questions = questionSets[questionSetKey === "SpanishAdults" ? "Spanish" : questionSetKey] || []
   const questionsPerPage = 3
   const totalPages = Math.ceil(questions.length / questionsPerPage)
   
