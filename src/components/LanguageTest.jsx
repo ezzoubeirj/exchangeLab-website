@@ -1062,7 +1062,7 @@ const scoringSystems = {
   ],
 }
 
-export default function LanguageTest({ formData }) {
+export default function LanguageTest({ formData, onComplete }) {
   const [testState, setTestState] = useState("testing")
   const [currentPage, setCurrentPage] = useState(0)
   const [currentQuestionInPage, setCurrentQuestionInPage] = useState(0)
@@ -1071,6 +1071,7 @@ export default function LanguageTest({ formData }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [score, setScore] = useState(0)
   const [level, setLevel] = useState("")
+  const [submissionError, setSubmissionError] = useState("")
   const t = useTranslations()
   const locale = useLocale()
 
@@ -1140,6 +1141,7 @@ export default function LanguageTest({ formData }) {
       setTimeout(scrollToTop, 0)
     } else {
       setIsSubmitting(true)
+      setSubmissionError("")
 
       const calculatedScore = newAllAnswers.reduce((acc, answer, index) => {
         return acc + (answer === questions[index].correctAnswer ? 1 : 0)
@@ -1149,7 +1151,7 @@ export default function LanguageTest({ formData }) {
       const scoringSystem = scoringSystems[questionSetKey]
       const levelResult = scoringSystem.find(
         range => calculatedScore >= range.min && calculatedScore <= range.max
-      )
+      ) || scoringSystem[scoringSystem.length - 1]
 
     const testResults = {
       ...formData,
@@ -1169,18 +1171,28 @@ export default function LanguageTest({ formData }) {
     //call api/register
     // await new Promise((r) => setTimeout(r, 1000))
     try {
-      // Replace with your actual backend endpoint
-      console.log("call api to register the lead: ", testResults)
-      await fetch("/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(testResults),
-      })
+      if (onComplete) {
+        await onComplete(testResults)
+      } else {
+        console.log("call api to register the lead: ", testResults)
+        await fetch("/api/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(testResults),
+        })
+      }
 
     } catch (error) {
       console.error("Error lead registration:", error)
+      if (onComplete) {
+        setSubmissionError(locale === "ar"
+          ? "تعذر حفظ نتيجة الاختبار. يرجى المحاولة مرة أخرى."
+          : "Impossible d'enregistrer le résultat. Veuillez réessayer.")
+        setIsSubmitting(false)
+        return
+      }
     }
 
       setScore(calculatedScore)
@@ -1306,6 +1318,11 @@ export default function LanguageTest({ formData }) {
             </div>
 
             <div className="text-center pt-6">
+              {submissionError && (
+                <p role="alert" className="mb-4 rounded-lg bg-red-50 p-3 text-sm font-semibold text-red-700">
+                  {submissionError}
+                </p>
+              )}
               <Button
                 onClick={handleNextPage}
                 disabled={isSubmitting}

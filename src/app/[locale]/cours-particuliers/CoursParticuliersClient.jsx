@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
+import { useLocale } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
 
 const CSS = `
 .cp-root{
@@ -235,7 +237,7 @@ const CSS = `
 }
 `;
 
-const HTML = `
+const KIDS_HTML = `
 <section class="hero-sec">
   <div class="wrap hero">
     <div>
@@ -451,7 +453,48 @@ const HTML = `
 </div></section>
 `;
 
-export default function CoursParticuliersClient() {
+const ADULT_REPLACEMENTS = [
+  ["Un cours rien que pour <span class=\"c\">votre enfant", "Un cours rien que pour <span class=\"c\">vous"],
+  ["Un professeur dédié, un rythme adapté au niveau et aux objectifs de votre enfant.", "Un professeur dédié, un rythme adapté à votre niveau et à vos objectifs."],
+  ["Inscrire mon enfant", "M'inscrire"],
+  ["Enfant en cours particulier en ligne", "Adulte en cours particulier en ligne"],
+  ["choisis pour votre enfant", "choisis pour vous"],
+  ["Vous savez où en est votre enfant", "Vous savez exactement où vous en êtes"],
+  ["les parents", "nos apprenants"],
+  ["des parents", "des adultes"],
+  ["À partir de quel âge mon enfant peut-il suivre des cours ?", "Puis-je commencer même si je suis débutant ?"],
+  ["Comment choisissez-vous le professeur de mon enfant ?", "Comment choisissez-vous mon professeur ?"],
+  ["Mon enfant garde-t-il le même professeur ?", "Est-ce que je garde le même professeur ?"],
+  ["Comment choisir les horaires de mon enfant ?", "Comment choisir mes horaires ?"],
+  ["Comment puis-je suivre les progrès de mon enfant ?", "Comment puis-je suivre mes progrès ?"],
+  ["De quoi mon enfant a-t-il besoin pour suivre le cours en ligne ?", "De quoi ai-je besoin pour suivre le cours en ligne ?"],
+  ["votre enfant", "vous"],
+  ["Votre enfant", "Vous"],
+  ["mon enfant", "moi"],
+  ["Mon enfant", "Je"],
+  ["son âge, son niveau, ses objectifs et ses disponibilités", "votre niveau, vos objectifs et vos disponibilités"],
+  ["À partir de 8 ans.", "Nos cours particuliers sont ouverts aux adultes de tous niveaux."],
+  ["avec 1h15 recommandé pour les enfants", "avec des créneaux jusqu'à 2h00 pour les adultes"],
+];
+
+function getPageHtml(audience) {
+  if (audience === "kids") return KIDS_HTML;
+
+  let html = KIDS_HTML;
+  ADULT_REPLACEMENTS.forEach(([from, to]) => {
+    html = html.replaceAll(from, to);
+  });
+  return html.replace(
+    '<div class="toggle" role="tablist"><button class="on" role="tab" aria-selected="true">Enfants</button><button role="tab" aria-selected="false">Adultes</button></div>',
+    '<div class="toggle" role="tablist"><button role="tab" aria-selected="false">Enfants</button><button class="on" role="tab" aria-selected="true">Adultes</button></div>'
+  );
+}
+
+export default function CoursParticuliersClient({ audience = "kids" }) {
+  const locale = useLocale();
+  const router = useRouter();
+  const html = useMemo(() => getPageHtml(audience), [audience]);
+
   useEffect(() => {
     const root = document.querySelector(".cp-root");
     if (!root) return;
@@ -491,6 +534,19 @@ export default function CoursParticuliersClient() {
 
     // language selector tabs
     const cleanups = [];
+
+    root.querySelectorAll(".btn-coral").forEach((button) => {
+      const onEnroll = () => router.push(`/cours-particuliers/inscription?audience=${audience}`);
+      button.addEventListener("click", onEnroll);
+      cleanups.push(() => button.removeEventListener("click", onEnroll));
+    });
+
+    const audienceTabs = [...root.querySelectorAll(".toggle button")];
+    audienceTabs.forEach((button, index) => {
+      const onAudience = () => router.push(index === 0 ? "/cours-particuliers" : "/cours-particuliers/adultes");
+      button.addEventListener("click", onAudience);
+      cleanups.push(() => button.removeEventListener("click", onAudience));
+    });
     const ltabs = [...root.querySelectorAll(".ltab")];
     const lpanels = [...root.querySelectorAll(".lpanel")];
     ltabs.forEach((t) => {
@@ -530,12 +586,12 @@ export default function CoursParticuliersClient() {
       io.disconnect();
       cleanups.forEach((fn) => fn());
     };
-  }, []);
+  }, [audience, locale, router]);
 
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
-      <div className="cp-root" dangerouslySetInnerHTML={{ __html: HTML }} />
+      <div className="cp-root" dangerouslySetInnerHTML={{ __html: html }} />
     </>
   );
 }
