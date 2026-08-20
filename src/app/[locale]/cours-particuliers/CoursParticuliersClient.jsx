@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 
@@ -38,9 +38,9 @@ const CSS = `
 .cp-root .subbar{background:#fff;border-bottom:1px solid var(--line)}
 .cp-root .subbar-in{display:flex;justify-content:flex-end;padding:12px 0}
 .cp-root .toggle-wrap{position:relative}
-.cp-root .toggle{display:inline-flex;background:#e7eefb;border-radius:40px;padding:5px;gap:3px;position:relative;z-index:2}
-.cp-root .toggle button{border:none;background:transparent;padding:9px 20px;border-radius:40px;font-weight:700;font-family:inherit;cursor:pointer;color:var(--muted);font-size:14px;transition:.25s var(--ease)}
-.cp-root .toggle button.on{background:#fff;color:var(--blue-d);box-shadow:0 3px 10px rgba(43,83,144,.16)}
+.cp-root .toggle{display:inline-flex;background:#3a6cb4;border-radius:40px;padding:5px;gap:3px;position:relative;z-index:2;box-shadow:0 10px 24px -12px rgba(43,83,144,.7)}
+.cp-root .toggle button{border:none;background:transparent;padding:9px 20px;border-radius:40px;font-weight:800;font-family:inherit;cursor:pointer;color:#fff;font-size:14px;transition:.25s var(--ease)}
+.cp-root .toggle button.on{background:#fff;color:var(--blue-d);box-shadow:0 3px 10px rgba(25,55,102,.22)}
 @keyframes cpdraw{to{stroke-dashoffset:0}}
 .cp-root .hero-toggle{position:absolute;top:22px;right:0;z-index:4}
 
@@ -110,13 +110,13 @@ const CSS = `
 .cp-root .lstabs{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
 .cp-root .ltab{border:1px solid var(--line);background:#fff;color:var(--muted);font-family:inherit;font-weight:700;font-size:15px;padding:11px 26px;border-radius:40px;cursor:pointer;transition:transform .2s var(--ease),background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease)}
 .cp-root .ltab:hover{transform:translateY(-2px)}
-.cp-root .ltab.en.on{background:#3a6cb4;border-color:#3a6cb4;color:#fff}
-.cp-root .ltab.es.on{background:#e9a52f;border-color:#e9a52f;color:#fff}
-.cp-root .ltab.ar.on{background:#37b3a5;border-color:#37b3a5;color:#fff}
-.cp-root .ltab.fr.on{background:#8f83d8;border-color:#8f83d8;color:#fff}
+.cp-root[data-active-language="en"] .ltab.en{background:#3a6cb4;border-color:#3a6cb4;color:#fff}
+.cp-root[data-active-language="es"] .ltab.es{background:#e9a52f;border-color:#e9a52f;color:#fff}
+.cp-root[data-active-language="ar"] .ltab.ar{background:#37b3a5;border-color:#37b3a5;color:#fff}
+.cp-root[data-active-language="fr"] .ltab.fr{background:#8f83d8;border-color:#8f83d8;color:#fff}
 .cp-root .lpanels{position:relative;margin-top:34px}
 .cp-root .lpanel{display:none;grid-template-columns:1fr 1.05fr;gap:52px;align-items:center}
-.cp-root .lpanel.on{display:grid;animation:cpfade .45s var(--ease)}
+.cp-root[data-active-language="en"] .lpanel.en,.cp-root[data-active-language="es"] .lpanel.es,.cp-root[data-active-language="ar"] .lpanel.ar,.cp-root[data-active-language="fr"] .lpanel.fr{display:grid;animation:cpfade .45s var(--ease)}
 @keyframes cpfade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .cp-root .lp-badge{display:inline-flex;align-items:center;justify-content:center;min-width:48px;height:48px;padding:0 13px;border-radius:15px;color:#fff;font-weight:800;font-size:19px}
 .cp-root .lpanel.en .lp-badge{background:#3a6cb4}.cp-root .lpanel.es .lp-badge{background:#e9a52f}.cp-root .lpanel.ar .lp-badge{background:#37b3a5}.cp-root .lpanel.fr .lp-badge{background:#8f83d8}
@@ -237,14 +237,31 @@ const CSS = `
 @media(max-width:960px){
   .cp-root .hero,.cp-root .why-grid,.cp-root .how-grid,.cp-root .prog-grid{grid-template-columns:1fr;gap:34px}
   .cp-root .proof,.cp-root .bstrip{grid-template-columns:1fr 1fr}.cp-root .ben+.ben::before{display:none}
-  .cp-root .lpanel.on{grid-template-columns:1fr;gap:30px}.cp-root .lp-media{order:-1}
+  .cp-root .lpanel{grid-template-columns:1fr;gap:30px}.cp-root .lp-media{order:-1}
   .cp-root .steps .spine{display:none}.cp-root .step:nth-child(even){margin-left:0}
   .cp-root .suivi-blob{display:none}.cp-root .motion{display:none}.cp-root .arrowheart{position:static;width:40%;margin:10px auto 0}
   .cp-root .avis-wa,.cp-root .avis-lh{display:none}
 }
-@media(max-width:560px){
+@media(max-width:600px){
+  .cp-root .hero{display:flex;flex-direction:column;padding:104px clamp(20px,5vw,72px) 64px}
+  .cp-root .hero>div:first-child{order:2;width:100%;min-width:0}
+  .cp-root .hero h1 .c{white-space:normal}
+  .cp-root .hv{order:1;min-height:0;width:100%;display:flex;flex-direction:column;padding-top:0}
+  .cp-root .hero-toggle,.cp-root[dir="rtl"] .hero-toggle{position:static;inset:auto;align-self:center;order:-1;margin-bottom:18px}
+  .cp-root .hv .blobbg{display:none}
+  .cp-root .hv .scene{width:100%}
+  .cp-root .report-wrap{padding-block:18px}
+  .cp-root .report{width:85%;margin-inline:auto;padding:22px;transform:rotate(-4deg)}
   .cp-root .bstrip,.cp-root .langs,.cp-root .prooftrio{grid-template-columns:1fr}
-  .cp-root .wc .ptext,.cp-root .spanel .ptext{position:static;width:100%;padding:0 18px 18px}
+  .cp-root .wc .ptext{right:8%;width:60%;padding:0 3%}
+  .cp-root[dir="rtl"] .wc .ptext{right:auto;left:8%}
+  .cp-root .wc .ptext h3{font-size:15px;line-height:1.15}
+  .cp-root .step{grid-template-columns:52px 1fr;gap:12px}
+  .cp-root .snum{width:52px;height:52px;font-size:22px}
+  .cp-root .spanel .ptext{right:0;width:56%;padding-right:5%}
+  .cp-root[dir="rtl"] .spanel .ptext{right:auto;left:0;padding-right:0;padding-left:5%}
+  .cp-root .spanel .ptext h4{font-size:13px}
+  .cp-root .spanel .ptext p{font-size:10.5px;line-height:1.25}
 }
 `;
 
@@ -321,13 +338,13 @@ const KIDS_HTML = `
   </div>
   <div class="langsel reveal">
     <div class="lstabs" role="tablist">
-      <button type="button" class="ltab en on" data-l="en" role="tab">Anglais</button>
-      <button type="button" class="ltab es" data-l="es" role="tab">Espagnol</button>
-      <button type="button" class="ltab ar" data-l="ar" role="tab">Arabe</button>
-      <button type="button" class="ltab fr" data-l="fr" role="tab">Français</button>
+      <button type="button" class="ltab en" data-l="en" role="tab" aria-selected="true" aria-controls="language-panel-en">Anglais</button>
+      <button type="button" class="ltab es" data-l="es" role="tab" aria-selected="false" aria-controls="language-panel-es">Espagnol</button>
+      <button type="button" class="ltab ar" data-l="ar" role="tab" aria-selected="false" aria-controls="language-panel-ar">Arabe</button>
+      <button type="button" class="ltab fr" data-l="fr" role="tab" aria-selected="false" aria-controls="language-panel-fr">Français</button>
     </div>
     <div class="lpanels">
-      <div class="lpanel en on">
+      <div class="lpanel en" id="language-panel-en" role="tabpanel">
         <div class="lp-text">
           <span class="lp-badge">En</span>
           <h3>Anglais</h3>
@@ -337,7 +354,7 @@ const KIDS_HTML = `
         </div>
         <div class="lp-media"><div class="lp-cap">L'anglais, la langue internationale des affaires, des études et d'Internet.</div><img src="/one-to-one/lang-en-card.png" alt="Cours d'anglais en ligne pour enfants"></div>
       </div>
-      <div class="lpanel es">
+      <div class="lpanel es" id="language-panel-es" role="tabpanel">
         <div class="lp-text">
           <span class="lp-badge">Es</span>
           <h3>Espagnol</h3>
@@ -347,7 +364,7 @@ const KIDS_HTML = `
         </div>
         <div class="lp-media"><div class="lp-cap">L'espagnol, parlé par plus de 500 millions de personnes.</div><img src="/one-to-one/lang-es-card.png" alt="Cours d'espagnol en ligne pour enfants"></div>
       </div>
-      <div class="lpanel ar">
+      <div class="lpanel ar" id="language-panel-ar" role="tabpanel">
         <div class="lp-text">
           <span class="lp-badge">ع</span>
           <h3>Arabe · العربية</h3>
@@ -357,7 +374,7 @@ const KIDS_HTML = `
         </div>
         <div class="lp-media"><div class="lp-cap">L'arabe, la langue de la culture et des racines.</div><img src="/one-to-one/lang-ar-card.png" alt="Cours d'arabe en ligne pour enfants"></div>
       </div>
-      <div class="lpanel fr">
+      <div class="lpanel fr" id="language-panel-fr" role="tabpanel">
         <div class="lp-text">
           <span class="lp-badge">Fr</span>
           <h3>Français</h3>
@@ -713,7 +730,30 @@ function getPageHtml(audience, locale) {
 export default function CoursParticuliersClient({ audience = "kids" }) {
   const locale = useLocale();
   const router = useRouter();
+  const [activeLanguage, setActiveLanguage] = useState("en");
   const html = useMemo(() => getPageHtml(audience, locale), [audience, locale]);
+
+  useEffect(() => setActiveLanguage("en"), [audience, locale]);
+
+  useEffect(() => {
+    const root = document.querySelector(".cp-root");
+    if (!root) return;
+
+    root.querySelectorAll(".ltab").forEach((button) => {
+      button.setAttribute("aria-selected", String(button.dataset.l === activeLanguage));
+    });
+    root.querySelectorAll(".lpanel").forEach((panel) => {
+      panel.setAttribute("aria-hidden", String(!panel.classList.contains(activeLanguage)));
+    });
+  }, [activeLanguage, html]);
+
+  const handleRootClick = (event) => {
+    const tab = event.target.closest?.(".ltab");
+    const language = tab?.dataset.l;
+    if (!tab || !["en", "es", "ar", "fr"].includes(language)) return;
+
+    setActiveLanguage(language);
+  };
 
   useEffect(() => {
     const root = document.querySelector(".cp-root");
@@ -767,18 +807,6 @@ export default function CoursParticuliersClient({ audience = "kids" }) {
       button.addEventListener("click", onAudience);
       cleanups.push(() => button.removeEventListener("click", onAudience));
     });
-    const ltabs = [...root.querySelectorAll(".ltab")];
-    const lpanels = [...root.querySelectorAll(".lpanel")];
-    ltabs.forEach((t) => {
-      const onTab = () => {
-        const l = t.dataset.l;
-        ltabs.forEach((x) => x.classList.toggle("on", x === t));
-        lpanels.forEach((p) => p.classList.toggle("on", p.classList.contains(l)));
-      };
-      t.addEventListener("click", onTab);
-      cleanups.push(() => t.removeEventListener("click", onTab));
-    });
-
     // smooth accordion
     root.querySelectorAll(".faq details").forEach((d) => {
       const ans = d.querySelector(".ans");
@@ -811,7 +839,13 @@ export default function CoursParticuliersClient({ audience = "kids" }) {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
-      <div className="cp-root" dir={locale === "ar" ? "rtl" : "ltr"} dangerouslySetInnerHTML={{ __html: html }} />
+      <div
+        className="cp-root"
+        dir={locale === "ar" ? "rtl" : "ltr"}
+        data-active-language={activeLanguage}
+        onClick={handleRootClick}
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
     </>
   );
 }
