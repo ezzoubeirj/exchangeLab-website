@@ -25,22 +25,42 @@ const CSS = `
 .cp-root .eyebrow::before{content:"";width:26px;height:2px;background:var(--coral);border-radius:2px}
 .cp-root h2{font-size:clamp(28px,4.2vw,46px);font-weight:800;color:var(--blue-ink);letter-spacing:-.025em;line-height:1.06}
 .cp-root .sub{color:var(--muted);font-size:clamp(16px,1.4vw,18px);max-width:54ch;margin-top:16px}
-.cp-root .btn{display:inline-flex;align-items:center;gap:9px;border-radius:40px;padding:15px 28px;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer;border:none;transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+.cp-root .btn{display:inline-flex;align-items:center;gap:9px;border-radius:40px;padding:15px 28px;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer;border:none;transition:transform .24s var(--ease),box-shadow .24s var(--ease)}
 .cp-root .btn-coral{background:var(--coral);color:#fff;box-shadow:0 14px 26px -12px rgba(226,107,77,.75)}
-.cp-root .btn-coral:hover{transform:translateY(-2px)}.cp-root .btn-coral:active{transform:translateY(0) scale(.98)}
+.cp-root .btn-coral:hover{transform:translateY(-3px);box-shadow:0 18px 30px -12px rgba(226,107,77,.78)}.cp-root .btn-coral:active{transform:translateY(0) scale(.98)}
 .cp-root .btn-coral:hover .ar{transform:translateX(4px)}.cp-root .ar{transition:transform .22s var(--ease)}
 .cp-root .btn-ghost{background:transparent;color:var(--blue);font-weight:700}.cp-root .btn-ghost:hover{transform:translateX(3px)}
 .cp-root :focus-visible{outline:3px solid rgba(58,108,180,.5);outline-offset:3px;border-radius:6px}
-.cp-root .reveal{transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--i,0)*80ms)}
-@media (prefers-reduced-motion:reduce){.cp-root *{animation:none!important}}
+.cp-root .reveal{opacity:0;transform:translateY(20px);transition:opacity .68s var(--ease),transform .68s var(--ease);transition-delay:calc(var(--i,0)*75ms)}
+.cp-root .reveal.in{opacity:1;transform:none}
+@keyframes cpHeroFade{from{opacity:0}to{opacity:1}}
+@keyframes cpHeroRise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.cp-root .hero>div:first-child>.reveal{animation:cpHeroRise .62s var(--ease) both}
+.cp-root .hero>div:first-child>.reveal:nth-child(1){animation-delay:.32s}
+.cp-root .hero>div:first-child>.reveal:nth-child(2){animation-delay:.42s}
+.cp-root .hero>div:first-child>.reveal:nth-child(3){animation-delay:.52s}
+.cp-root .hero>div:first-child>.reveal:nth-child(4){animation-delay:.62s}
+.cp-root .hero>div:first-child>.reveal:nth-child(5){animation-delay:.72s}
+.cp-root .hero .hv.reveal{opacity:1;transform:none;transition:none}
+.cp-root .hero-toggle{opacity:0;animation:cpHeroFade .42s var(--ease) .04s both}
+.cp-root .hv .scene{opacity:0;animation:cpHeroRise .68s var(--ease) .14s both}
+.cp-root .hv .badge{opacity:0;animation:cpHeroRise .55s var(--ease) .28s both,cpfloaty 6s ease-in-out 1.1s infinite}
+.cp-root .hv .b2{animation-duration:.55s,7s;animation-delay:.36s,1.3s}
+@media (prefers-reduced-motion:reduce){
+  .cp-root *{animation:none!important;scroll-behavior:auto!important}
+  .cp-root .reveal,.cp-root .hero-toggle,.cp-root .hv .scene,.cp-root .hv .badge{opacity:1!important;transform:none!important;transition:none!important}
+}
 .cp-root .shead{max-width:640px}.cp-root .shead h2{margin-top:14px}
 
 .cp-root .subbar{background:#fff;border-bottom:1px solid var(--line)}
 .cp-root .subbar-in{display:flex;justify-content:flex-end;padding:12px 0}
 .cp-root .toggle-wrap{position:relative}
-.cp-root .toggle{display:inline-flex;background:#3a6cb4;border-radius:40px;padding:5px;gap:3px;position:relative;z-index:2;box-shadow:0 10px 24px -12px rgba(43,83,144,.7)}
-.cp-root .toggle button{border:none;background:transparent;padding:9px 20px;border-radius:40px;font-weight:800;font-family:inherit;cursor:pointer;color:#fff;font-size:14px;transition:.25s var(--ease)}
-.cp-root .toggle button.on{background:#fff;color:var(--blue-d);box-shadow:0 3px 10px rgba(25,55,102,.22)}
+.cp-root .toggle{display:grid;grid-template-columns:1fr 1fr;background:#3a6cb4;border-radius:40px;padding:5px;gap:3px;position:relative;z-index:2;box-shadow:0 10px 24px -12px rgba(43,83,144,.7)}
+.cp-root .toggle::before{content:"";position:absolute;inset-block:5px;inset-inline-start:5px;width:calc(50% - 6.5px);border-radius:34px;background:#fff;box-shadow:0 3px 10px rgba(25,55,102,.22);transition:transform .32s var(--ease)}
+.cp-root[data-audience="adults"][dir="ltr"] .toggle::before{transform:translateX(calc(100% + 3px))}
+.cp-root[data-audience="adults"][dir="rtl"] .toggle::before{transform:translateX(calc(-100% - 3px))}
+.cp-root .toggle button{position:relative;z-index:1;border:none;background:transparent;padding:9px 20px;border-radius:40px;font-weight:800;font-family:inherit;cursor:pointer;color:#fff;font-size:14px;transition:color .25s var(--ease),transform .25s var(--ease)}
+.cp-root .toggle button.on{color:var(--blue-d)}
 @keyframes cpdraw{to{stroke-dashoffset:0}}
 .cp-root .hero-toggle{position:absolute;top:22px;right:0;z-index:4}
 
@@ -59,8 +79,8 @@ const CSS = `
 .cp-root .hv .blobbg{position:absolute;inset:20px 4px 10px 30px;background:radial-gradient(circle at 60% 40%,#dbe8fb,#eef4fc);border-radius:44% 56% 52% 48%/54% 46% 54% 46%;z-index:0}
 .cp-root .hv .badge{position:absolute;z-index:2;background:#fff;border-radius:16px;padding:11px 15px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;color:var(--blue-ink)}
 .cp-root .hv .badge small{color:var(--muted);font-weight:600;display:block;font-size:11px}
-.cp-root .hv .b1{top:37%;right:-2%;animation:cpfloaty 6s ease-in-out infinite}
-.cp-root .hv .b2{bottom:10%;left:-4%;animation:cpfloaty 7s ease-in-out infinite .6s}
+.cp-root .hv .b1{top:37%;right:-2%;animation:cpHeroRise .55s var(--ease) .28s both,cpfloaty 6s ease-in-out 1.1s infinite}
+.cp-root .hv .b2{bottom:10%;left:-4%;animation:cpHeroRise .55s var(--ease) .36s both,cpfloaty 7s ease-in-out 1.3s infinite}
 .cp-root .ic{width:34px;height:34px;border-radius:10px;background:var(--band);display:flex;align-items:center;justify-content:center;color:var(--blue);flex:0 0 auto}
 @keyframes cpfloaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 
@@ -116,8 +136,10 @@ const CSS = `
 .cp-root[data-active-language="fr"] .ltab.fr{background:#8f83d8;border-color:#8f83d8;color:#fff}
 .cp-root .lpanels{position:relative;margin-top:34px}
 .cp-root .lpanel{display:none;grid-template-columns:1fr 1.05fr;gap:52px;align-items:center}
-.cp-root[data-active-language="en"] .lpanel.en,.cp-root[data-active-language="es"] .lpanel.es,.cp-root[data-active-language="ar"] .lpanel.ar,.cp-root[data-active-language="fr"] .lpanel.fr{display:grid;animation:cpfade .45s var(--ease)}
-@keyframes cpfade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.cp-root[data-active-language="en"] .lpanel.en,.cp-root[data-active-language="es"] .lpanel.es,.cp-root[data-active-language="ar"] .lpanel.ar,.cp-root[data-active-language="fr"] .lpanel.fr{display:grid;animation:cpfade .28s var(--ease)}
+.cp-root[data-active-language="en"] .lpanel.en .lp-media img,.cp-root[data-active-language="es"] .lpanel.es .lp-media img,.cp-root[data-active-language="ar"] .lpanel.ar .lp-media img,.cp-root[data-active-language="fr"] .lpanel.fr .lp-media img{animation:cpLangZoom .3s var(--ease)}
+@keyframes cpfade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes cpLangZoom{from{opacity:.72;transform:scale(.985)}to{opacity:1;transform:none}}
 .cp-root .lp-badge{display:inline-flex;align-items:center;justify-content:center;min-width:48px;height:48px;padding:0 13px;border-radius:15px;color:#fff;font-weight:800;font-size:19px}
 .cp-root .lpanel.en .lp-badge{background:#3a6cb4}.cp-root .lpanel.es .lp-badge{background:#e9a52f}.cp-root .lpanel.ar .lp-badge{background:#37b3a5}.cp-root .lpanel.fr .lp-badge{background:#8f83d8}
 .cp-root .lp-text h3{font-size:clamp(27px,3.4vw,40px);font-weight:800;color:var(--blue-ink);margin:18px 0 10px;letter-spacing:-.02em}
@@ -250,10 +272,16 @@ const CSS = `
 .cp-root[dir="rtl"] .trail{direction:ltr}
 .cp-root[dir="rtl"] .track{animation-direction:reverse}
 
+@media(hover:hover) and (pointer:fine){
+  .cp-root .needcard,.cp-root .price,.cp-root .adult-price-card,.cp-root .faq details,.cp-root .lp-media img{transition:transform .28s var(--ease),box-shadow .28s var(--ease)}
+  .cp-root .needcard:hover,.cp-root .price:hover,.cp-root .adult-price-card:hover,.cp-root .faq details:hover{transform:translateY(-3px);box-shadow:0 24px 42px -24px rgba(43,83,144,.38)}
+  .cp-root .adult-price-card.featured:hover{transform:translateY(-11px)}
+  .cp-root .lp-media:hover img{transform:scale(1.012)}
+}
+
 @media(min-width:961px){
-  .cp-root[dir="rtl"] .wc .ptext{right:4%;left:auto;width:61%;padding:0 2%}
+  .cp-root[dir="rtl"] .wc .ptext{right:7%;left:auto;width:61%;padding:0 2%}
   .cp-root[dir="rtl"] .wc .ptext h3{font-size:clamp(20px,2.5vw,29px)}
-  .cp-root[dir="rtl"] .wc:nth-child(2) .ptext,.cp-root[dir="rtl"] .wc:nth-child(3) .ptext{right:7%}
   .cp-root[dir="rtl"] .wc:nth-child(3) .ptext h3{white-space:nowrap}
   .cp-root[dir="rtl"] .spanel img{transform:scaleX(-1)}
   .cp-root[dir="rtl"] .spanel .ptext{right:auto;left:5%;width:55%;padding:0;text-align:right;align-items:flex-start}
@@ -271,6 +299,20 @@ const CSS = `
   .cp-root .suivi-blob{display:none}.cp-root .motion{display:none}.cp-root .arrowheart{position:static;width:40%;margin:10px auto 0}
   .cp-root .avis-wa,.cp-root .avis-lh{display:none}
 }
+@media(min-width:961px) and (max-width:1200px), (min-width:961px) and (max-width:1366px) and (pointer:coarse){
+  .cp-root .wrap{padding-inline:40px}
+  .cp-root .hero,.cp-root .why-grid,.cp-root .how-grid,.cp-root .prog-grid{grid-template-columns:1fr;gap:40px}
+  .cp-root .proof,.cp-root .bstrip{grid-template-columns:1fr 1fr}.cp-root .ben+.ben::before{display:none}
+  .cp-root .why-media,.cp-root .why-clouds,.cp-root .how-left,.cp-root .steps,.cp-root .report-wrap,.cp-root .prog-grid>div{width:100%;max-width:760px;margin-inline:auto}
+  .cp-root .lpanel{grid-template-columns:1fr;gap:30px}.cp-root .lp-media{order:-1}
+  .cp-root .steps .spine{display:none}.cp-root .step:nth-child(even){margin-left:0}
+  .cp-root .suivi-blob{display:none}.cp-root .motion{display:none}.cp-root .arrowheart{position:static;width:40%;margin:10px auto 0}
+  .cp-root .report,.cp-root[dir="rtl"] .report{width:88%;margin-inline:auto;transform:rotate(-4deg)}
+  .cp-root .avis-wa,.cp-root .avis-lh{display:none}
+  .cp-root .adult-pricing-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .cp-root .adult-price-card{padding:28px 22px}
+  .cp-root .adult-price-card .rate{font-size:36px}
+}
 @media(max-width:600px){
   .cp-root .hero{display:flex;flex-direction:column;padding:104px clamp(20px,5vw,72px) 64px}
   .cp-root .hero>div:first-child{order:2;width:100%;min-width:0}
@@ -279,16 +321,20 @@ const CSS = `
   .cp-root .hero-toggle,.cp-root[dir="rtl"] .hero-toggle{position:static;inset:auto;align-self:center;order:-1;margin-bottom:18px}
   .cp-root .hv .blobbg{display:none}
   .cp-root .hv .scene{width:100%}
-  .cp-root .hv .b1{top:58%;right:1%;padding:10px 13px;gap:8px;font-size:12px;animation:none;transform:scale(.9);transform-origin:top right}
+  .cp-root .reveal{transform:translateY(10px);transition-duration:.44s;transition-delay:calc(var(--i,0)*55ms)}
+  .cp-root .hero>div:first-child>.reveal{animation-duration:.46s}
+  .cp-root .hero-toggle{animation-duration:.32s}
+  .cp-root .hv .scene{animation-duration:.48s}
+  .cp-root .hv .b1{top:58%;right:1%;padding:10px 13px;gap:8px;font-size:12px;animation:cpHeroRise .4s var(--ease) .14s both;transform:scale(.9);transform-origin:top right}
+  .cp-root .hv .b2{animation:cpHeroRise .4s var(--ease) .2s both}
   .cp-root .hv .b1 .ic{width:31px;height:31px}
   .cp-root .report-wrap{padding-block:18px}
   .cp-root .report{width:85%;margin-inline:auto;padding:22px;transform:rotate(-4deg)}
   .cp-root .bstrip,.cp-root .langs,.cp-root .prooftrio{grid-template-columns:1fr}
   .cp-root .wc .ptext{right:8%;width:60%;padding:0 3%}
-  .cp-root[dir="rtl"] .wc .ptext{right:4%;left:auto;width:61%;padding:0 2%}
+  .cp-root[dir="rtl"] .wc .ptext{right:7%;left:auto;width:61%;padding:0 2%}
   .cp-root .wc .ptext h3{font-size:15px;line-height:1.15}
   .cp-root[dir="rtl"] .wc .ptext h3{font-size:18px}
-  .cp-root[dir="rtl"] .wc:nth-child(2) .ptext,.cp-root[dir="rtl"] .wc:nth-child(3) .ptext{right:7%}
   .cp-root[dir="rtl"] .wc:nth-child(3) .ptext h3{white-space:nowrap}
   .cp-root .step{grid-template-columns:52px 1fr;gap:12px}
   .cp-root .snum{width:52px;height:52px;font-size:22px}
@@ -301,6 +347,7 @@ const CSS = `
   .cp-root[dir="rtl"] .spanel .ptext p{font-size:12.5px}
   .cp-root .adult-pricing-grid{grid-template-columns:1fr;gap:14px}
   .cp-root .adult-price-card,.cp-root .adult-price-card.featured{min-height:410px;transform:none}
+  .cp-root .track{animation:none;transform:none}
 }
 `;
 
@@ -835,9 +882,14 @@ export default function CoursParticuliersClient({ audience = "kids" }) {
   useEffect(() => {
     const root = document.querySelector(".cp-root");
     if (!root) return;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // scroll reveal + one-time counter
     function count(el, from, to, dur) {
+      if (reducedMotion) {
+        el.textContent = to;
+        return;
+      }
       const s = performance.now();
       el.textContent = from;
       (function step(t) {
@@ -857,7 +909,10 @@ export default function CoursParticuliersClient({ audience = "kids" }) {
       },
       { threshold: 0.16 }
     );
-    root.querySelectorAll(".reveal, #report, #pricecount").forEach((el) => io.observe(el));
+    root.querySelectorAll(".reveal, #report, #pricecount").forEach((el) => {
+      if (el.closest(".hero")) return;
+      io.observe(el);
+    });
 
     // language selector tabs
     const cleanups = [];
@@ -875,7 +930,7 @@ export default function CoursParticuliersClient({ audience = "kids" }) {
     root.querySelectorAll('a[href="#pricing"]').forEach((link) => {
       const onPricing = (event) => {
         event.preventDefault();
-        root.querySelector("#pricing")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        root.querySelector("#pricing")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
       };
       link.addEventListener("click", onPricing);
       cleanups.push(() => link.removeEventListener("click", onPricing));
@@ -922,6 +977,7 @@ export default function CoursParticuliersClient({ audience = "kids" }) {
       <div
         className="cp-root"
         dir={locale === "ar" ? "rtl" : "ltr"}
+        data-audience={audience}
         data-active-language={activeLanguage}
         onClick={handleRootClick}
         dangerouslySetInnerHTML={{ __html: html }}
