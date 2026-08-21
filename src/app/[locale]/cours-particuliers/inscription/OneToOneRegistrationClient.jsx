@@ -24,6 +24,8 @@ const copy = {
     country: "Pays",
     age: "Âge de l'enfant",
     language: "Langue souhaitée",
+    pack: "Pack d'heures",
+    packHelp: "Le tarif horaire dépend du pack choisi.",
     goals: "Objectifs",
     schedule: "Créneaux hebdomadaires souhaités",
     scheduleHelp: "Chaque créneau se répète chaque semaine. Vous pourrez les confirmer avec notre équipe.",
@@ -58,6 +60,8 @@ const copy = {
     country: "البلد",
     age: "عمر الطفل",
     language: "اللغة المطلوبة",
+    pack: "باقة الساعات",
+    packHelp: "يتحدد سعر الساعة حسب الباقة المختارة.",
     goals: "الأهداف",
     schedule: "المواعيد الأسبوعية المناسبة",
     scheduleHelp: "يتكرر كل موعد أسبوعياً، وسيتواصل فريقنا معكم لتأكيده.",
@@ -84,12 +88,19 @@ const days = {
 };
 
 const languages = ["English", "Spanish", "French", "Arabic"];
+const adultPacks = [
+  { hours: 15, hourlyRate: 200 },
+  { hours: 20, hourlyRate: 180 },
+  { hours: 30, hourlyRate: 160 },
+];
 
 export default function OneToOneRegistrationClient() {
   const locale = useLocale() === "ar" ? "ar" : "fr";
   const t = copy[locale];
   const searchParams = useSearchParams();
   const audience = searchParams.get("audience") === "adults" ? "adults" : "kids";
+  const requestedPack = Number(searchParams.get("pack"));
+  const initialPackHours = adultPacks.some((pack) => pack.hours === requestedPack) ? requestedPack : 15;
   const [step, setStep] = useState("form");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -104,12 +115,14 @@ export default function OneToOneRegistrationClient() {
     country: "Morocco",
     age: "",
     language: "English",
+    packHours: initialPackHours,
     goals: "",
   });
   const [schedule, setSchedule] = useState([{ weekday: 0, start_time: "18:00", duration_minutes: 60 }]);
   const durationOptions = audience === "kids" ? [60, 75, 90] : [60, 75, 90, 120];
   const direction = locale === "ar" ? "rtl" : "ltr";
   const testSupported = ["English", "Spanish"].includes(form.language);
+  const selectedPack = adultPacks.find((pack) => pack.hours === Number(form.packHours)) || adultPacks[0];
 
   const testFormData = useMemo(() => ({
     language: form.language === "English" && audience === "kids" ? "childEnglish" : form.language,
@@ -141,7 +154,14 @@ export default function OneToOneRegistrationClient() {
           lastName: form.lastName,
           audienceType: audience,
           language: form.language,
-          formData: { ...form, audience_type: audience, enrollment_type: "one_to_one" },
+          formData: {
+            ...form,
+            packHours: undefined,
+            pack_hours: audience === "adults" ? selectedPack.hours : null,
+            hourly_rate_dh: audience === "adults" ? selectedPack.hourlyRate : null,
+            audience_type: audience,
+            enrollment_type: "one_to_one",
+          },
           schedule,
         }),
       });
@@ -203,6 +223,19 @@ export default function OneToOneRegistrationClient() {
                     {languages.map((language) => <option key={language}>{language}</option>)}
                   </select>
                 </label>
+                {audience === "adults" && (
+                  <label className="block text-sm font-bold text-[#22345a]">
+                    {t.pack}
+                    <select required value={form.packHours} onChange={(event) => setForm({ ...form, packHours: Number(event.target.value) })} className="mt-2 w-full rounded-xl border border-[#d7e3f6] bg-white px-4 py-3 font-medium outline-none focus:border-[#3a6cb4]">
+                      {adultPacks.map((pack) => (
+                        <option key={pack.hours} value={pack.hours}>
+                          {locale === "ar" ? `${pack.hours} ساعة · ${pack.hourlyRate} درهم/الساعة` : `${pack.hours} heures · ${pack.hourlyRate} DH/heure`}
+                        </option>
+                      ))}
+                    </select>
+                    <span className="mt-1 block text-xs font-medium text-[#6a7994]">{t.packHelp}</span>
+                  </label>
+                )}
                 <label className="block text-sm font-bold text-[#22345a] md:col-span-2">
                   {t.goals}
                   <textarea required rows="3" value={form.goals} onChange={(event) => setForm({ ...form, goals: event.target.value })} className="mt-2 w-full rounded-xl border border-[#d7e3f6] px-4 py-3 font-medium outline-none focus:border-[#3a6cb4]" />

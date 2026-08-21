@@ -206,6 +206,17 @@ const CSS = `
 .cp-root .price ul{list-style:none;text-align:left;margin:0 auto 26px;display:flex;flex-direction:column;gap:13px;max-width:280px}
 .cp-root .price li{display:flex;gap:12px;color:#33455d;font-weight:600;font-size:15px}
 .cp-root .price .ck{width:24px;height:24px;border-radius:50%;background:rgba(58,108,180,.12);color:var(--blue);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.cp-root .adult-pricing-grid{max-width:1040px;margin:44px auto 0;display:grid;grid-template-columns:.95fr 1fr 1.08fr;gap:18px;align-items:stretch}
+.cp-root .adult-price-card{position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:330px;padding:32px 28px;border:1px solid var(--line);border-radius:28px;background:#fff;box-shadow:var(--shadow-s);text-align:left}
+.cp-root .adult-price-card::before{content:"";position:absolute;top:-60px;right:-60px;width:150px;height:150px;border-radius:50%;background:rgba(58,108,180,.08)}
+.cp-root .adult-price-card.featured{transform:translateY(-8px);border-color:rgba(58,108,180,.35);box-shadow:var(--shadow)}
+.cp-root .adult-price-card .pack-name{font-size:20px;font-weight:900;color:var(--blue-ink)}
+.cp-root .adult-price-card .saving{align-self:flex-start;margin-top:10px;padding:5px 11px;border-radius:18px;background:rgba(239,130,102,.14);color:var(--coral-d);font-size:12px;font-weight:800}
+.cp-root .adult-price-card .rate{margin:26px 0 4px;color:var(--blue-ink);font-size:clamp(38px,4vw,50px);font-weight:900;line-height:1;letter-spacing:-.03em}
+.cp-root .adult-price-card .rate small{font-size:16px;font-weight:700;color:var(--muted)}
+.cp-root .adult-price-card .pack-total{color:var(--muted);font-size:14px}
+.cp-root .adult-price-card .btn{width:100%;justify-content:center;margin-top:auto}
+.cp-root .adult-price-note{margin-top:22px;color:var(--muted);font-size:13px}
 .cp-root .ctapanel{margin-top:44px;background:linear-gradient(120deg,var(--blue),var(--blue-d));border-radius:var(--r-xl);color:#fff;overflow:hidden;text-align:center;padding:56px 28px;position:relative}
 .cp-root .ctapanel h2{color:#fff}.cp-root .ctapanel p{color:rgba(255,255,255,.85);margin:12px auto 22px}
 .cp-root .ctapanel::after{content:"";position:absolute;bottom:-90px;right:-40px;width:280px;height:280px;border-radius:50%;background:rgba(239,130,102,.2)}
@@ -231,6 +242,7 @@ const CSS = `
 .cp-root[dir="rtl"] .btn .ar{transform:scaleX(-1)}
 .cp-root[dir="rtl"] .btn-coral:hover .ar{transform:scaleX(-1) translateX(4px)}
 .cp-root[dir="rtl"] .price ul{text-align:right}
+.cp-root[dir="rtl"] .adult-price-card{text-align:right}
 .cp-root[dir="rtl"] .faq .ans{padding:0 76px 20px 22px}
 .cp-root[dir="rtl"] .assign::before{left:auto;right:50%}
 .cp-root[dir="rtl"] .motion{display:none}
@@ -265,24 +277,46 @@ const CSS = `
   .cp-root .hero-toggle,.cp-root[dir="rtl"] .hero-toggle{position:static;inset:auto;align-self:center;order:-1;margin-bottom:18px}
   .cp-root .hv .blobbg{display:none}
   .cp-root .hv .scene{width:100%}
+  .cp-root .hv .b1{top:58%;right:1%;padding:10px 13px;gap:8px;font-size:12px;animation:none;transform:scale(.9);transform-origin:top right}
+  .cp-root .hv .b1 .ic{width:31px;height:31px}
   .cp-root .report-wrap{padding-block:18px}
   .cp-root .report{width:85%;margin-inline:auto;padding:22px;transform:rotate(-4deg)}
   .cp-root .bstrip,.cp-root .langs,.cp-root .prooftrio{grid-template-columns:1fr}
   .cp-root .wc .ptext{right:8%;width:60%;padding:0 3%}
-  .cp-root[dir="rtl"] .wc .ptext{right:auto;left:8%}
+  .cp-root[dir="rtl"] .wc .ptext{right:4%;left:auto;width:61%;padding:0 2%}
   .cp-root .wc .ptext h3{font-size:15px;line-height:1.15}
+  .cp-root[dir="rtl"] .wc .ptext h3{font-size:18px}
+  .cp-root[dir="rtl"] .wc:nth-child(1) .ptext h3,.cp-root[dir="rtl"] .wc:nth-child(3) .ptext h3{white-space:nowrap}
   .cp-root .step{grid-template-columns:52px 1fr;gap:12px}
   .cp-root .snum{width:52px;height:52px;font-size:22px}
   .cp-root .spanel .ptext{right:0;width:56%;padding-right:5%}
-  .cp-root[dir="rtl"] .spanel .ptext{right:auto;left:0;padding-right:0;padding-left:5%}
+  .cp-root[dir="rtl"] .spanel img{transform:scaleX(-1)}
+  .cp-root[dir="rtl"] .spanel .ptext{right:auto;left:5%;width:55%;padding:0;text-align:right;align-items:flex-start}
   .cp-root .spanel .ptext h4{font-size:13px}
   .cp-root .spanel .ptext p{font-size:10.5px;line-height:1.25}
+  .cp-root[dir="rtl"] .spanel .ptext h4{font-size:16px}
+  .cp-root[dir="rtl"] .spanel .ptext p{font-size:12.5px}
+  .cp-root .adult-pricing-grid{grid-template-columns:1fr;gap:14px}
+  .cp-root .adult-price-card,.cp-root .adult-price-card.featured{min-height:290px;transform:none}
 }
 `;
 
 const TEACHER_PLACEHOLDER =
   '<div class="tp"><div class="circ"><div class="inner"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#b6c7e2" stroke-width="1.8"><circle cx="12" cy="9" r="4"/><path d="M5 20c0-4 3.5-6 7-6s7 2 7 6"/></svg></div></div><div class="star"><svg width="12" height="12" viewBox="0 0 24 24" fill="#3a6cb4"><path d="m12 3 2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3Z"/></svg></div></div>';
 const TEACHER_PLACEHOLDERS = TEACHER_PLACEHOLDER.repeat(20);
+
+const ADULT_PRICING = {
+  fr: `<div class="reveal adult-pricing-grid">
+    <article class="adult-price-card"><div class="pack-name">Pack 15 heures</div><span class="saving">Tarif de base</span><div class="rate">200 DH <small>/ heure</small></div><div class="pack-total">3 000 DH pour le pack</div><button class="btn btn-coral" data-pack-hours="15">Choisir 15 heures</button></article>
+    <article class="adult-price-card"><div class="pack-name">Pack 20 heures</div><span class="saving">10% d'économie</span><div class="rate">180 DH <small>/ heure</small></div><div class="pack-total">3 600 DH pour le pack</div><button class="btn btn-coral" data-pack-hours="20">Choisir 20 heures</button></article>
+    <article class="adult-price-card featured"><div class="pack-name">Pack 30 heures</div><span class="saving">Meilleur tarif · 20% d'économie</span><div class="rate">160 DH <small>/ heure</small></div><div class="pack-total">4 800 DH pour le pack</div><button class="btn btn-coral" data-pack-hours="30">Choisir 30 heures</button></article>
+  </div><p class="reveal adult-price-note">Tarifs hors taxe · paiement réglé à l'avance · +100 DH d'inscription (une seule fois)</p>`,
+  ar: `<div class="reveal adult-pricing-grid">
+    <article class="adult-price-card"><div class="pack-name">باقة 15 ساعة</div><span class="saving">السعر الأساسي</span><div class="rate">200 درهم <small>/ الساعة</small></div><div class="pack-total">3,000 درهم للباقة</div><button class="btn btn-coral" data-pack-hours="15">اختيار 15 ساعة</button></article>
+    <article class="adult-price-card"><div class="pack-name">باقة 20 ساعة</div><span class="saving">توفير 10%</span><div class="rate">180 درهم <small>/ الساعة</small></div><div class="pack-total">3,600 درهم للباقة</div><button class="btn btn-coral" data-pack-hours="20">اختيار 20 ساعة</button></article>
+    <article class="adult-price-card featured"><div class="pack-name">باقة 30 ساعة</div><span class="saving">أفضل سعر · توفير 20%</span><div class="rate">160 درهم <small>/ الساعة</small></div><div class="pack-total">4,800 درهم للباقة</div><button class="btn btn-coral" data-pack-hours="30">اختيار 30 ساعة</button></article>
+  </div><p class="reveal adult-price-note">الأسعار دون الضريبة · الأداء مقدماً · 100 درهم رسوم تسجيل تُدفع مرة واحدة</p>`,
+};
 
 const KIDS_HTML = `
 <section class="hero-sec">
@@ -743,6 +777,22 @@ function getPageHtml(audience, locale) {
     html = applyReplacements(html, AR_COMMON_REPLACEMENTS);
   }
 
+  if (audience === "adults") {
+    html = html.replace(
+      /<div class="reveal price">[\s\S]*?<\/div>\n  <div class="reveal ctapanel">/,
+      `${ADULT_PRICING[locale === "ar" ? "ar" : "fr"]}\n  <div class="reveal ctapanel">`
+    );
+    if (locale === "ar") {
+      html = html
+        .replace("سعر بسيط وواضح", "ثلاث باقات بأسعار تنازلية")
+        .replace("150 درهماً للساعة دون الضريبة. الأداء شهري ومسبق، مع 100 درهم رسوم تسجيل تُدفع مرة واحدة.", "ثلاث باقات: 15 ساعة بسعر 200 درهم للساعة، و20 ساعة بسعر 180 درهماً، و30 ساعة بسعر 160 درهماً. الأداء مقدماً.");
+    } else {
+      html = html
+        .replace("Un tarif simple et clair", "Trois packs, un tarif dégressif")
+        .replace("150 DH / heure (hors taxe). Paiement mensuel réglé à l'avance, avec 100 DH de frais d'inscription la première fois seulement.", "Trois packs : 15 heures à 200 DH/h, 20 heures à 180 DH/h ou 30 heures à 160 DH/h. Paiement réglé à l'avance.");
+    }
+  }
+
   return html;
 }
 
@@ -805,7 +855,11 @@ export default function CoursParticuliersClient({ audience = "kids" }) {
     const cleanups = [];
 
     root.querySelectorAll(".btn-coral").forEach((button) => {
-      const onEnroll = () => router.push(`/cours-particuliers/inscription?audience=${audience}`);
+      const onEnroll = () => {
+        const pack = button.dataset.packHours;
+        const packQuery = audience === "adults" && pack ? `&pack=${pack}` : "";
+        router.push(`/cours-particuliers/inscription?audience=${audience}${packQuery}`);
+      };
       button.addEventListener("click", onEnroll);
       cleanups.push(() => button.removeEventListener("click", onEnroll));
     });
