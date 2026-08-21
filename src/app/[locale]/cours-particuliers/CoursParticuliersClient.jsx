@@ -281,6 +281,7 @@ const CSS = `
 
 @media(min-width:961px){
   .cp-root[dir="rtl"] .wc .ptext{right:7%;left:auto;width:61%;padding:0 2%}
+  .cp-root[dir="rtl"] .wc:first-child .ptext{transform:translateX(-28px)}
   .cp-root[dir="rtl"] .wc .ptext h3{font-size:clamp(20px,2.5vw,29px)}
   .cp-root[dir="rtl"] .wc:nth-child(3) .ptext h3{white-space:nowrap}
   .cp-root[dir="rtl"] .spanel img{transform:scaleX(-1)}
@@ -298,6 +299,17 @@ const CSS = `
   .cp-root .steps .spine{display:none}.cp-root .step:nth-child(even){margin-left:0}
   .cp-root .suivi-blob{display:none}.cp-root .motion{display:none}.cp-root .arrowheart{position:static;width:40%;margin:10px auto 0}
   .cp-root .avis-wa,.cp-root .avis-lh{display:none}
+}
+@media(min-width:601px) and (max-width:960px){
+  .cp-root .hero{padding:92px clamp(32px,6vw,52px) 64px}
+  .cp-root[dir="rtl"] .wc .ptext{right:7%;left:auto;width:61%;padding:0 2%;text-align:center;align-items:center}
+  .cp-root[dir="rtl"] .wc .ptext h3{font-size:clamp(24px,3.3vw,27px);line-height:1.15}
+  .cp-root[dir="rtl"] .wc:nth-child(3) .ptext h3{white-space:nowrap}
+  .cp-root[dir="rtl"] .spanel img{transform:scaleX(-1)}
+  .cp-root[dir="rtl"] .spanel .ptext{right:auto;left:5%;width:56%;padding:0;text-align:right;align-items:flex-start}
+  .cp-root[dir="rtl"] .spanel .ptext h4{font-size:clamp(21px,3vw,24px);line-height:1.15}
+  .cp-root[dir="rtl"] .spanel .ptext p{font-size:clamp(15px,2.1vw,17px);line-height:1.3;margin-top:5px}
+  .cp-root[dir="rtl"] .report{width:92%;margin-inline:auto;transform:translateX(18px) rotate(-4deg)}
 }
 @media(min-width:961px) and (max-width:1200px), (min-width:961px) and (max-width:1366px) and (pointer:coarse){
   .cp-root .wrap{padding-inline:40px}
