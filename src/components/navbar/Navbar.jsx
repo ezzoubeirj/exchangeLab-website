@@ -79,6 +79,14 @@ flagColor: "text-indigo-600",
 popular: true
 },
 {
+text: t("liveClassesSubItems.oneToOne"),
+href: "/cours-particuliers",
+icon: Sparkles,
+flagBg: "bg-blue-100",
+flagColor: "text-blue-700",
+isNew: true
+},
+{
 text: t("liveClassesSubItems.english"),
 href: "/registration?language=English",
 flagCode: "english",
@@ -265,13 +273,21 @@ className="w-full h-full object-cover"
 link.icon && <link.icon className="w-3.5 h-3.5" />
 )}
 </div>
-<div className="flex-1">
+<div className="flex-1 min-w-0 flex items-center justify-between gap-2">
 <span className={cn(
 "text-sm text-gray-700 group-hover:text-gray-900",
 getFontClass('medium')
 )}>
 {link.text}
 </span>
+{link.isNew && (
+<span className={cn(
+"shrink-0 rounded-full bg-[#ef8266]/15 px-2 py-0.5 text-[10px] font-semibold text-[#d96549]",
+getFontClass('semibold')
+)}>
+{t("newTag")}
+</span>
+)}
 </div>
 </Link>
 ))}
@@ -530,10 +546,18 @@ className="object-contain"
 link.icon && <link.icon className="w-3 h-3" />
 )}
 </div>
-<div className="flex-1">
+<div className="flex-1 min-w-0 flex items-center justify-between gap-2">
 <span className={cn("text-sm text-gray-700", getFontClass('regular'))}>
 {link.text}
 </span>
+{link.isNew && (
+<span className={cn(
+"shrink-0 rounded-full bg-[#ef8266]/15 px-2 py-0.5 text-[10px] font-semibold text-[#d96549]",
+getFontClass('semibold')
+)}>
+{t("newTag")}
+</span>
+)}
 </div>
 </Link>
 ))}

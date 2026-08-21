@@ -12,11 +12,13 @@
     "liveClassesSubItems": {
       "english": "Anglais (adultes)",
       "englishKids": "Anglais (enfants)",
+      "oneToOne": "Cours individuels",
       "quranKids": "Coran (enfants)",
       "spanish": "Espagnol (enfants)",
       "spanishKids": "Espagnol (enfants)"
     },
     "recordedClasses": "Cours Enregistrés (à venir)",
+    "newTag": "Nouveau",
     "recordedClassesNew": "🆕",
     "recordedClassesDesc": "Replays et cours à la demande",
     "blog": "Blog",

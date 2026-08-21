@@ -12,11 +12,13 @@
     "liveClassesSubItems": {
       "english": "الإنجليزية (للكبار)",
       "englishKids": "الإنجليزية (للأطفال)",
+      "oneToOne": "دروس فردية",
       "quranKids": "القرآن (للأطفال)",
       "spanish": "الإسبانية (للأطفال)",
       "spanishKids": "الإسبانية (للأطفال)"
     },
     "recordedClasses": "دروس مسجلة (قريبًا)",
+    "newTag": "جديد",
     "recordedClassesNew": "🆕",
     "recordedClassesDesc": "إعادة العرض أبروس عند الطلب",
     "blog": "المدونة",
