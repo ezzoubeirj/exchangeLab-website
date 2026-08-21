@@ -233,6 +233,21 @@ const CSS = `
 .cp-root[dir="rtl"] .price ul{text-align:right}
 .cp-root[dir="rtl"] .faq .ans{padding:0 76px 20px 22px}
 .cp-root[dir="rtl"] .assign::before{left:auto;right:50%}
+.cp-root[dir="rtl"] .motion{display:none}
+.cp-root[dir="rtl"] .trail{direction:ltr}
+.cp-root[dir="rtl"] .track{animation-direction:reverse}
+
+@media(min-width:961px){
+  .cp-root[dir="rtl"] .wc .ptext{right:4%;left:auto;width:61%;padding:0 2%}
+  .cp-root[dir="rtl"] .wc .ptext h3{font-size:clamp(20px,2.5vw,29px)}
+  .cp-root[dir="rtl"] .wc:nth-child(1) .ptext h3,.cp-root[dir="rtl"] .wc:nth-child(3) .ptext h3{white-space:nowrap}
+  .cp-root[dir="rtl"] .spanel img{transform:scaleX(-1)}
+  .cp-root[dir="rtl"] .spanel .ptext{right:auto;left:5%;width:55%;padding:0;text-align:right;align-items:flex-start}
+  .cp-root[dir="rtl"] .spanel .ptext h4{font-size:clamp(18px,1.8vw,23px)}
+  .cp-root[dir="rtl"] .spanel .ptext p{font-size:clamp(14px,1.45vw,17px);line-height:1.3}
+  .cp-root[dir="rtl"] .report{transform:translateX(2px) rotate(-5deg)}
+  .cp-root[dir="rtl"] .suivi-blob{left:calc(-28% + 150px)}
+}
 
 @media(max-width:960px){
   .cp-root .hero,.cp-root .why-grid,.cp-root .how-grid,.cp-root .prog-grid{grid-template-columns:1fr;gap:34px}
@@ -265,6 +280,10 @@ const CSS = `
 }
 `;
 
+const TEACHER_PLACEHOLDER =
+  '<div class="tp"><div class="circ"><div class="inner"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#b6c7e2" stroke-width="1.8"><circle cx="12" cy="9" r="4"/><path d="M5 20c0-4 3.5-6 7-6s7 2 7 6"/></svg></div></div><div class="star"><svg width="12" height="12" viewBox="0 0 24 24" fill="#3a6cb4"><path d="m12 3 2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3Z"/></svg></div></div>';
+const TEACHER_PLACEHOLDERS = TEACHER_PLACEHOLDER.repeat(20);
+
 const KIDS_HTML = `
 <section class="hero-sec">
   <div class="wrap hero">
@@ -274,7 +293,7 @@ const KIDS_HTML = `
       <p class="reveal" style="--i:2">Anglais, espagnol, arabe ou français. Un professeur dédié, un rythme adapté au niveau et aux objectifs de votre enfant.</p>
       <div class="reveal hero-cta" style="--i:3">
         <button class="btn btn-coral">Inscrire mon enfant <svg class="ar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-        <a class="btn btn-ghost">Voir les tarifs</a>
+        <a class="btn btn-ghost" href="#pricing">Voir les tarifs</a>
       </div>
       <div class="reveal hero-trust" style="--i:4"><span class="stars">★★★★★</span> 4,8 sur Google · familles satisfaites</div>
     </div>
@@ -395,7 +414,7 @@ const KIDS_HTML = `
 <div class="wrap"><div class="trail reveal">
   <span class="arrow l"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3a6cb4" stroke-width="2.4" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></span>
   <span class="arrow r"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3a6cb4" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></span>
-  <div class="marq"><div class="track" id="track"></div></div>
+  <div class="marq"><div class="track" id="track">${TEACHER_PLACEHOLDERS}</div></div>
 </div></div>
 <div class="wrap"><div class="assign reveal"><span class="pl"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a6cb4" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span><div><b style="color:#22345a">Nous choisissons le professeur</b> selon l'âge, le niveau, les objectifs et les disponibilités.</div></div></div>
 </section>
@@ -441,7 +460,7 @@ const KIDS_HTML = `
   <div class="slot reveal">Vos 6 captures WhatsApp viendront ici (carrousel)</div>
 </div></section>
 
-<section class="band pad"><div class="wrap" style="text-align:center">
+<section class="band pad" id="pricing" style="scroll-margin-top:96px"><div class="wrap" style="text-align:center">
   <div class="reveal shead" style="margin:0 auto"><div class="eyebrow">Tarifs</div><h2 style="margin-top:14px">Un tarif simple et clair</h2></div>
   <div class="reveal price">
     <span class="tag2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e26b4d" stroke-width="2"><path d="M20 12 12 20l-8-8V4h8Z"/><circle cx="8.5" cy="7.5" r="1.2" fill="#e26b4d"/></svg> Une seule formule</span>
@@ -527,7 +546,7 @@ const AR_COMMON_REPLACEMENTS = [
   ["Voir les tarifs", "اطّلع على الأسعار"],
   ["4,8 sur Google · familles satisfaites", "4.8 على Google · عائلات راضية"],
   ["Enfants", "الأطفال"],
-  ["Adultes", "الراشدون"],
+  ["Adultes", "الكبار"],
   ["séance en ligne", "حصة عبر الإنترنت"],
   ["Suivi mensuel", "متابعة شهرية"],
   ["progrès visibles", "تقدّم واضح"],
@@ -540,7 +559,7 @@ const AR_COMMON_REPLACEMENTS = [
   ["Pédagogues expérimentés et bienveillants.", "خبرة تربوية وتعامل مشجّع."],
   ["Le cours individuel", "الدرس الفردي"],
   ["Pourquoi un cours individuel change tout", "لماذا يصنع الدرس الفردي فرقاً؟"],
-  ["Toute l'attention<br>du prof", "كل اهتمام<br>المدرّس"],
+  ["Toute l'attention<br>du prof", "كل اهتمام المدرّس"],
   ["On cible ce qui<br>compte", "نركّز على ما<br>يهم فعلاً"],
   ["Un rythme adapté", "وتيرة مناسبة"],
   ["Comment ça se passe", "كيف تسير الدروس؟"],
@@ -759,16 +778,6 @@ export default function CoursParticuliersClient({ audience = "kids" }) {
     const root = document.querySelector(".cp-root");
     if (!root) return;
 
-    // teacher rail (placeholder circles until real photos)
-    const track = root.querySelector("#track");
-    if (track) {
-      const one =
-        '<div class="tp"><div class="circ"><div class="inner"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#b6c7e2" stroke-width="1.8"><circle cx="12" cy="9" r="4"/><path d="M5 20c0-4 3.5-6 7-6s7 2 7 6"/></svg></div></div><div class="star"><svg width="12" height="12" viewBox="0 0 24 24" fill="#3a6cb4"><path d="m12 3 2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3Z"/></svg></div></div>';
-      let set = "";
-      for (let i = 0; i < 10; i++) set += one;
-      track.innerHTML = set + set;
-    }
-
     // scroll reveal + one-time counter
     function count(el, from, to, dur) {
       const s = performance.now();
@@ -799,6 +808,15 @@ export default function CoursParticuliersClient({ audience = "kids" }) {
       const onEnroll = () => router.push(`/cours-particuliers/inscription?audience=${audience}`);
       button.addEventListener("click", onEnroll);
       cleanups.push(() => button.removeEventListener("click", onEnroll));
+    });
+
+    root.querySelectorAll('a[href="#pricing"]').forEach((link) => {
+      const onPricing = (event) => {
+        event.preventDefault();
+        root.querySelector("#pricing")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+      link.addEventListener("click", onPricing);
+      cleanups.push(() => link.removeEventListener("click", onPricing));
     });
 
     const audienceTabs = [...root.querySelectorAll(".toggle button")];
