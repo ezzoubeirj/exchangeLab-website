@@ -207,14 +207,15 @@ const CSS = `
 .cp-root .price li{display:flex;gap:12px;color:#33455d;font-weight:600;font-size:15px}
 .cp-root .price .ck{width:24px;height:24px;border-radius:50%;background:rgba(58,108,180,.12);color:var(--blue);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
 .cp-root .adult-pricing-grid{max-width:1040px;margin:44px auto 0;display:grid;grid-template-columns:.95fr 1fr 1.08fr;gap:18px;align-items:stretch}
-.cp-root .adult-price-card{position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:330px;padding:32px 28px;border:1px solid var(--line);border-radius:28px;background:#fff;box-shadow:var(--shadow-s);text-align:left}
+.cp-root .adult-price-card{position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:410px;padding:32px 28px;border:1px solid var(--line);border-radius:28px;background:#fff;box-shadow:var(--shadow-s);text-align:left}
 .cp-root .adult-price-card::before{content:"";position:absolute;top:-60px;right:-60px;width:150px;height:150px;border-radius:50%;background:rgba(58,108,180,.08)}
 .cp-root .adult-price-card.featured{transform:translateY(-8px);border-color:rgba(58,108,180,.35);box-shadow:var(--shadow)}
 .cp-root .adult-price-card .pack-name{font-size:20px;font-weight:900;color:var(--blue-ink)}
 .cp-root .adult-price-card .saving{align-self:flex-start;margin-top:10px;padding:5px 11px;border-radius:18px;background:rgba(239,130,102,.14);color:var(--coral-d);font-size:12px;font-weight:800}
 .cp-root .adult-price-card .rate{margin:26px 0 4px;color:var(--blue-ink);font-size:clamp(38px,4vw,50px);font-weight:900;line-height:1;letter-spacing:-.03em}
 .cp-root .adult-price-card .rate small{font-size:16px;font-weight:700;color:var(--muted)}
-.cp-root .adult-price-card .pack-total{color:var(--muted);font-size:14px}
+.cp-root .adult-price-card .pack-benefits{list-style:none;margin:24px 0;padding:0;border-top:1px solid var(--line)}
+.cp-root .adult-price-card .pack-benefits li{padding:9px 0;border-bottom:1px solid var(--line);color:#33455d;font-size:14px;font-weight:700}
 .cp-root .adult-price-card .btn{width:100%;justify-content:center;margin-top:auto}
 .cp-root .adult-price-note{margin-top:22px;color:var(--muted);font-size:13px}
 .cp-root .ctapanel{margin-top:44px;background:linear-gradient(120deg,var(--blue),var(--blue-d));border-radius:var(--r-xl);color:#fff;overflow:hidden;text-align:center;padding:56px 28px;position:relative}
@@ -252,7 +253,8 @@ const CSS = `
 @media(min-width:961px){
   .cp-root[dir="rtl"] .wc .ptext{right:4%;left:auto;width:61%;padding:0 2%}
   .cp-root[dir="rtl"] .wc .ptext h3{font-size:clamp(20px,2.5vw,29px)}
-  .cp-root[dir="rtl"] .wc:nth-child(1) .ptext h3,.cp-root[dir="rtl"] .wc:nth-child(3) .ptext h3{white-space:nowrap}
+  .cp-root[dir="rtl"] .wc:nth-child(2) .ptext,.cp-root[dir="rtl"] .wc:nth-child(3) .ptext{right:7%}
+  .cp-root[dir="rtl"] .wc:nth-child(3) .ptext h3{white-space:nowrap}
   .cp-root[dir="rtl"] .spanel img{transform:scaleX(-1)}
   .cp-root[dir="rtl"] .spanel .ptext{right:auto;left:5%;width:55%;padding:0;text-align:right;align-items:flex-start}
   .cp-root[dir="rtl"] .spanel .ptext h4{font-size:clamp(18px,1.8vw,23px)}
@@ -286,7 +288,8 @@ const CSS = `
   .cp-root[dir="rtl"] .wc .ptext{right:4%;left:auto;width:61%;padding:0 2%}
   .cp-root .wc .ptext h3{font-size:15px;line-height:1.15}
   .cp-root[dir="rtl"] .wc .ptext h3{font-size:18px}
-  .cp-root[dir="rtl"] .wc:nth-child(1) .ptext h3,.cp-root[dir="rtl"] .wc:nth-child(3) .ptext h3{white-space:nowrap}
+  .cp-root[dir="rtl"] .wc:nth-child(2) .ptext,.cp-root[dir="rtl"] .wc:nth-child(3) .ptext{right:7%}
+  .cp-root[dir="rtl"] .wc:nth-child(3) .ptext h3{white-space:nowrap}
   .cp-root .step{grid-template-columns:52px 1fr;gap:12px}
   .cp-root .snum{width:52px;height:52px;font-size:22px}
   .cp-root .spanel .ptext{right:0;width:56%;padding-right:5%}
@@ -297,7 +300,7 @@ const CSS = `
   .cp-root[dir="rtl"] .spanel .ptext h4{font-size:16px}
   .cp-root[dir="rtl"] .spanel .ptext p{font-size:12.5px}
   .cp-root .adult-pricing-grid{grid-template-columns:1fr;gap:14px}
-  .cp-root .adult-price-card,.cp-root .adult-price-card.featured{min-height:290px;transform:none}
+  .cp-root .adult-price-card,.cp-root .adult-price-card.featured{min-height:410px;transform:none}
 }
 `;
 
@@ -305,16 +308,21 @@ const TEACHER_PLACEHOLDER =
   '<div class="tp"><div class="circ"><div class="inner"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#b6c7e2" stroke-width="1.8"><circle cx="12" cy="9" r="4"/><path d="M5 20c0-4 3.5-6 7-6s7 2 7 6"/></svg></div></div><div class="star"><svg width="12" height="12" viewBox="0 0 24 24" fill="#3a6cb4"><path d="m12 3 2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3Z"/></svg></div></div>';
 const TEACHER_PLACEHOLDERS = TEACHER_PLACEHOLDER.repeat(20);
 
+const ADULT_PACK_BENEFITS = {
+  fr: '<ul class="pack-benefits"><li>100% en ligne</li><li>Attention personnalisée</li><li>Résumé des leçons</li><li>Professeurs qualifiés</li></ul>',
+  ar: '<ul class="pack-benefits"><li>100% عبر الإنترنت</li><li>اهتمام شخصي</li><li>ملخص الدروس</li><li>مدرّسون مؤهلون</li></ul>',
+};
+
 const ADULT_PRICING = {
   fr: `<div class="reveal adult-pricing-grid">
-    <article class="adult-price-card"><div class="pack-name">Pack 15 heures</div><span class="saving">Tarif de base</span><div class="rate">200 DH <small>/ heure</small></div><div class="pack-total">3 000 DH pour le pack</div><button class="btn btn-coral" data-pack-hours="15">Choisir 15 heures</button></article>
-    <article class="adult-price-card"><div class="pack-name">Pack 20 heures</div><span class="saving">10% d'économie</span><div class="rate">180 DH <small>/ heure</small></div><div class="pack-total">3 600 DH pour le pack</div><button class="btn btn-coral" data-pack-hours="20">Choisir 20 heures</button></article>
-    <article class="adult-price-card featured"><div class="pack-name">Pack 30 heures</div><span class="saving">Meilleur tarif · 20% d'économie</span><div class="rate">160 DH <small>/ heure</small></div><div class="pack-total">4 800 DH pour le pack</div><button class="btn btn-coral" data-pack-hours="30">Choisir 30 heures</button></article>
+    <article class="adult-price-card"><div class="pack-name">Pack 15 heures</div><span class="saving">Tarif de base</span><div class="rate">200 DH <small>/ heure</small></div>${ADULT_PACK_BENEFITS.fr}<button class="btn btn-coral" data-pack-hours="15">Choisir 15 heures</button></article>
+    <article class="adult-price-card"><div class="pack-name">Pack 20 heures</div><span class="saving">10% d'économie</span><div class="rate">180 DH <small>/ heure</small></div>${ADULT_PACK_BENEFITS.fr}<button class="btn btn-coral" data-pack-hours="20">Choisir 20 heures</button></article>
+    <article class="adult-price-card featured"><div class="pack-name">Pack 30 heures</div><span class="saving">Meilleur tarif · 20% d'économie</span><div class="rate">160 DH <small>/ heure</small></div>${ADULT_PACK_BENEFITS.fr}<button class="btn btn-coral" data-pack-hours="30">Choisir 30 heures</button></article>
   </div><p class="reveal adult-price-note">Tarifs hors taxe · paiement réglé à l'avance · +100 DH d'inscription (une seule fois)</p>`,
   ar: `<div class="reveal adult-pricing-grid">
-    <article class="adult-price-card"><div class="pack-name">باقة 15 ساعة</div><span class="saving">السعر الأساسي</span><div class="rate">200 درهم <small>/ الساعة</small></div><div class="pack-total">3,000 درهم للباقة</div><button class="btn btn-coral" data-pack-hours="15">اختيار 15 ساعة</button></article>
-    <article class="adult-price-card"><div class="pack-name">باقة 20 ساعة</div><span class="saving">توفير 10%</span><div class="rate">180 درهم <small>/ الساعة</small></div><div class="pack-total">3,600 درهم للباقة</div><button class="btn btn-coral" data-pack-hours="20">اختيار 20 ساعة</button></article>
-    <article class="adult-price-card featured"><div class="pack-name">باقة 30 ساعة</div><span class="saving">أفضل سعر · توفير 20%</span><div class="rate">160 درهم <small>/ الساعة</small></div><div class="pack-total">4,800 درهم للباقة</div><button class="btn btn-coral" data-pack-hours="30">اختيار 30 ساعة</button></article>
+    <article class="adult-price-card"><div class="pack-name">باقة 15 ساعة</div><span class="saving">السعر الأساسي</span><div class="rate">200 درهم <small>/ الساعة</small></div>${ADULT_PACK_BENEFITS.ar}<button class="btn btn-coral" data-pack-hours="15">اختيار 15 ساعة</button></article>
+    <article class="adult-price-card"><div class="pack-name">باقة 20 ساعة</div><span class="saving">توفير 10%</span><div class="rate">180 درهم <small>/ الساعة</small></div>${ADULT_PACK_BENEFITS.ar}<button class="btn btn-coral" data-pack-hours="20">اختيار 20 ساعة</button></article>
+    <article class="adult-price-card featured"><div class="pack-name">باقة 30 ساعة</div><span class="saving">أفضل سعر · توفير 20%</span><div class="rate">160 درهم <small>/ الساعة</small></div>${ADULT_PACK_BENEFITS.ar}<button class="btn btn-coral" data-pack-hours="30">اختيار 30 ساعة</button></article>
   </div><p class="reveal adult-price-note">الأسعار دون الضريبة · الأداء مقدماً · 100 درهم رسوم تسجيل تُدفع مرة واحدة</p>`,
 };
 
@@ -593,7 +601,7 @@ const AR_COMMON_REPLACEMENTS = [
   ["Pédagogues expérimentés et bienveillants.", "خبرة تربوية وتعامل مشجّع."],
   ["Le cours individuel", "الدرس الفردي"],
   ["Pourquoi un cours individuel change tout", "لماذا يصنع الدرس الفردي فرقاً؟"],
-  ["Toute l'attention<br>du prof", "كل اهتمام المدرّس"],
+  ["Toute l'attention<br>du prof", "كل اهتمام<br>المدرّس"],
   ["On cible ce qui<br>compte", "نركّز على ما<br>يهم فعلاً"],
   ["Un rythme adapté", "وتيرة مناسبة"],
   ["Comment ça se passe", "كيف تسير الدروس؟"],
