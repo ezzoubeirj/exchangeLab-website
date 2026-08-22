@@ -456,7 +456,7 @@ const KIDS_HTML = `
     <p class="sub" style="margin-top:10px">Choisissez la langue de votre enfant et nous construisons le parcours idéal.</p>
     <img class="plane-img" src="/one-to-one/lang-plane.png" alt="">
   </div>
-  <div class="langsel reveal">
+  <div class="langsel">
     <div class="lstabs" role="tablist">
       <button type="button" class="ltab en" data-l="en" role="tab" aria-selected="true" aria-controls="language-panel-en">Anglais</button>
       <button type="button" class="ltab es" data-l="es" role="tab" aria-selected="false" aria-controls="language-panel-es">Espagnol</button>
