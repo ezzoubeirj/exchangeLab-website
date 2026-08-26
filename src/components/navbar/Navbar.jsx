@@ -14,7 +14,6 @@ Lightbulb,
 Menu,
 X,
 ChevronDown,
-Sparkles,
 Play,
 ChevronRight,
 Globe,
@@ -81,10 +80,9 @@ popular: true
 {
 text: t("liveClassesSubItems.oneToOne"),
 href: "/cours-particuliers",
-icon: Sparkles,
+icon: GraduationCap,
 flagBg: "bg-blue-100",
-flagColor: "text-blue-700",
-isNew: true
+flagColor: "text-blue-700"
 },
 {
 text: t("liveClassesSubItems.english"),
