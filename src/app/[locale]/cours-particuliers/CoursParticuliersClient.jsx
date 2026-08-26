@@ -164,7 +164,7 @@ const CSS = `
 .cp-root .trail .arrow.l{left:-10px}.cp-root .trail .arrow.r{right:-10px}
 .cp-root .marq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
 .cp-root .track{display:flex;gap:26px;width:max-content;animation:cpscroll 48s linear infinite}
-.cp-root .tsec:hover .track{animation-play-state:paused}
+
 @keyframes cpscroll{to{transform:translateX(-50%)}}
 .cp-root .tp{width:104px;flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:8px}
 .cp-root .tp .circ{width:96px;height:96px;border-radius:50%;position:relative;padding:4px;background:conic-gradient(var(--blue) 0 75%,#d7e3f6 75% 100%)}
