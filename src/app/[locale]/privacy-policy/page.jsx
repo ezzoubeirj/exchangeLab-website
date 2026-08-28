@@ -118,7 +118,7 @@ export default function PrivacyPolicyPage() {
           <li className="flex items-start"><span className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span><span>leur photo de profil ;</span></li>
           <li className="flex items-start"><span className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span><span>certaines informations liées aux badges, activités ou classements.</span></li>
         </ul>
-        <p className="text-gray-600 mb-4">L'accès à ces informations est destiné à l'expérience pédagogique et communautaire au sein de XLAB.</p>
+        <p className="text-gray-600 mb-4">L'accès à ces informations est destiné à l'expérience pédagogique et communautaire au sein de XLAB. La visibilité du profil détaillé d'un élève est restreinte aux élèves partageant une classe active : un élève ne peut consulter le profil détaillé que des élèves avec lesquels il partage une classe active.</p>
         <p className="text-gray-600 mb-4">FunCenter ne propose pas de système de messagerie privée ou de chat permettant aux élèves de contacter directement d'autres élèves à travers la plateforme.</p>
       </div>
 
