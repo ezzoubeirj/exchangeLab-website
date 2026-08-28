@@ -87,7 +87,25 @@ onClick={() => toggleSection('company')}
 </span>
 </div>
 <ul className={`space-y-3 relative z-10 overflow-hidden transition-all duration-300 ${expandedSections.company ? 'max-h-60 opacity-100 mb-4' : 'max-h-0 opacity-0 sm:max-h-60 sm:opacity-100'}`}>
-{[ "blog", "reviews"].map((item) => (
+                <li>
+                  <Link
+                    href="/conditions"
+                    className="text-sm text-[var(--color-desc)] transition-colors duration-200 flex items-center group"
+                  >
+                    <span className="w-0 opacity-0 group-hover:w-2 group-hover:opacity-100 transition-all duration-300 h-px bg-[#777777] mr-0 group-hover:mr-2"></span>
+                    {t("terms")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/privacy-policy"
+                    className="text-sm text-[var(--color-desc)] transition-colors duration-200 flex items-center group"
+                  >
+                    <span className="w-0 opacity-0 group-hover:w-2 group-hover:opacity-100 transition-all duration-300 h-px bg-[#777777] mr-0 group-hover:mr-2"></span>
+                    {t("privacy")}
+                  </Link>
+                </li>
+                {[ "blog", "reviews"].map((item) => (
 <li key={item}>
 {item === "blog" ? (
 <Link
