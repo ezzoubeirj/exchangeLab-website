@@ -118,6 +118,14 @@ export default function OurCourses() {
             {t("title")}
           </motion.h1>
         </div>
+        <div className="relative z-10 mt-4">
+          <Link
+            href="/courses"
+            className="text-[#3189c5] font-semibold hover:text-[#276c9a] hover:underline underline-offset-4 transition-colors"
+          >
+            {t("seeAllCourses")} {isRTL ? "←" : "→"}
+          </Link>
+        </div>
         <div className="absolute top-30 right-1/7 transform -translate-x-1/2 z-10 hidden lg:block">
           <ArrowDown style={{ width: 150, height: 150 }} />
         </div>
@@ -270,7 +278,13 @@ export default function OurCourses() {
                 <Whatsapp className="h-5 w-5" color="#ffffff" />
                 <span>{t("whatsapp")}</span>
                 </div>
-              
+
+            </Link>
+            <Link
+              href="/cours-particuliers"
+              className="text-[#3189c5] font-semibold hover:text-[#276c9a] hover:underline underline-offset-4 transition-colors self-start"
+            >
+              {t("discoverOneToOne")} {isRTL ? "←" : "→"}
             </Link>
           </div>
           <div className="flex items-center order-1 md:order-2">

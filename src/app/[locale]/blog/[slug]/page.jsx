@@ -1,6 +1,22 @@
-import { getPostBySlug, getAllSlugs } from '@/lib/posts';
+import { getPostBySlug, getAllSlugs, getAllPosts } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 import PostPageClient from '@/components/blog/PostPageClient';
+
+// Pick up to `limit` other articles to suggest: those sharing the most tags
+// with the current one first, then the most recent, so every article links
+// out to genuinely related reading.
+function getRelatedPosts(current, limit = 2) {
+  const currentTags = new Set(current.tags || []);
+  return getAllPosts()
+    .filter((p) => p.slug !== current.slug)
+    .map((p) => ({
+      post: p,
+      shared: (p.tags || []).filter((t) => currentTags.has(t)).length,
+    }))
+    .sort((a, b) => b.shared - a.shared || new Date(b.post.date) - new Date(a.post.date))
+    .slice(0, limit)
+    .map(({ post }) => ({ slug: post.slug, title: post.title, coverImage: post.coverImage || '' }));
+}
 
 const BASE_URL = 'https://www.xchangelab.info';
 
@@ -54,5 +70,6 @@ export default async function PostPage({ params }) {
   const { slug, locale } = await params;
   const post = getPostBySlug(slug);
   if (!post) notFound();
-  return <PostPageClient post={post} locale={locale} />;
+  const related = getRelatedPosts(post);
+  return <PostPageClient post={post} locale={locale} related={related} />;
 }

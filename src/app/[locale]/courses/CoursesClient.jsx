@@ -160,6 +160,7 @@ export default function CoursesPage() {
         t('course7.feature2'),
         t('course7.feature3'),
       ],
+      internalLink: '/cours-particuliers',
     }
   ];
 
@@ -259,6 +260,12 @@ export default function CoursesPage() {
           <p className={`text-lg text-[#777777] max-w-3xl mx-auto ${isRTL ? 'tajawal-regular' : 'open-sans-regular'}`}>
             {t('subtitle')}
           </p>
+          <p className={`text-sm text-[#777777] mt-4 ${isRTL ? 'tajawal-regular' : 'open-sans-regular'}`}>
+            {t('placementPrompt')}{' '}
+            <Link href={`/${locale}/placement-test`} className="text-[#1E76B5] font-semibold hover:underline">
+              {t('placementCta')}
+            </Link>
+          </p>
         </div>
 
         {/* Courses List */}
@@ -345,17 +352,21 @@ export default function CoursesPage() {
                   {/* Buttons */}
                   <div className={`flex flex-wrap gap-3 mt-6 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
                     <Link
-                      href={course.registerLink || `/${locale}/registration`}
+                      href={
+                        course.internalLink
+                          ? `/${locale}${course.internalLink}`
+                          : course.registerLink || `/${locale}/registration`
+                      }
                       target={course.registerLink ? '_blank' : '_self'}
                       rel={course.registerLink ? 'noopener noreferrer' : undefined}
-                      className={`px-4 py-2.5 md:px-6 md:py-3 text-sm md:text-base rounded-lg shadow-md 
-                      bg-white border border-[#1E76B5] text-[#1E76B5] 
+                      className={`px-4 py-2.5 md:px-6 md:py-3 text-sm md:text-base rounded-lg shadow-md
+                      bg-white border border-[#1E76B5] text-[#1E76B5]
                       transform transition-all duration-300
                       hover:shadow-lg hover:translate-y-[-2px] hover:bg-blue-50
-                      active:translate-y-[1px] 
+                      active:translate-y-[1px]
                       ${isRTL ? 'tajawal-medium' : 'open-sans-medium'}`}
                     >
-                      {t('register')}
+                      {course.internalLink ? t('learnMore') : t('register')}
                     </Link>
 
                     <a

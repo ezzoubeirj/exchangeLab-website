@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useLocale } from "next-intl";
-import { useRouter } from "@/i18n/navigation";
+import { useRouter, Link } from "@/i18n/navigation";
 
 const CSS = `
 .cp-root{
@@ -995,6 +995,34 @@ export default function CoursParticuliersClient({ audience = "kids" }) {
         onClick={handleRootClick}
         dangerouslySetInnerHTML={{ __html: html }}
       />
+      <nav
+        dir={locale === "ar" ? "rtl" : "ltr"}
+        className="max-w-3xl mx-auto px-6 pb-16 -mt-4 text-center text-sm text-[#6a7994]"
+      >
+        {locale === "ar" ? (
+          <p>
+            لا تعرف مستوى طفلك؟{" "}
+            <Link href="/placement-test" className="text-[#3a6cb4] font-semibold hover:underline">
+              قم بإجراء اختبار تحديد المستوى المجاني
+            </Link>{" "}
+            · تفضّل التعلّم في مجموعة صغيرة؟{" "}
+            <Link href="/courses" className="text-[#3a6cb4] font-semibold hover:underline">
+              تعرّف على دوراتنا الجماعية
+            </Link>
+          </p>
+        ) : (
+          <p>
+            Vous hésitez sur le niveau de votre enfant ?{" "}
+            <Link href="/placement-test" className="text-[#3a6cb4] font-semibold hover:underline">
+              Faites le test de niveau gratuit
+            </Link>{" "}
+            · Vous préférez apprendre en petit groupe ?{" "}
+            <Link href="/courses" className="text-[#3a6cb4] font-semibold hover:underline">
+              Découvrez nos cours collectifs
+            </Link>
+          </p>
+        )}
+      </nav>
     </>
   );
 }

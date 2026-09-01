@@ -13,7 +13,7 @@ function formatDate(dateStr, locale) {
   }
 }
 
-export default function PostPageClient({ post, locale }) {
+export default function PostPageClient({ post, locale, related = [] }) {
   const isRTL = locale === 'ar';
 
   return (
@@ -126,6 +126,36 @@ export default function PostPageClient({ post, locale }) {
           </Link>
           .
         </p>
+
+        {/* Related articles */}
+        {related.length > 0 && (
+          <div className="mt-12 pt-8 border-t border-gray-100">
+            <h2 className="text-lg font-bold text-[#2c58a2] mb-4">
+              {isRTL ? 'اقرأ أيضاً' : 'À lire aussi'}
+            </h2>
+            <ul className="space-y-3">
+              {related.map(r => (
+                <li key={r.slug}>
+                  <Link
+                    href={`/${locale}/blog/${r.slug}`}
+                    className="flex items-center gap-3 group"
+                  >
+                    {r.coverImage ? (
+                      <img
+                        src={r.coverImage}
+                        alt=""
+                        className="w-16 h-12 rounded-lg object-cover flex-shrink-0"
+                      />
+                    ) : null}
+                    <span className="text-[#3189c5] font-semibold group-hover:underline">
+                      {r.title}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* Back to blog */}
         <div className="mt-8 pt-8 border-t border-gray-100 flex items-center justify-between flex-wrap gap-4">
