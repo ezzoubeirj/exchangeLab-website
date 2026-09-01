@@ -69,6 +69,13 @@ items: [
 category: t("liveClasses"),
 items: [
 {
+text: t("viewAllCourses"),
+href: "/courses",
+icon: GraduationCap,
+flagBg: "bg-blue-100",
+flagColor: "text-blue-700"
+},
+{
 text: t("liveClassesSubItems.englishKids"),
 href: "/registration?language=childEnglish",
 flagCode: "english-kids",
