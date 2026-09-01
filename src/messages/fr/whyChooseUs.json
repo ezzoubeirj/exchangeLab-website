@@ -4,6 +4,24 @@
     "part2": "",
     "title": "Pourquoi apprendre avec Exchange Lab ?",
     "subtitle": "Une méthode interactive axée sur la pratique et l'oral.",
-    "google": "4,8/5 sur Google — plus de 200 avis"
+    "google": "4,8/5 sur Google — plus de 200 avis",
+    "features": {
+      "verified_tutors": {
+        "title": "Méthode qui encourage la prise de parole",
+        "description": "Notre approche bienveillante aide votre enfant à surmonter sa timidité naturellement."
+      },
+      "affordable": {
+        "title": "Activités ludiques adaptées à l'âge",
+        "description": "Des jeux, des chansons et des activités amusantes qui rendent l'apprentissage naturel."
+      },
+      "flexible_schedule": {
+        "title": "Enseignants expérimentés et bienveillants",
+        "description": "Professeurs formés spécialement pour enseigner aux enfants avec patience et expertise."
+      },
+      "all_in_one": {
+        "title": "Cours en ligne avec matériel fourni",
+        "description": "Votre enfant apprend dans son environnement familier avec tous les supports pédagogiques inclus."
+      }
+    }
   }
 }
