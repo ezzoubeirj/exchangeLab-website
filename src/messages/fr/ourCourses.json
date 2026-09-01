@@ -5,7 +5,7 @@
     "learnMore": "En savoir plus",
     "register": "S'inscrire maintenant",
     "course1": {
-      "title": "Cours d'anglais pour enfants",
+      "title": "Cours d'anglais en ligne pour enfants",
       "description": "Des cours d'anglais en ligne pour les enfants, axés sur la communication orale avec des méthodes ludiques et adaptées à leur âge.",
       "image": "/cource1.png",
       "feature1": "9 à 12 élèves par classe",
@@ -13,7 +13,7 @@
       "feature3": "Exercices, devoirs, tests et certificats"
     },
     "course2": {
-      "title": "Cours d'anglais pour adultes",
+      "title": "Cours d'anglais en ligne pour adultes",
       "description": "Des cours d'anglais en ligne pour adultes, conçus pour améliorer votre communication au quotidien et dans un contexte professionnel.",
       "image": "/cource2.png",
       "feature1": "9 à 12 apprenants par classe",
@@ -21,7 +21,7 @@
       "feature3": "Exercices, devoirs, tests et certificats"
     },
     "course3": {
-      "title": "Cours d'espagnol pour enfants",
+      "title": "Cours d'espagnol en ligne pour enfants",
       "description": "Des cours d'espagnol en ligne pour les enfants, avec des méthodes pédagogiques dynamiques et interactives.",
       "image": "/cource3.png",
       "feature1": "9 à 12 élèves par classe",
@@ -53,7 +53,7 @@
       "feature3": "Horaires flexibles adaptés à votre emploi du temps"
     },
     "course7": {
-      "title": "Cours particuliers & programmes sur mesure",
+      "title": "Cours particuliers et programmes sur mesure",
       "description": "Des cours individuels ou en petits groupes privés, entièrement personnalisés selon vos objectifs et votre rythme d'apprentissage.",
       "image": "/study1.png",
       "feature1": "Attention individuelle complète",
@@ -65,7 +65,7 @@
     "whatsapp": "Contactez-nous",
     "steps": {
       "step1": {
-        "part1": "Cours d'anglais pour enfants",
+        "part1": "Cours d'anglais en ligne pour enfants",
         "part2": "600 Dh / session (3 mois)",
         "part3": "Environ 29 heures de cours (deux séances de 1h15 par semaine)",
         "part4": "Cours de communication axés sur l'oral",
@@ -77,7 +77,7 @@
         "part10": "Certificats"
       },
       "step2": {
-        "part1": "Cours d'anglais pour adultes",
+        "part1": "Cours d'anglais en ligne pour adultes",
         "part2": "600 Dh / session (2 mois et demi)",
         "part3": "30 heures de cours (deux séances de 1h30 par semaine)",
         "part4": "Cours de communication axés sur l'oral",
@@ -89,7 +89,7 @@
         "part10": "Certificats"
       },
       "step3": {
-        "part1": "Cours d'espagnol pour enfants",
+        "part1": "Cours d'espagnol en ligne pour enfants",
         "part2": "350 Dh / session (3 mois)",
         "part3": "15 heures de cours (une séance de 1h15 par semaine)",
         "part4": "Cours de communication axés sur l'oral",
