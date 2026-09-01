@@ -105,6 +105,15 @@ onClick={() => toggleSection('company')}
                     {t("privacy")}
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/placement-test"
+                    className="text-sm text-[var(--color-desc)] transition-colors duration-200 flex items-center group"
+                  >
+                    <span className="w-0 opacity-0 group-hover:w-2 group-hover:opacity-100 transition-all duration-300 h-px bg-[#777777] mr-0 group-hover:mr-2"></span>
+                    {t("placementTest")}
+                  </Link>
+                </li>
                 {[ "blog", "reviews"].map((item) => (
 <li key={item}>
 {item === "blog" ? (
@@ -202,18 +211,11 @@ onClick={() => toggleSection('contact')}
 </div>
 <div className={`space-y-3 relative z-10 overflow-hidden transition-all duration-300 ${expandedSections.contact ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 sm:max-h-96 sm:opacity-100'}`}>
 <ul className="space-y-3">
-{["contactUs"].map((item) => (
-<li key={item} className="text-sm text-[var(--color-desc)] transition-colors duration-200">
-<Link
-href="#"
-target={item === "contactUs" ? "_blank" : undefined}
-rel={item === "contactUs" ? "noopener noreferrer" : undefined}
-onClick={item === "contactUs" ? (e) => e.preventDefault() : undefined}
->
-{t(item)}
-</Link>
+<li className="text-sm text-[var(--color-desc)] transition-colors duration-200">
+<a href="mailto:contact@xchangelab.info">
+{t("contactUs")}
+</a>
 </li>
-))}
 </ul>
 
 {/* WhatsApp Contact Section */}
@@ -234,9 +236,10 @@ onClick={item === "contactUs" ? (e) => e.preventDefault() : undefined}
 {[
 { icon: Whatsapp, label: "WhatsApp", href: "https://wa.me/212663244841" },
 { icon: Tiktok, label: "Tiktok" , href: "https://www.tiktok.com/@exchange_lab" },
-{ icon: Youtube, label: "YouTube" , href: "https://www.youtube.com/@Exchange Lab" },
-{ icon: Facebook, label: "Facebook" , href: "https://www.facebook.com/Exchange LabMorocco?_rdc=1&_rdr" },
-{ icon: Instagram, label: "Instagram" , href: "https://www.instagram.com/exchange_lab/" }
+{ icon: Youtube, label: "YouTube" , href: "https://www.youtube.com/@ExchangeLab" },
+{ icon: Facebook, label: "Facebook" , href: "https://web.facebook.com/ExchangeLabMorocco" },
+{ icon: Instagram, label: "Instagram" , href: "https://www.instagram.com/exchange_lab/" },
+{ icon: Linkedin, label: "LinkedIn" , href: "https://ma.linkedin.com/company/exchangelab" }
 ].map((social) => (
 <Link
 key={social.label}

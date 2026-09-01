@@ -10,6 +10,13 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
 
+  // sitemap.js reads the filesystem (route folders + content/posts) to build
+  // the URL list. Make sure those files are bundled so sitemap generation /
+  // revalidation works in the serverless runtime, not just at build time.
+  outputFileTracingIncludes: {
+    '/sitemap.xml': ['./src/app/[locale]/**/*', './content/posts/**/*'],
+  },
+
   // Keep your original ESLint setting
   eslint: {
     ignoreDuringBuilds: true,

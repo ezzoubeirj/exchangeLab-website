@@ -34,6 +34,37 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function CoursesPage() {
-  return <CoursesClient />;
+export default async function CoursesPage({ params }) {
+  const { locale } = await params;
+  const { ourCourses } = (await import(`@/messages/${locale}/ourCourses.json`)).default;
+
+  // Course structured data — built from the programmes actually listed on this
+  // page (ourCourses.json). Rendered server-side so crawlers see it in the HTML.
+  const courseKeys = ['course1', 'course2', 'course3', 'course4', 'course5', 'course6', 'course7'];
+  const coursesJsonLd = courseKeys
+    .filter((key) => ourCourses[key]?.title)
+    .map((key) => ({
+      '@context': 'https://schema.org',
+      '@type': 'Course',
+      name: ourCourses[key].title,
+      description: ourCourses[key].description,
+      inLanguage: locale,
+      url: `${BASE_URL}/${locale}/courses`,
+      provider: {
+        '@type': 'EducationalOrganization',
+        name: 'Exchange Lab',
+        alternateName: 'XLAB',
+        url: BASE_URL,
+      },
+    }));
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(coursesJsonLd) }}
+      />
+      <CoursesClient />
+    </>
+  );
 }
