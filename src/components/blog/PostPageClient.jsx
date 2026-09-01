@@ -114,8 +114,21 @@ export default function PostPageClient({ post, locale }) {
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
 
+        {/* Contextual links to the relevant programmes */}
+        <p className="mt-12 text-sm text-gray-600">
+          {isRTL ? 'اكتشفوا ' : 'Découvrez nos '}
+          <Link href={`/${locale}/courses`} className="text-[#3189c5] font-semibold hover:underline">
+            {isRTL ? 'دوراتنا الجماعية' : 'cours en petits groupes'}
+          </Link>
+          {isRTL ? ' و' : ' ou nos '}
+          <Link href={`/${locale}/cours-particuliers`} className="text-[#3189c5] font-semibold hover:underline">
+            {isRTL ? 'الدروس الفردية' : 'cours particuliers'}
+          </Link>
+          .
+        </p>
+
         {/* Back to blog */}
-        <div className="mt-14 pt-8 border-t border-gray-100 flex items-center justify-between flex-wrap gap-4">
+        <div className="mt-8 pt-8 border-t border-gray-100 flex items-center justify-between flex-wrap gap-4">
           <Link
             href={`/${locale}/blog`}
             className="inline-flex items-center gap-2 text-[#3189c5] font-semibold hover:text-[#276c9a] transition-colors"

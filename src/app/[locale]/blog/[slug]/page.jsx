@@ -8,14 +8,18 @@ export async function generateMetadata({ params }) {
   const { slug, locale } = await params;
   const post = getPostBySlug(slug);
   if (!post) return { title: 'Article non trouvé' };
+  const isAr = locale === 'ar';
   return {
     title: post.title,
     description: post.excerpt,
+    // Articles are French-only. Arabic article routes render the French content,
+    // so they stay noindex and are not advertised as hreflang alternates.
+    ...(isAr ? { robots: { index: false, follow: true } } : {}),
     alternates: {
       canonical: `${BASE_URL}/${locale}/blog/${slug}`,
       languages: {
         fr: `${BASE_URL}/fr/blog/${slug}`,
-        ar: `${BASE_URL}/ar/blog/${slug}`,
+        'x-default': `${BASE_URL}/fr/blog/${slug}`,
       },
     },
     openGraph: {

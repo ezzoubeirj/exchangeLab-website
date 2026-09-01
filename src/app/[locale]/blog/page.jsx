@@ -11,11 +11,13 @@ export async function generateMetadata({ params }) {
     description: isAr
       ? 'نصائح وموارد لتعلم اللغات مع Exchange Lab'
       : "Conseils, ressources et actualités pour apprendre les langues avec Exchange Lab.",
+    // The blog is only published in French. The Arabic blog has no translated
+    // content, so it stays noindex and is not offered as a hreflang alternate.
+    ...(isAr ? { robots: { index: false, follow: true } } : {}),
     alternates: {
       canonical: `${BASE_URL}/${locale}/blog`,
       languages: {
         fr: `${BASE_URL}/fr/blog`,
-        ar: `${BASE_URL}/ar/blog`,
         'x-default': `${BASE_URL}/fr/blog`,
       },
     },

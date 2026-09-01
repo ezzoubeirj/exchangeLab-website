@@ -9,16 +9,41 @@ const BASE_URL = 'https://www.xchangelab.info';
 
 // Organization structured data — same on every page, describes the
 // business as a whole rather than any single page's content.
+// XLAB is a language-training provider, so EducationalOrganization is the
+// most accurate schema.org type (it is a subtype of Organization).
 const organizationJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
+  '@type': 'EducationalOrganization',
   name: 'Exchange Lab',
+  alternateName: 'XLAB',
+  legalName: 'Exchange Lab (XLAB) — Xlabber Sarl',
   url: BASE_URL,
   logo: `${BASE_URL}/logo.png`,
+  description:
+    "Exchange Lab (XLAB) est un organisme de formation linguistique en ligne : cours d'anglais, d'espagnol, de français et de Coran en petits groupes, ainsi que des cours particuliers, avec test de niveau et suivi personnalisé.",
+  email: 'contact@xchangelab.info',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'MA',
+  },
+  areaServed: [
+    { '@type': 'Country', name: 'Morocco' },
+    'International',
+  ],
+  // Languages XLAB provides support/instruction in (see Footer "support").
+  availableLanguage: ['fr', 'en', 'ar', 'es'],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'contact@xchangelab.info',
+    contactType: 'customer support',
+    availableLanguage: ['fr', 'en', 'ar'],
+  },
   sameAs: [
     'https://www.instagram.com/exchange_lab/',
-    'https://www.youtube.com/@Exchange Lab',
     'https://www.tiktok.com/@exchange_lab',
+    'https://ma.linkedin.com/company/exchangelab',
+    'https://www.youtube.com/@ExchangeLab',
+    'https://web.facebook.com/ExchangeLabMorocco',
   ],
 };
 
