@@ -93,6 +93,7 @@ export default function CoursesPage() {
         t('course1.feature2'),
         t('course1.feature3'),
       ],
+      internalLink: '/cours-anglais-en-ligne-enfants-maroc',
     },
     {
       id: 2,
@@ -104,6 +105,7 @@ export default function CoursesPage() {
         t('course2.feature2'),
         t('course2.feature3'),
       ],
+      internalLink: '/cours-anglais-en-ligne-adultes-maroc',
     },
     {
       id: 3,
@@ -264,6 +266,11 @@ export default function CoursesPage() {
             {t('placementPrompt')}{' '}
             <Link href={`/${locale}/placement-test`} className="text-[#1E76B5] font-semibold hover:underline">
               {t('placementCta')}
+            </Link>
+          </p>
+          <p className={`text-sm text-[#777777] mt-2 ${isRTL ? 'tajawal-regular' : 'open-sans-regular'}`}>
+            <Link href={`/${locale}/cours-anglais-en-ligne-maroc`} className="text-[#1E76B5] font-semibold hover:underline">
+              {isRTL ? 'دروس اللغة الإنجليزية أونلاين في المغرب' : "Cours d'anglais en ligne au Maroc"}
             </Link>
           </p>
         </div>

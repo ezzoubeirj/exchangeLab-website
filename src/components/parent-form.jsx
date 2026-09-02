@@ -202,6 +202,35 @@ export default function ParentForm({ parentInfo, childInfo, onParentInfoChange, 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    // Validate ALL fields before any API call — an incomplete form must not
+    // reach /api/register or create a submission row.
+    let formIsValid = true
+    const newErrors = { ...errors }
+
+    for (const field in parentInfo) {
+      const errorMessage = validateField(field, parentInfo[field])
+      newErrors[field] = errorMessage
+      if (errorMessage) formIsValid = false
+    }
+    for (const field in childInfo) {
+      const errorMessage = validateField(field, childInfo[field])
+      newErrors[field] = errorMessage
+      if (errorMessage) formIsValid = false
+    }
+
+    setErrors(newErrors)
+    setFormSubmitted(true)
+
+    // Mark all fields as touched so errors display
+    const allTouched = {}
+    for (const field in touchedFields) {
+      allTouched[field] = true
+    }
+    setTouchedFields(allTouched)
+
+    if (!formIsValid) return
+
+    // Form is valid — submit (unchanged behaviour from here).
     childInfo.language = childInfo.language === 'childEnglish' ? "English" : childInfo.language;
     const registrationData = {
       childInfo,
@@ -210,11 +239,8 @@ export default function ParentForm({ parentInfo, childInfo, onParentInfoChange, 
       reason: childInfo.reason,
       finalChoice: 'submission',
     }
-    console.log("all infos: ", registrationData);
-    // return; 
     setLoading(true);
     try {
-      // Replace with your actual backend endpoint
       const response = await fetch("/api/register", {
         method: "POST",
         headers: {
@@ -231,37 +257,7 @@ export default function ParentForm({ parentInfo, childInfo, onParentInfoChange, 
       setLoading(false);
     }
 
-    // Validate all fields before submitting
-    let formIsValid = true
-    const newErrors = { ...errors }
-    
-    // Validate parent fields
-    for (const field in parentInfo) {
-      const errorMessage = validateField(field, parentInfo[field])
-      newErrors[field] = errorMessage
-      if (errorMessage) formIsValid = false
-    }
-    
-    // Validate child fields
-    for (const field in childInfo) {
-      const errorMessage = validateField(field, childInfo[field])
-      newErrors[field] = errorMessage
-      if (errorMessage) formIsValid = false
-    }
-    
-    setErrors(newErrors)
-    setFormSubmitted(true)
-    
-    // Mark all fields as touched on submit
-    const allTouched = {}
-    for (const field in touchedFields) {
-      allTouched[field] = true
-    }
-    setTouchedFields(allTouched)
-    
-    if (formIsValid) {
-      onSubmit()
-    }
+    onSubmit()
   }
 
   const getInputClass = (fieldName) => {

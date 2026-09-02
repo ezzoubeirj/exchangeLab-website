@@ -17,6 +17,9 @@ const NOINDEX_ROUTES = new Set([
 const ROUTE_HINTS = {
   '': { priority: 1.0, changeFrequency: 'weekly' },
   '/courses': { priority: 0.9, changeFrequency: 'monthly' },
+  '/cours-anglais-en-ligne-maroc': { priority: 0.9, changeFrequency: 'monthly' },
+  '/cours-anglais-en-ligne-enfants-maroc': { priority: 0.85, changeFrequency: 'monthly' },
+  '/cours-anglais-en-ligne-adultes-maroc': { priority: 0.85, changeFrequency: 'monthly' },
   '/cours-particuliers': { priority: 0.9, changeFrequency: 'monthly' },
   '/cours-particuliers/adultes': { priority: 0.8, changeFrequency: 'monthly' },
   '/how-it-works': { priority: 0.8, changeFrequency: 'monthly' },

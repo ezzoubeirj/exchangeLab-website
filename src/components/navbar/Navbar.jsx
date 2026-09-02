@@ -347,7 +347,7 @@ getFontClass('medium')
 {/* Go to Class Button */}
 <div className="hidden sm:block">
 <Link
-href="http://funcenter.xchangelab.info/"
+href="https://funcenter.xchangelab.info/"
 target="_blank"
 rel="noopener noreferrer"
 className={cn(
@@ -578,7 +578,7 @@ getFontClass('semibold')
 <div className="space-y-2 pt-4 border-t border-gray-100">
 {/* Go to Class Link for Mobile */}
 <Link
-href="http://funcenter.xchangelab.info/"
+href="https://funcenter.xchangelab.info/"
 onClick={onClose}
 className="flex items-center gap-3 p-3 rounded-xl text-gray-700 hover:bg-gray-50 transition-colors duration-200"
 >
