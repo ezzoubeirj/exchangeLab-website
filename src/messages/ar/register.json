@@ -86,6 +86,7 @@
       "lastnameplaceholder": "أدخل اسم العائلة",
       "emailplaceholder": "أدخل البريد الإلكتروني",
       "phoneplaceholder": "أدخل رقم الواتساب أو الهاتف",
+      "fullnameplaceholder": "أدخل الاسم الكامل",
       "searchCountry": "ابحث عن بلد",
       "noCountriesFound": "لم يتم العثور على دول، يرجى التحقق من اتصالك بالإنترنت أو المحاولة لاحقًا."
     },

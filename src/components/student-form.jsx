@@ -184,9 +184,30 @@ export default function StudentForm({ studentInfo, onStudentInfoChange, onSubmit
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    // Validate all fields before submitting
+    // Validate ALL fields before any API call — an incomplete form must not
+    // reach /api/register or create a submission row.
     let formIsValid = true
     const newErrors = { ...errors }
+
+    for (const field in studentInfo) {
+      const errorMessage = validateField(field, studentInfo[field])
+      newErrors[field] = errorMessage
+      if (errorMessage) formIsValid = false
+    }
+
+    setErrors(newErrors)
+    setFormSubmitted(true)
+
+    // Mark all fields as touched so errors display
+    const allTouched = {}
+    for (const field in touchedFields) {
+      allTouched[field] = true
+    }
+    setTouchedFields(allTouched)
+
+    if (!formIsValid) return
+
+    // Form is valid — submit (unchanged behaviour from here).
     studentInfo.language = studentInfo.language === 'childEnglish' ? "English" : studentInfo.language;
     const registrationData = {
       studentInfo,
@@ -194,11 +215,8 @@ export default function StudentForm({ studentInfo, onStudentInfoChange, onSubmit
       reason: studentInfo.reason,
       finalChoice: 'submission',
     }
-    console.log("student infos: ", registrationData);
-    // return; 
     setLoading(true);
     try {
-      // Replace with your actual backend endpoint
       const response = await fetch("/api/register", {
         method: "POST",
         headers: {
@@ -214,27 +232,8 @@ export default function StudentForm({ studentInfo, onStudentInfoChange, onSubmit
     } finally {
       setLoading(false);
     }
-    // return;
-    // Validate all fields
-    for (const field in studentInfo) {
-      const errorMessage = validateField(field, studentInfo[field])
-      newErrors[field] = errorMessage
-      if (errorMessage) formIsValid = false
-    }
 
-    setErrors(newErrors)
-    setFormSubmitted(true)
-
-    // Mark all fields as touched on submit
-    const allTouched = {}
-    for (const field in touchedFields) {
-      allTouched[field] = true
-    }
-    setTouchedFields(allTouched)
-
-    if (formIsValid) {
-      onSubmit()
-    }
+    onSubmit()
   }
 
   const getInputClass = (fieldName) => {

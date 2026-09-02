@@ -159,7 +159,7 @@ onClick={() => toggleSection('languages')}
 ].map((item) => (
 <li key={item}>
 <Link
-href={item === "learnEnglish" ? "/registration?language=English" : item === "learnSpanish" ? "/registration?language=Spanish" : "/registration?language=childEnglish"}
+href={item === "learnEnglish" ? "/cours-anglais-en-ligne-adultes-maroc" : item === "learnSpanish" ? "/registration?language=Spanish" : "/cours-anglais-en-ligne-enfants-maroc"}
 className="text-sm text-[var(--color-desc)] transition-colors duration-200 flex items-center group"
 >
 <span className="w-0 opacity-0 group-hover:w-2 group-hover:opacity-100 transition-all duration-300 h-px bg-[#777777] mr-0 group-hover:mr-2"></span>
@@ -185,7 +185,7 @@ onClick={() => toggleSection('operations')}
 {["ourPlatform"].map((item) => (
 <li key={item}>
 <Link
-href={'https://www.xlabplatform.com/login/index.php'}
+href={'https://funcenter.xchangelab.info/'}
 target="_blank"
 rel="noopener noreferrer"
 className="text-sm text-[var(--color-desc)] transition-colors duration-200 flex items-center group"
