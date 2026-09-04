@@ -40,9 +40,9 @@ export async function generateMetadata({ params }) {
       type: 'website',
       images: [
         {
-          url: `${BASE_URL}/og-image.jpg`,
+          url: 'https://www.xchangelab.info/website-photo.jpg',
           width: 1200,
-          height: 630,
+          height: 800,
           alt: 'Exchange Lab — Cours de langues en ligne',
         },
       ],
