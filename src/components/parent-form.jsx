@@ -287,7 +287,7 @@ export default function ParentForm({ parentInfo, childInfo, onParentInfoChange, 
 
   return (
     <div className="max-w-2xl mx-auto py-20 px-4">
-      <h1 className="text-3xl font-serif text-gray-900 mb-8 text-center">{t("title")}</h1>
+      <h2 className="text-3xl font-serif text-gray-900 mb-8 text-center">{t("title")}</h2>
 
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Parent Information Section */}

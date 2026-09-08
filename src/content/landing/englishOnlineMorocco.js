@@ -13,7 +13,7 @@ const englishOnlineMorocco = {
     seo: {
       title: "Cours d'anglais en ligne au Maroc pour enfants et adultes | XLAB",
       description:
-        "Exchange Lab (XLAB) est une école de langues en ligne basée au Maroc : cours d'anglais en direct, en petits groupes, pour enfants et adultes. Test de niveau gratuit, professeurs qualifiés, suivi personnalisé.",
+        "Cours d'anglais en ligne au Maroc pour enfants et adultes : classes en direct en petits groupes, professeurs qualifiés, suivi personnalisé. Test de niveau gratuit.",
     },
     hero: {
       title: "Cours d'anglais en ligne au Maroc, pour enfants et adultes",

@@ -250,9 +250,9 @@ export default function HowItWorks() {
           <div className="container relative z-10 w-full px-6 py-20">
             <div className="max-w-xl ml-8 lg:ml-16">
               {/* Title */}
-              <h1 className="text-5xl lg:text-6xl font-bold text-[#2c58a2]  leading-tight mb-6">
+              <h2 className="text-5xl lg:text-6xl font-bold text-[#2c58a2]  leading-tight mb-6">
                 {t("title")}
-              </h1>
+              </h2>
 
               {/* Subtitle */}
               <p className="text-xl text-[#777777] drop-shadow-md mb-8 leading-relaxed">

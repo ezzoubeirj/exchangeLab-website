@@ -39,9 +39,9 @@ const TeacherLive = () => {
               animate={{ opacity: isInView ? 1 : 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl text-[#3189c5] font-bold leading-tight text-center lg:text-left">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl text-[#3189c5] font-bold leading-tight text-center lg:text-left">
                 {t("heroTeacher.title")}
-                </h1>
+                </h2>
             </motion.div>
 
             {/* Description with glass effect */}

@@ -11,7 +11,7 @@ const englishOnlineAdultsMorocco = {
     seo: {
       title: "Cours d'anglais en ligne pour adultes au Maroc | Exchange Lab (XLAB)",
       description:
-        "Cours d'anglais en ligne pour adultes au Maroc avec Exchange Lab (XLAB) : classes en direct en petits groupes, horaires du soir, méthode axée sur la conversation quotidienne et professionnelle. Test de niveau gratuit.",
+        "Cours d'anglais en ligne pour adultes au Maroc : classes en direct en petits groupes, horaires du soir, méthode axée sur la conversation. Test de niveau gratuit.",
     },
     hero: {
       title: "Cours d'anglais en ligne pour adultes, au Maroc et à l'international",
@@ -117,7 +117,7 @@ const englishOnlineAdultsMorocco = {
     seo: {
       title: "دروس اللغة الإنجليزية أونلاين للبالغين في المغرب | Exchange Lab (XLAB)",
       description:
-        "دروس اللغة الإنجليزية أونلاين للبالغين في المغرب مع Exchange Lab (XLAB): فصول مباشرة في مجموعات صغيرة، مواعيد مسائية، وطريقة تركّز على المحادثة اليومية والمهنية. اختبار مستوى مجاني.",
+        "دروس اللغة الإنجليزية أونلاين للبالغين في المغرب: فصول مباشرة في مجموعات صغيرة، مواعيد مسائية، وتركيز على المحادثة. اختبار مستوى مجاني.",
     },
     hero: {
       title: "دروس اللغة الإنجليزية أونلاين للبالغين، في المغرب وخارجه",

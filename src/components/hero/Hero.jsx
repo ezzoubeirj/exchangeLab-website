@@ -131,7 +131,9 @@ export default function HeroSection() {
             <div className="relative w-full max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl">
               <img
                 src="/herosection1.png"
-                alt="Hero"
+                alt="Cours de langues en ligne Exchange Lab — élèves en classe virtuelle"
+                fetchPriority="high"
+                decoding="async"
                 className="relative z-10 w-full h-auto object-contain"
               />
             </div>

@@ -11,7 +11,7 @@ const englishOnlineKidsMorocco = {
     seo: {
       title: "Cours d'anglais en ligne pour enfants au Maroc | Exchange Lab (XLAB)",
       description:
-        "Cours d'anglais en ligne pour enfants au Maroc avec Exchange Lab (XLAB) : classes en direct en petits groupes, professeurs formés à l'enseignement aux enfants, méthode ludique axée sur l'oral. Test de niveau gratuit.",
+        "Cours d'anglais en ligne pour enfants au Maroc : classes en direct en petits groupes, professeurs formés, méthode ludique axée sur l'oral. Test de niveau gratuit.",
     },
     hero: {
       title: "Cours d'anglais en ligne pour enfants, au Maroc et ailleurs",
@@ -117,7 +117,7 @@ const englishOnlineKidsMorocco = {
     seo: {
       title: "دروس اللغة الإنجليزية أونلاين للأطفال في المغرب | Exchange Lab (XLAB)",
       description:
-        "دروس اللغة الإنجليزية أونلاين للأطفال في المغرب مع Exchange Lab (XLAB): فصول مباشرة في مجموعات صغيرة، أساتذة مدرَّبون على تعليم الأطفال، وأسلوب مرح يركّز على التحدث. اختبار مستوى مجاني.",
+        "دروس اللغة الإنجليزية أونلاين للأطفال في المغرب: فصول مباشرة في مجموعات صغيرة، أساتذة مدرَّبون، وأسلوب مرح يركّز على التحدث. اختبار مستوى مجاني.",
     },
     hero: {
       title: "دروس اللغة الإنجليزية أونلاين للأطفال، في المغرب وخارجه",
