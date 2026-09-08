@@ -66,10 +66,55 @@ export async function generateMetadata({ params }) {
   };
 }
 
+// Absolute URL for an image path that may already be absolute.
+function absUrl(src) {
+  if (!src) return undefined;
+  return src.startsWith('http') ? src : `${BASE_URL}${src}`;
+}
+
 export default async function PostPage({ params }) {
   const { slug, locale } = await params;
   const post = getPostBySlug(slug);
   if (!post) notFound();
   const related = getRelatedPosts(post);
-  return <PostPageClient post={post} locale={locale} related={related} />;
+
+  // Article structured data — only for the indexable French articles. Arabic
+  // article routes render the French body and are noindex, so we do not emit
+  // BlogPosting for them. Dates and author come straight from the post's own
+  // data; nothing is invented. `dateModified` falls back to the publish date
+  // when the post has never recorded a separate modification date.
+  const isAr = locale === 'ar';
+  const image = absUrl(post.coverImage);
+  const blogPostingJsonLd = isAr
+    ? null
+    : {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        mainEntityOfPage: { '@type': 'WebPage', '@id': `${BASE_URL}/${locale}/blog/${slug}` },
+        headline: post.title,
+        description: post.excerpt,
+        ...(image ? { image: [image] } : {}),
+        datePublished: post.date,
+        dateModified: post.updated || post.date,
+        inLanguage: 'fr',
+        author: { '@type': 'Organization', name: post.author || 'Exchange Lab', url: BASE_URL },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Exchange Lab',
+          logo: { '@type': 'ImageObject', url: `${BASE_URL}/logo.png` },
+        },
+        ...(post.tags && post.tags.length ? { keywords: post.tags.join(', ') } : {}),
+      };
+
+  return (
+    <>
+      {blogPostingJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingJsonLd).replace(/</g, '\\u003c') }}
+        />
+      )}
+      <PostPageClient post={post} locale={locale} related={related} />
+    </>
+  );
 }

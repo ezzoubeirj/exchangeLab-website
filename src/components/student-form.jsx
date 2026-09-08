@@ -262,7 +262,7 @@ export default function StudentForm({ studentInfo, onStudentInfoChange, onSubmit
 
   return (
     <div className="max-w-2xl mx-auto py-20 px-4">
-      <h1 className="text-3xl font-serif text-gray-900 mb-8 text-center">{t("title")}</h1>
+      <h2 className="text-3xl font-serif text-gray-900 mb-8 text-center">{t("title")}</h2>
 
       <form onSubmit={handleSubmit} className="space-y-8">
         <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">

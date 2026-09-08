@@ -255,9 +255,9 @@ export default function CoursesPage() {
           className="text-center mb-20 relative opacity-0"
           style={{ transition: 'all 0.8s ease-out' }}
         >
-          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${isRTL ? 'tajawal-bold' : 'ubuntu-bold'} text-[#1E76B5]`}>
+          <h1 className={`text-3xl md:text-4xl font-bold mb-4 ${isRTL ? 'tajawal-bold' : 'ubuntu-bold'} text-[#1E76B5]`}>
             {t('title')}
-          </h2>
+          </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-[#1E76B5] to-[#777777] mx-auto mb-6 rounded-full"></div>
           <p className={`text-lg text-[#777777] max-w-3xl mx-auto ${isRTL ? 'tajawal-regular' : 'open-sans-regular'}`}>
             {t('subtitle')}

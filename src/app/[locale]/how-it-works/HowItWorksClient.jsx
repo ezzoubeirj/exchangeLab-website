@@ -66,6 +66,7 @@ export default function HowItWorks() {
     <div className={`min-h-screen `}>
       {/* Hero Section */}
       <section className="relative isolate overflow-hidden py-16">
+          <h1 className="sr-only">{t("title")}</h1>
           {/* Mobile: Background image and content */}
           <div className="block md:hidden">
             <div className="relative h-[50vh] w-full">
@@ -92,9 +93,9 @@ export default function HowItWorks() {
             {/* Mobile content below image */}
             <div className="px-6 py-8 bg-white">
               {/* Title */}
-              <h1 className="text-3xl font-bold text-[#2c58a2] leading-tight mb-4">
+              <p aria-hidden="true" className="text-3xl font-bold text-[#2c58a2] leading-tight mb-4">
                 {t("title")}
-              </h1>
+              </p>
 
               {/* Subtitle */}
               <p className="text-lg text-[#777777] mb-6 leading-relaxed">
@@ -250,9 +251,9 @@ export default function HowItWorks() {
           <div className="container relative z-10 w-full px-6 py-20">
             <div className="max-w-xl ml-8 lg:ml-16">
               {/* Title */}
-              <h1 className="text-5xl lg:text-6xl font-bold text-[#2c58a2]  leading-tight mb-6">
+              <p aria-hidden="true" className="text-5xl lg:text-6xl font-bold text-[#2c58a2]  leading-tight mb-6">
                 {t("title")}
-              </h1>
+              </p>
 
               {/* Subtitle */}
               <p className="text-xl text-[#777777] drop-shadow-md mb-8 leading-relaxed">

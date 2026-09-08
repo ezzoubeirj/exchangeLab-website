@@ -11,9 +11,15 @@ const NOINDEX_ROUTES = new Set([
   '/cours-particuliers/inscription',
 ]);
 
-// Per-route sitemap hints. Anything not listed falls back to DEFAULT_HINT,
-// so a newly added page still shows up automatically (just with generic
-// priority) instead of being silently missing.
+// Per-route sitemap hints AND the authoritative list of indexable static
+// routes. This map is the single source of truth: every key here is emitted
+// in the sitemap for each locale. It exists as an explicit list (rather than
+// relying solely on a runtime filesystem walk) because the sitemap route is
+// ISR (`revalidate`) and can regenerate at runtime on Vercel, where the
+// `src/app` SOURCE tree is NOT bundled into the serverless function — a
+// filesystem walk then finds nothing and the service/landing pages silently
+// drop out of the sitemap. Listing them here guarantees they are always
+// present. When you add a new indexable page, add its path here.
 const ROUTE_HINTS = {
   '': { priority: 1.0, changeFrequency: 'weekly' },
   '/courses': { priority: 0.9, changeFrequency: 'monthly' },
@@ -36,11 +42,13 @@ const hasPageFile = (dir) =>
     fs.existsSync(path.join(dir, f))
   );
 
-// Walk the [locale] app directory and collect every static route segment that
-// resolves to a real page. Dynamic segments (`[slug]`, `[...rest]`), route
-// groups (`(group)`) and private folders (`_foo`) are skipped — the blog
-// index and blog articles are added separately by the sitemap so they can be
-// enumerated from their own data source.
+// Build-time augmentation: walk the [locale] app directory and collect every
+// static route that resolves to a real page, so a newly added route is picked
+// up automatically even before it is added to ROUTE_HINTS. Dynamic segments
+// (`[slug]`), route groups (`(group)`) and private folders (`_foo`) are
+// skipped; the blog index and articles are added separately by the sitemap.
+// If the source tree is unavailable (e.g. runtime on Vercel) this simply
+// returns nothing and the explicit ROUTE_HINTS list is used on its own.
 function walk(dir, base = '') {
   const routes = [];
   let entries = [];
@@ -66,12 +74,16 @@ function walk(dir, base = '') {
 }
 
 // Returns [{ path, priority, changeFrequency }] for every indexable static
-// page under src/app/[locale], regardless of nesting depth.
+// page. The explicit ROUTE_HINTS keys are the guaranteed baseline; any extra
+// routes discovered by the build-time filesystem walk are merged in. noindex
+// routes are always excluded.
 export function getIndexableRoutes() {
-  const paths = new Set(walk(localeAppDir));
+  const paths = new Set(Object.keys(ROUTE_HINTS));
+  for (const p of walk(localeAppDir)) paths.add(p);
   paths.add(''); // homepage always included
 
   return [...paths]
+    .filter((routePath) => !NOINDEX_ROUTES.has(routePath))
     .sort()
     .map((routePath) => ({
       path: routePath,

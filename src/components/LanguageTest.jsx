@@ -1221,6 +1221,7 @@ export default function LanguageTest({ formData, onComplete }) {
         {/* Progress Bar */}
         {testState === "testing" && (
           <div className="mb-8">
+            <h1 className="sr-only">{t("welcome.title")}</h1>
             <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
               <div
                 className="h-full bg-blue-600 rounded-full transition-all duration-500 ease-out"

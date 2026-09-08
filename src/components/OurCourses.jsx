@@ -104,7 +104,7 @@ export default function OurCourses() {
       {/* Header Section */}
       <div className="text-center pt-20 px-4 relative">
         <div className="flex items-center justify-center gap-4 relative z-10">
-          <motion.h1
+          <motion.h2
             ref={titleRef}
             initial={{ y: 30, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
@@ -116,7 +116,7 @@ export default function OurCourses() {
               className={`text-[#68b9e3] absolute bottom-1 transform ${isRTL ? "-translate-x-50" : "-translate-x-1/2"} hidden sm:block`}
             />
             {t("title")}
-          </motion.h1>
+          </motion.h2>
         </div>
         <div className="relative z-10 mt-4">
           <Link
