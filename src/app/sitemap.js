@@ -12,9 +12,9 @@ export default function sitemap() {
   const locales = ['fr', 'ar'];
   const now = new Date();
 
-  // Static pages are discovered by walking src/app/[locale] rather than being
-  // hardcoded, so a newly added route (e.g. /cours-particuliers) appears in
-  // the sitemap automatically. noindex routes are excluded in getIndexableRoutes.
+  // Explicit routes guarantee coverage when source folders are unavailable.
+  // The filesystem walk adds newly created pages at build time; noindex
+  // routes are excluded in getIndexableRoutes.
   const routes = getIndexableRoutes();
 
   const staticEntries = locales.flatMap((locale) =>

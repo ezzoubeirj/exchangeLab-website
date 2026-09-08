@@ -111,7 +111,7 @@ export default async function PostPage({ params }) {
       {blogPostingJsonLd && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingJsonLd).replace(/</g, '\\u003c') }}
         />
       )}
       <PostPageClient post={post} locale={locale} related={related} />
