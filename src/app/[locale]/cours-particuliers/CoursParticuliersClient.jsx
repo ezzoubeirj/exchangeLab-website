@@ -397,7 +397,7 @@ const KIDS_HTML = `
         <button class="btn btn-coral">Inscrire mon enfant <svg class="ar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         <a class="btn btn-ghost" href="#pricing">Voir les tarifs</a>
       </div>
-      <div class="reveal hero-trust" style="--i:4"><span class="stars">★★★★★</span> 4,8 sur Google · familles satisfaites</div>
+      <div class="reveal hero-trust" style="--i:4"><span class="stars">★★★★★</span> 4,9 sur Google · familles satisfaites</div>
     </div>
     <div class="reveal hv" style="--i:2">
       <div class="toggle-wrap hero-toggle">
@@ -646,7 +646,7 @@ const ADULT_REPLACEMENTS = [
 const AR_COMMON_REPLACEMENTS = [
   ["Cours particuliers en ligne", "دروس فردية عبر الإنترنت"],
   ["Voir les tarifs", "اطّلع على الأسعار"],
-  ["4,8 sur Google · familles satisfaites", "4.8 على Google · عائلات راضية"],
+  ["4,9 sur Google · familles satisfaites", "4.9 على Google · عائلات راضية"],
   ["Enfants", "الأطفال"],
   ["Adultes", "الكبار"],
   ["séance en ligne", "حصة عبر الإنترنت"],
