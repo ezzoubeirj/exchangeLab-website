@@ -23,7 +23,7 @@ const englishOnlineAdultsMorocco = {
       title: "Des résultats concrets",
       line1: "+1 300 élèves au Maroc et plus de 12 autres pays.",
       line2: "95 % de nos élèves se réinscrivent pour une nouvelle session.",
-      line3: "4,8/5 sur Google — plus de 200 avis",
+      line3: "4,9/5 sur Google — plus de 200 avis",
     },
     benefits: {
       title: "Un cours d'anglais pensé pour les adultes actifs",
@@ -129,7 +129,7 @@ const englishOnlineAdultsMorocco = {
       title: "نتائج ملموسة",
       line1: "+1,300 طالب في المغرب وأكثر من 12 دولة أخرى.",
       line2: "95٪ من طلابنا يسجلون من جديد لمواصلة التعلم معنا.",
-      line3: "4.8/5 على Google — أكثر من 200 تقييم",
+      line3: "4.9/5 على Google — أكثر من 200 تقييم",
     },
     benefits: {
       title: "دورة إنجليزية مصمَّمة للبالغين النشيطين",
