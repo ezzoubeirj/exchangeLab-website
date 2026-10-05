@@ -251,13 +251,13 @@ export default function ParentForm({ parentInfo, childInfo, onParentInfoChange, 
 
       if (!response.ok)
         throw new Error('registration failed');
+
+      onSubmit()
     } catch (error) {
       console.error("Error submitting registration:", error)
     } finally {
       setLoading(false);
     }
-
-    onSubmit()
   }
 
   const getInputClass = (fieldName) => {

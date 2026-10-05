@@ -227,13 +227,13 @@ export default function StudentForm({ studentInfo, onStudentInfoChange, onSubmit
 
       if (!response.ok)
         throw new Error('registration failed');
+
+      onSubmit()
     } catch (error) {
       console.error("Error submitting registration:", error)
     } finally {
       setLoading(false);
     }
-
-    onSubmit()
   }
 
   const getInputClass = (fieldName) => {
