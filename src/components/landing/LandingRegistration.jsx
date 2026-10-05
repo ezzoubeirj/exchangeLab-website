@@ -19,9 +19,9 @@ import { useLocale } from "next-intl"
 import ParentForm from "@/components/parent-form"
 import StudentForm from "@/components/student-form"
 
-function trackLead(category) {
+function trackLead() {
   if (typeof window !== "undefined" && window.fbq) {
-    window.fbq("track", "Lead", { content_name: "English", content_category: category })
+    window.fbq('track', 'Lead')
   }
 }
 
@@ -121,7 +121,7 @@ export default function LandingRegistration({ audience = "choice", source, conte
             onParentInfoChange={setParentInfo}
             onChildInfoChange={setChildInfo}
             onSubmit={() => {
-              trackLead("parent")
+              trackLead()
               setSubmitted(true)
             }}
           />
@@ -133,7 +133,7 @@ export default function LandingRegistration({ audience = "choice", source, conte
             studentInfo={studentInfo}
             onStudentInfoChange={setStudentInfo}
             onSubmit={() => {
-              trackLead("student")
+              trackLead()
               setSubmitted(true)
             }}
           />
