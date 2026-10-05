@@ -35,10 +35,10 @@ import ProgressBar from "@/components/progress-bar"
       import StudentForm from "@/components/student-form"
         import FinalOptions from "@/components/final-options"
           
-// Helper: fire a Meta Pixel event safely
-function trackPixel(event, params = {}) {
+// Fire the standard Meta Pixel Lead event after a confirmed registration.
+function trackLead() {
     if (typeof window !== 'undefined' && window.fbq) {
-          window.fbq('track', event, params);
+          window.fbq('track', 'Lead');
     }
 }
 
@@ -77,12 +77,9 @@ export default function RegistrationPage() {
                                     const nextStep = () =>
                                           setCurrentStep((prev) => Math.min(prev + 1, totalSteps))
                                       
-                                        // Fires Lead event and advances to next step
+        // Fires Lead event and advances to next step
     const handleFormSubmit = () => {
-          trackPixel('Lead', {
-                  content_name: formData.language,
-                  content_category: formData.userType,
-          });
+          trackLead();
           nextStep();
     }
       
